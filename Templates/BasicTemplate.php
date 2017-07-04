@@ -14,16 +14,16 @@
 
     <nav id="navigation">
         <ul id="nav">
-            <li><a href="index.php"> Home </a> </li>
+            <li><a href="../index.php"> Home </a> </li>
             <li> <a href="#">Profile</a></li>
             <li> <a href="#">Marks</a></li>
             <li> <a href="#">Attendance</a></li>
-            <li> <a href="#">Logout</a></li>
+            <li> <a href="Log_in_out/logout.php">Logout</a></li>
         </ul>
     </nav>
 
     <div id="content_area">
-        <?php echo $content; ?>
+
     </div>
 
     <div id="sidebar">

@@ -6,7 +6,7 @@
  * Time: 3:01 PM
  */
 
-require 'Connect.php';
+require '../Connect/Connect.php';
 
 ?>
 

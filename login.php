@@ -14,7 +14,7 @@ echo "<!DOCTYPE html>
     <form action='login.php' method='post'>
        Name<br /> <input type='text' name='username' class='form'/><br />
        Password<br /> <input type='password' name='password' class='form'/>
-       <input type='submit' value='Login' class='button' />
+       <input type='submit' value='Log_in_out' class='button' />
     </form>
     </div>
  </body>
