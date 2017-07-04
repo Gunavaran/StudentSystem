@@ -1,18 +1,19 @@
 <?php
 
 if (isset($_POST['username']) && isset($_POST['password'])){
-    $username = $_POST['username'];
+    $username1 = $_POST['username'];
     $password = $_POST['password'];
     $password_md5 = md5($_POST['password']);
 
     if (!empty($username) && !empty($password)){
-        $query = "SELECT id FROM users WHERE username = '$username' AND password = '$password_md5'";
+        $query = "SELECT id, username FROM users WHERE username = '$username1' AND password = '$password_md5'";
         if($query_run = mysqli_query($link,$query)){
             if (mysqli_num_rows($query_run)==0){
                 echo 'username and password are unmatched';
             } else {
                 $query_row=mysqli_fetch_assoc($query_run);
                 $_SESSION['user_id'] = $query_row['id'];
+                $_SESSION['username'] = $query_row['username'];
                 header('Location: index.php');
             }
         }
@@ -27,7 +28,7 @@ if (isset($_POST['username']) && isset($_POST['password'])){
 <head>
 
     <title> <?php echo $title; ?> </title>
-    <link rel="stylesheet" type = "text/css" href = "Styles/stylesheets.css"/>
+    <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
 
 </head>
 <body>

@@ -17,3 +17,15 @@ function logged_in(){
         return false;
     }
 }
+
+function getUserDetail($data){
+    require 'Connect/Connect.php';
+    $username= $_SESSION['username'];
+    $query_user_detail = "SELECT $data FROM student_details WHERE StudentID ='$username'";
+    if ($query_user_run = mysqli_query($link,$query_user_detail)){
+        $user_detail_row = mysqli_fetch_assoc($query_user_run);
+        return $user_detail_row[$data];
+    }
+
+
+}

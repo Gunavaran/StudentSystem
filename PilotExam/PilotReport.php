@@ -1,29 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Start
- * Date: 7/1/2017
- * Time: 3:01 PM
- */
 
+<?php
 require '../Connect/Connect.php';
-
-?>
-
-<form action="PilotReport.php" method="get">
-    <fieldset>
-        <legend>Choose Index Number</legend>
-        IndexNo:<br>
-        <input type="text" name="indexno" >
-        <br><br>
-        <input type="submit" value="Submit">
-    </fieldset>
-
-    </select>
-</form>
-
-<?php
-
 if (isset($_GET['indexno']) and !empty($_GET['indexno'])){
     $indexno = $_GET['indexno'];
 
@@ -56,12 +33,10 @@ if (isset($_GET['indexno']) and !empty($_GET['indexno'])){
         }
 
         while($query_row = mysqli_fetch_assoc($query_run)){
-                $serial1 = $query_row['Serial1'];
-                $serial2 = $query_row['Serial2'];
-                $serial3 = $query_row['Serial3'];
-                echo 'Serial1: '.$serial1.'<br/>';
-                echo 'Serial2: '.$serial2.'<br/>';
-                echo 'Serial3: '.$serial3;
+                $serial = $query_row['SerialNo'];
+                $marks = $query_row['Marks'];
+                echo 'Serial '.$serial.': '.$marks.'<br/>';
+
         }
 
     }
