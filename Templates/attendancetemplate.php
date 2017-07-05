@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-
 <html>
 <head>
 
-    <title> <?php echo $title; ?> </title>
+    <title> Attendance </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
 
 </head>
@@ -22,10 +20,19 @@
     </nav>
 
     <div id="content_area">
-        <?php
-            echo $content;
-        ?>
+        <div id="content_area">
+            <nav id="term_marks_navigation">
+                <ul id="nav">
+                    <li><a href="../Attendance/enter_attendance.php"> Enter Attendance </a> </li>
+                </ul>
+            </nav>
+            <nav id="pilot_marks_navigation">
+                <ul id="nav">
+                    <li> <a href="../Attendance/updateattendance.php">Update Attendance</a></li>
+                </ul>
+            </nav>
 
+        </div>
     </div>
 
     <div id="sidebar">
@@ -36,9 +43,9 @@
         <h3 class="footer-widget-title">Contact Us</h3>
         <div class="textwidget">
             <p>J/St.John Bosco Vidyalayam,<br/>
-            Racca Road, Jaffna.</p>
+                Racca Road, Jaffna.</p>
             <p>Email : stjohnbosco@yahoo.com<br />
-            Tel: Principal office: +940212222540</p>
+                Tel: Principal office: +940212222540</p>
         </div>
         <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
     </footer>

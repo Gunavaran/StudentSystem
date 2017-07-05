@@ -1,7 +1,7 @@
 <?php
 
 $title = 'Home';
-$content = 'hei';
+$content = '';
 
 include '../Connect/Connect.php';
 require '../Log_in_out/core.php';

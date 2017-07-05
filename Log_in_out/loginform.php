@@ -1,3 +1,4 @@
+
 <?php
 
 if (isset($_POST['username']) && isset($_POST['password'])){
@@ -36,19 +37,28 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     <div id="banner"></div>
 
     <div id="content_area">
+        <img src="../Images/johnbosco.png" class="imageFront">
 
-        <form action="<?php echo $current_file?>" method="post">
-            Username:
-            <input type="text" name="username">
-            Password:
-            <input type="text" name="password">
-
-            <input type="submit" value="Login">
-        </form>
     </div>
+    <form action="<?php echo $current_file?>" method="post" class="form">
+        Username: <br><br>
+        <input type="text" name="username"><br><br>
+        Password:<br><br>
+        <input type="text" name="password"><br><br>
+        <br><br>
+        <input type="submit" value="Login">
+    </form>
 
     <footer>
-        <p> All rights reserved</p></footer>
+        <h3 class="footer-widget-title">Contact Us</h3>
+        <div class="textwidget">
+            <p>J/St.John Bosco Vidyalayam,<br/>
+                Racca Road, Jaffna.</p>
+            <p>Email : stjohnbosco@yahoo.com<br />
+                Tel: Principal office: +940212222540</p>
+        </div>
+        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
+    </footer>
 
 </div>
 </body>

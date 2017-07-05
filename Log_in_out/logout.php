@@ -8,5 +8,4 @@
 require 'core.php';
 session_destroy();
 
-echo 'hei';
 header('Location: ../Templates/index.php');
