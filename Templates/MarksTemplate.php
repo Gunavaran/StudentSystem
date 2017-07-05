@@ -25,7 +25,7 @@
         <div id="content_area">
             <nav id="term_marks_navigation">
                 <ul id="nav">
-                    <li><a href="#"> Term Exam Marks </a> </li>
+                    <li><a href="TermMarksTemplate.php"> Term Exam Marks </a> </li>
                 </ul>
             </nav>
             <nav id="pilot_marks_navigation">

@@ -31,6 +31,5 @@ $content = "<form action=\"TermExamAnalysisTemplate.php\" method=\"post\">
             </fieldset>
             
             </form> ";
-include '../TermExam/TermExamAnalysis.php';
 
 include 'BasicTemplate.php';
