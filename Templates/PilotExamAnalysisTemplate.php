@@ -19,6 +19,7 @@ $content = " <form action=\"PilotExamAnalysisTemplate.php\" method=\"post\">
             <input type='submit' value='Submit'>
             </fieldset>
             
-            </form>".include '../PilotExam/PilotAnalysis.php';
+            </form>";
+include '../PilotExam/PilotAnalysis.php';
 
 include 'BasicTemplate.php';

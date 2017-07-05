@@ -1,44 +1,45 @@
 <?php
+require 'Connect/Connect.php';
+if ($link || mysqli_select_db($link,$database)){
+    //echo "Connection successful;";
+} else {
+    echo "connection failed";
+}
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
 
-$mysql_host = "localhost";
-$mysql_user = "root";
-$mysql_password = "";
-$mysql_db = "table";
-
-$conn = mysqli_connect($mysql_host,$mysql_user,$mysql_password,$mysql_db) or die("could not connect");
-
-$id = $_POST['id'];
-$sql = "SELECT * FROM student WHERE student.Student_Id=$id";
-$result = $conn->query($sql);
-if ($result->num_rows>0) {
-    while ($row = $result->fetch_assoc()) {
-        extract($row);
-        ?>
-        <table>
-            <tbody>
-            <tr>
-                <td>Student ID</td>
-                <td><?php echo $row["Student_Id"]; ?></td>
-            </tr>
-            <tr>
-                <td>Name</td>
-                <td><?php echo $row["Name"]; ?></td>
-            </tr>
-            <tr>
-                <td>Grade</td>
-                <td><?php echo $row["Grade"]; ?></td>
-            </tr>
-            <tr>
-                <td>Class</td>
-                <td><?php echo $row["Division"]; ?></td>
-            </tr>
-            <tr>
-                <td>Address</td>
-                <td><?php echo $row["Address"]; ?></td>
-            </tr>
-            </tbody>
-        </table>
-        <?php
-    }//while
-}//if
+    $sql = "SELECT * FROM detail WHERE ID=$id";
+    $result = mysqli_query($link, $sql);
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            extract($row);
+            ?>
+            <table>
+                <tbody>
+                <tr>
+                    <td>Student ID</td>
+                    <td><?php echo $row["ID"]; ?></td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td><?php echo $row["First_name"]; ?></td>
+                </tr>
+                <tr>
+                    <td>Grade</td>
+                    <td><?php echo $row["Grade"]; ?></td>
+                </tr>
+                <tr>
+                    <td>Class</td>
+                    <td><?php echo $row["Division"]; ?></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><?php echo $row["Address"]; ?></td>
+                </tr>
+                </tbody>
+            </table>
+            <?php
+        }
+    }
+}
 ?>

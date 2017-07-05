@@ -1,21 +1,18 @@
 <?php
-
-$content = " <div id=\"content_area\">
+$title='Term Exam Marks';
+$content = "<div id=\"content_area\">
         <nav id=\"term_marks_navigation\">
             <ul id=\"nav\">
-                <li><a href=\"TermMarksTemplate.php\"> Term Exam Marks </a> </li>
+                <li><a href='#'> Term Exam Report </a> </li>
             </ul>
         </nav>
         <nav id=\"pilot_marks_navigation\">
             <ul id=\"nav\">
-                <li> <a href=\"PilotMarksTemplate.php\">Pilot Exam Marks</a></li>
-
+                <li> <a href=\"TermExamAnalysisTemplate.php\">Term Exam Analysis</a></li>
             </ul>
         </nav>
 
     </div>
 ";
-
 include 'BasicTemplate.php';
 ?>
-

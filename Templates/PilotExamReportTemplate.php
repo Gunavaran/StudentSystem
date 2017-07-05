@@ -7,5 +7,6 @@ $content = " <form action=\"PilotExamReportTemplate.php\" method=\"get\">
                 <br><br>
                 <input type=\"submit\" value=\"Submit\">
             </fieldset>
-        </form>".include '../PilotExam/PilotReport.php';
+        </form>";
+include '../PilotExam/PilotReport.php';
 include 'BasicTemplate.php';
