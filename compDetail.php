@@ -1,15 +1,7 @@
-/**
- * Created by PhpStorm.
- * User: Vahe
- * Date: 6/30/2017
- * <T></T>ime: 5:31 PM
- */
 <html>
 <head>
-
     <title> View Competition Details</title>
     <link rel="stylesheet" type = "text/css" href = "Styles/stylesheets.css"/>
-
 </head>
 <body>
 <div id="wrapper">
