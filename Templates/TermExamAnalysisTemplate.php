@@ -43,9 +43,13 @@
                 </select><br><br>
                 Subject:
                 <select name='subject'>
-                    <option value = 'religion'>Religion</option>
+                    <option value = 'all'>All</option>
+                    <option value = 'religion_hin'>Religion-Hindu</option>
+                    <option value = 'religion_rc'>Religion-RC</option>
                     <option value = 'tamil'>Tamil</option>
                     <option value = 'mathematics'>Mathematics</option>
+                    <option value = 'social'>Social</option>
+                    <option value = 'english'>English</option>
                 </select><br><br>
                 Division:
                 <select name = 'division'>
