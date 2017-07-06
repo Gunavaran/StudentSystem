@@ -1,7 +1,9 @@
+<!DOCTYPE html>
+
 <html>
 <head>
 
-    <title> Attendance </title>
+    <title> Profile Template </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
 
 </head>
@@ -11,24 +13,31 @@
 
     <nav id="navigation">
         <ul id="nav">
-            <li><a href="../Templates/index.php"> Home </a> </li>
-            <li> <a href="../Templates/ProfileTemplate.php">Profile</a></li>
-            <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
-            <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
+            <li><a href="index.php"> Home </a> </li>
+            <li> <a href="ProfileTemplate.php">Profile</a></li>
+            <li> <a href="MarksTemplate.php">Marks</a></li>
+            <li> <a href="attendancetemplate.php">Attendance</a></li>
             <li> <a href="../Log_in_out/logout.php">Logout</a></li>
         </ul>
     </nav>
 
     <div id="content_area">
         <div id="content_area">
-            <nav id="term_marks_navigation">
+            <nav id="enter_detail_navigation">
                 <ul id="nav">
-                    <li><a href="../Attendance/enter_attendance.php"> Enter Attendance </a> </li>
+                    <li><a href="../Details/Enter_details.php"> Enter Details </a> </li>
                 </ul>
             </nav>
-            <nav id="pilot_marks_navigation">
+            <nav id="update_details_navigation">
                 <ul id="nav">
-                    <li> <a href="../Attendance/updateattendance.php">Update Attendance</a></li>
+                    <li> <a href="../Details/Update_details.php">Update Details</a></li>
+
+                </ul>
+            </nav>
+            <nav id="view_details_navigation">
+                <ul id="nav">
+                    <li> <a href="../Templates/viewDetail.php">View Details</a></li>
+
                 </ul>
             </nav>
 

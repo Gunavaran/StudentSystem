@@ -15,9 +15,3 @@ $link = mysqli_connect($host,$username,$password,$database) or die ("could not c
 
 
 
-if($link){
-    echo "Connected";
-
-}else{
-    echo "not coneected";
-}

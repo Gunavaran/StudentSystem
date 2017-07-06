@@ -1,7 +1,7 @@
 <html>
 <head>
 
-    <title> Update Attendance </title>
+    <title> Update TermMarks</title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
 
 </head>
@@ -14,22 +14,24 @@
             <li><a href="index.php"> Home </a> </li>
             <li> <a href="#">Profile</a></li>
             <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
-            <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
+            <li> <a href="../Templates/TermMarksTemplate.php">TermMarks</a></li>
             <li> <a href="../Log_in_out/logout.php">Logout</a></li>
         </ul>
     </nav>
 
     <div id="content_area">
-        <h2>Enter Attendance To Be Altered</h2>
-        <form action="updateattendance.php" method="post" name="fixedform">
-            Date: <br><br>
-            <input type="date" name="date"><br><br>
-            Grade:<br><br>
-            <input type="text" name="grade"><br><br>
-            Division:<br><br>
-            <input type="text" name="division"><br><br>
-            StudentID:<br><br>
-            <input type="text" name="id"><br><br>
+        <h2>Enter TermMarks To Be Altered</h2>
+        <form action="updatetermmarks.php" method="post" name="fixedform">
+            ID: <br><br>
+            <input type="text" name="ID"><br><br>
+            Subject:<br><br>
+            <input type="text" name="subject"><br><br>
+            Marks:<br><br>
+            <input type="text" name="marks"><br><br>
+            Year:<br><br>
+            <input type="text" name="year"><br><br>
+            Term:<br><br>
+            <input type="text" name="term"><br><br>
             <input type="submit" value="Submit">
 
         </form>
@@ -37,24 +39,16 @@
         <?php
         include '../Connect/Connect.php';
 
-        if (isset($_POST['date']) && isset($_POST['grade']) && isset($_POST['division']) && isset($_POST['id'])){
-            if(!empty($_POST['date']) && !empty($_POST['grade']) && !empty($_POST['division']) && !empty($_POST['id'])){
+        if (isset($_POST['id']) && isset($_POST['subject']) && isset($_POST['marks']) && isset($_POST['year'])&& isset($_POST['term'])){
+            if(!empty($_POST['id']) && !empty($_POST['subject']) && !empty($_POST['marks']) && !empty($_POST['year'])&& !empty($_POST['term'])){
 
-                $date = $_POST['date'];
-                $grade = $_POST['grade'];
-                $division = $_POST['division'];
                 $id = $_POST['id'];
+                $subject = $_POST['subject'];
+                $marks = $_POST['marks'];
+                $year = $_POST['year'];
+                $term = $_POST['term'];
 
-                $query_attendance = "SELECT Attendance FROM attendance WHERE StudentID = '$id' AND Date = '$date'";
-                $query_attendance_run = mysqli_query($link,$query_attendance);
-                $query_row = mysqli_fetch_assoc($query_attendance_run);
-                $attendance = $query_row['Attendance'];
-                if($attendance == 'a'){
-                    $new_value = 'p';
-                } else {
-                    $new_value = 'a';
-                }
-                $query = "UPDATE attendance SET Attendance = '$new_value' WHERE StudentID = '$id' AND Date = '$date'";
+                $query = "UPDATE termmarks SET Marks = '$marks' WHERE ID = '$id' AND Subject = '$subject' AND Year = '$year' AND Term ='$term'";
                 if($query_run = mysqli_query($link, $query)){
                     $message='Update Successful';
                 } else {

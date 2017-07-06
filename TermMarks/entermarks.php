@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title> Enter TermMarks </title>
+    <title> Enter Student Details </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
 
 </head>
@@ -13,10 +13,10 @@
 
     <nav id="navigation">
         <ul id="nav">
-            <li><a href="index.php"> Home </a> </li>
-            <li> <a href="#">Profile</a></li>
+            <li><a href="../Templates/index.php"> Home </a> </li>
+            <li> <a href="../Templates/ProfileTemplate.php">Profile</a></li>
             <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
-            <li> <a href="TermMarksTemplate.php">Attendance</a></li>
+            <li> <a href="../Templates/TermMarksTemplate.php">TermMarks</a></li>
             <li> <a href="../Log_in_out/logout.php">Logout</a></li>
         </ul>
     </nav>
