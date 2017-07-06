@@ -2,9 +2,7 @@
 /**
  * Created by PhpStorm.
  * User: Vahe
- * Date: 7/6/2017
- * Time: 11:02 AM
- */
+*/
 
 $content= "<form action=\"TermReportTemplate.php\" method=\"get\">
             IndexNo:<br><br>
