@@ -28,7 +28,7 @@ if (isset($_GET['indexno']) and !empty($_GET['indexno'])){
         while($query_row = mysqli_fetch_assoc($query_run)){
             $subject = $query_row['Subject'];
             $marks = $query_row['Marks'];
-            echo 'Subject '.$subject.': '.$marks.'<br/>';
+            echo $subject.': '.$marks.'<br/>';
 
         }
 
