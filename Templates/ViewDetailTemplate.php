@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title> Character Certificate </title>
+    <title> View Student Detail </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
 
 </head>
@@ -22,7 +22,7 @@
     </nav>
 
     <div id="content_area">
-        <form action="../Details/Character.php" method="get">
+        <form action="../Details/ViewDetail.php" method="get">
             <fieldset>
                 <label>Enter Student ID</label><br><br>
                 <input type="text" name="id" placeholder="Student ID"><br><br><br>

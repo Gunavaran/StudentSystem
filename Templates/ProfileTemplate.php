@@ -23,20 +23,26 @@
 
     <div id="content_area">
         <div id="content_area">
-            <nav id="enter_detail_navigation">
+            <nav id="term_marks_navigation">
                 <ul id="nav">
                     <li><a href="../Details/Enter_details.php"> Enter Details </a> </li>
                 </ul>
             </nav>
-            <nav id="update_details_navigation">
+            <nav id="term_marks_navigation">
                 <ul id="nav">
                     <li> <a href="../Details/Update_details.php">Update Details</a></li>
 
                 </ul>
             </nav>
-            <nav id="view_details_navigation">
+            <nav id="term_marks_navigation">
                 <ul id="nav">
-                    <li> <a href="../Templates/viewDetail.php">View Details</a></li>
+                    <li> <a href="ViewDetailTemplate.php">View Details</a></li>
+
+                </ul>
+            </nav>
+            <nav id="term_marks_navigation">
+                <ul id="nav">
+                    <li> <a href="CharacterTemplate.php">Character Certificate</a></li>
 
                 </ul>
             </nav>
