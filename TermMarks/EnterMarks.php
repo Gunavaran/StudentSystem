@@ -26,13 +26,24 @@
             ID: <br><br>
             <input type="text" name="id"><br><br>
             Subject:<br><br>
-            <input type="text" name="subject"><br><br>
+            <select name='subject'>
+                <option value = 'religion_hin'>Religion-Hindu</option>
+                <option value = 'religion_rc'>Religion-RC</option>
+                <option value = 'tamil'>Tamil</option>
+                <option value = 'mathematics'>Mathematics</option>
+                <option value = 'social'>Social</option>
+                <option value = 'english'>English</option>
+            </select><br><br>
             Marks:<br><br>
             <input type="text" name="marks"><br><br>
             Year:<br><br>
             <input type="text" name="year"><br><br>
             Term:<br><br>
-            <input type="text" name="term"><br><br>
+            <select name='term'>
+                <option value = 1>I</option>
+                <option value = 2>II</option>
+                <option value = 3>III</option>
+            </select><br><br>
 
             <input type="submit" value="Submit">
 
