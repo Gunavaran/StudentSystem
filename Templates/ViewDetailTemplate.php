@@ -22,13 +22,27 @@
     </nav>
 
     <div id="content_area">
-        <form action="../Details/ViewDetail.php" method="get">
-            <fieldset>
-                <label>Enter Student ID</label><br><br>
-                <input type="text" name="id" placeholder="Student ID"><br><br><br>
-                <button type="submit">Submit</button>
-            </fieldset>
-        </form>
+        <?php
+            include '../Connect/Connect.php';
+            $username = $_SESSION['username'];
+            $query = "SELECT Role FROM users WHERE username = '$username'";
+            $query_run = mysqli_query($link,$query);
+            $query_row = mysqli_fetch_assoc($query_run);
+            $role = $query_row['Role'];
+            if ($role != 'student') {
+                ?>
+                <form action="../Details/ViewDetail.php" method="get">
+                    <fieldset>
+                        <label>Enter Student ID</label><br><br>
+                        <input type="text" name="id" placeholder="Student ID"><br><br><br>
+                        <button type="submit">Submit</button>
+                    </fieldset>
+                </form>
+                <?php
+            }else{
+                include '../Details/ViewDetail.php';
+            }
+        ?>
 
     </div>
 
