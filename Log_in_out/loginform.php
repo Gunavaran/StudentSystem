@@ -1,4 +1,3 @@
-
 <?php
 
 if (isset($_POST['username']) && isset($_POST['password'])){
@@ -28,9 +27,28 @@ if (isset($_POST['username']) && isset($_POST['password'])){
 <html>
 <head>
 
-    <title> <?php echo $title; ?> </title>
+    <title> Log In</title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
 
+    <style>
+        input[type = text]{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit]{
+
+            padding: 14px 20px;
+            width: 100%;
+            background-color: #4CAF50;
+            border-radius: 2px;
+        }
+
+
+    </style>
 </head>
 <body>
 <div id="wrapper">
@@ -41,23 +59,27 @@ if (isset($_POST['username']) && isset($_POST['password'])){
 
     </div>
     <form action="<?php echo $current_file?>" method="post" class="form">
-        Username: <br><br>
+        Username: <br>
         <input type="text" name="username"><br><br>
-        Password:<br><br>
+        Password:<br>
         <input type="text" name="password"><br><br>
-        <br><br>
         <input type="submit" value="Login">
+
     </form>
 
     <footer>
-        <h3 class="footer-widget-title">Contact Us</h3>
-        <div class="textwidget">
-            <p>J/St.John Bosco Vidyalayam,<br/>
-                Racca Road, Jaffna.</p>
-            <p>Email : stjohnbosco@yahoo.com<br />
-                Tel: Principal office: +940212222540</p>
+        <div class = 'footer1'>
+            <h3 id="h3">Address</h3>
+            J/St.John Bosco Vidyalayam,<br/>
+            Racca Road, Jaffna.
         </div>
-        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
+        <div class = 'footer2'>
+            <h3 id="h3" >Contact Us</h3>
+            Email : stjohnbosco@yahoo.com<br />
+            Tel: Principal office: +940212222540
+        </div>
+        <div class = 'footer3'><i>copyright : Futura Labs</i></div>
+
     </footer>
 
 </div>

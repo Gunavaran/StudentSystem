@@ -11,7 +11,7 @@
 
     <nav id="navigation">
         <ul id="nav">
-            <li><a href="index.php"> Home </a> </li>
+            <li><a href="../Templates/index.php"> Home </a> </li>
             <li> <a href="#">Profile</a></li>
             <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
             <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
@@ -49,10 +49,10 @@
                 $query_attendance_run = mysqli_query($link,$query_attendance);
                 $query_row = mysqli_fetch_assoc($query_attendance_run);
                 $attendance = $query_row['Attendance'];
-                if($attendance == 'a'){
-                    $new_value = 'p';
+                if(strtoupper($attendance) == 'A'){
+                    $new_value = 'P';
                 } else {
-                    $new_value = 'a';
+                    $new_value = 'A';
                 }
                 $query = "UPDATE attendance SET Attendance = '$new_value' WHERE StudentID = '$id' AND Date = '$date'";
                 if($query_run = mysqli_query($link, $query)){
@@ -81,14 +81,18 @@
     </div>
 
     <footer>
-        <h3 class="footer-widget-title">Contact Us</h3>
-        <div class="textwidget">
-            <p>J/St.John Bosco Vidyalayam,<br/>
-                Racca Road, Jaffna.</p>
-            <p>Email : stjohnbosco@yahoo.com<br />
-                Tel: Principal office: +940212222540</p>
+        <div class = 'footer1'>
+            <h3 id="h3">Address</h3>
+            J/St.John Bosco Vidyalayam,<br/>
+            Racca Road, Jaffna.
         </div>
-        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
+        <div class = 'footer2'>
+            <h3 id="h3" >Contact Us</h3>
+            Email : stjohnbosco@yahoo.com<br />
+            Tel: Principal office: +940212222540
+        </div>
+        <div class = 'footer3'><i>copyright : Futura Labs</i></div>
+
     </footer>
 
 </div>
