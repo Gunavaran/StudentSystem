@@ -4,7 +4,7 @@
 <head>
 
     <title>Add Pilot Marks</title>
-    <link rel="stylesheet" type = "text/css" href = "Styles/stylesheets.css"/>
+    <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
 
 </head>
 <body>
@@ -13,10 +13,10 @@
 
     <nav id="navigation">
         <ul id="nav">
-            <li><a href="index.php"> Home </a> </li>
+            <li><a href="../Templates/index.php"> Home </a> </li>
             <li> <a href="#">Profile</a></li>
             <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
-            <li> <a href="attendancetemplate.php">Attendance</a></li>
+            <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
             <li> <a href="../Log_in_out/logout.php">Logout</a></li>
         </ul>
     </nav>
@@ -37,7 +37,7 @@
             </fieldset><br>
 
                 <?php
-                include 'Connect/Connect.php';
+                include '../Connect/Connect.php';
 
                 $error=0;
                 if (isset($_GET['serial_no']) AND isset($_GET['id']) AND isset($_GET['part1']) AND isset($_GET['part2']) ){

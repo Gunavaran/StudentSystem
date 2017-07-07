@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title> Profile Template </title>
+    <title> View Student Detail </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
 
 </head>
@@ -22,32 +22,14 @@
     </nav>
 
     <div id="content_area">
-        <div id="content_area">
-            <nav id="term_marks_navigation">
-                <ul id="nav">
-                    <li><a href="../Details/Enter_details.php"> Enter Details </a> </li>
-                </ul>
-            </nav>
-            <nav id="term_marks_navigation">
-                <ul id="nav">
-                    <li> <a href="../Details/Update_details.php">Update Details</a></li>
+        <form action="../Details/ViewDetail.php" method="get">
+            <fieldset>
+                <label>Enter Student ID</label><br><br>
+                <input type="text" name="id" placeholder="Student ID"><br><br><br>
+                <button type="submit">Submit</button>
+            </fieldset>
+        </form>
 
-                </ul>
-            </nav>
-            <nav id="term_marks_navigation">
-                <ul id="nav">
-                    <li> <a href="ViewDetailTemplate.php">View Details</a></li>
-
-                </ul>
-            </nav>
-            <nav id="term_marks_navigation">
-                <ul id="nav">
-                    <li> <a href="CharacterTemplate.php">Character Certificate</a></li>
-
-                </ul>
-            </nav>
-
-        </div>
     </div>
 
     <div id="sidebar">

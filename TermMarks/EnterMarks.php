@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title> Enter Student Details </title>
+    <title> Enter Term Marks </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
 
 </head>
