@@ -41,14 +41,18 @@
     </div>
 
     <footer>
-        <h3 class="footer-widget-title">Contact Us</h3>
-        <div class="textwidget">
-            <p>J/St.John Bosco Vidyalayam,<br/>
-                Racca Road, Jaffna.</p>
-            <p>Email : stjohnbosco@yahoo.com<br />
-                Tel: Principal office: +940212222540</p>
+        <div class = 'footer1'>
+            <h3 id="h3">Address</h3>
+            J/St.John Bosco Vidyalayam,<br/>
+            Racca Road, Jaffna.
         </div>
-        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
+        <div class = 'footer2'>
+            <h3 id="h3" >Contact Us</h3>
+            Email : stjohnbosco@yahoo.com<br />
+            Tel: Principal office: +940212222540
+        </div>
+        <div class = 'footer3'><i>copyright : Futura Labs</i></div>
+
     </footer>
 
 </div>
