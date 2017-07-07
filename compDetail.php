@@ -23,7 +23,7 @@
     <!--Year: <br><input type="number" name="year"><br>
     Term: <br><input type="number" name="term"><br>-->
     <br>
-Year:
+Grade:
     <select name="grade">
         <!--<option value="NULL">----</option>-->
         <option value="1">1</option>
