@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title> Enter Attendance </title>
+    <title> Enter Student Details </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
 
 </head>
@@ -13,42 +13,42 @@
 
     <nav id="navigation">
         <ul id="nav">
-            <li><a href="index.php"> Home </a> </li>
+            <li><a href="../Templates/index.php"> Home </a> </li>
             <li> <a href="../Templates/ProfileTemplate.php">Profile</a></li>
             <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
-            <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
+            <li> <a href="../Templates/TermMarksTemplate.php">TermMarks</a></li>
             <li> <a href="../Log_in_out/logout.php">Logout</a></li>
         </ul>
     </nav>
 
     <div id="content_area">
-        <form action="enter_attendance.php" method="post" name="fixedform">
-            Date: <br><br>
-            <input type="date" name="date"><br><br>
-            Grade:<br><br>
-            <input type="text" name="grade"><br><br>
-            Division:<br><br>
-            <input type="text" name="division"><br><br>
-            StudentID:<br><br>
+        <form action="enter_termmarks.php" method="post" name="fixedform">
+            ID: <br><br>
             <input type="text" name="id"><br><br>
-            Attendance:<br><br>
-            <input type="text" name="attendance"><br><br>
+            Subject:<br><br>
+            <input type="text" name="subject"><br><br>
+            Marks:<br><br>
+            <input type="text" name="marks"><br><br>
+            Year:<br><br>
+            <input type="text" name="year"><br><br>
+            Term:<br><br>
+            <input type="text" name="term"><br><br>
 
             <input type="submit" value="Submit">
 
             <?php
             include '../Connect/Connect.php';
 
-            if (isset($_POST['date']) && isset($_POST['grade']) && isset($_POST['division']) && isset($_POST['id']) && isset( $_POST['attendance'])){
-                if(!empty($_POST['date']) && !empty($_POST['grade']) && !empty($_POST['division']) && !empty($_POST['id']) &&!empty($_POST['attendance'])){
+            if (isset($_POST['id']) && isset($_POST['subject']) && isset($_POST['marks'])&& isset($_POST['year'])&& isset($_POST['term'])){
+                if(!empty($_POST['id']) && !empty($_POST['subject']) && !empty($_POST['marks'])&& !empty($_POST['year'])&& !empty($_POST['term'])){
 
-                    $date = $_POST['date'];
-                    $grade = $_POST['grade'];
-                    $division = $_POST['division'];
                     $id = $_POST['id'];
-                    $attendance = $_POST['attendance'];
+                    $subject = $_POST['subject'];
+                    $marks = $_POST['marks'];
+                    $year = $_POST['year'];
+                    $term = $_POST['term'];
 
-                    $query = "INSERT INTO attendance (StudentID, Attendance, Date) VALUES ('$id', '$attendance', '$date')";
+                    $query = "INSERT INTO sdms (StudentID, Subject, Marks, Year, Term ) VALUES ('$id', '$subject', '$marks', '$year', '$term')";
                     if($query_run = mysqli_query($link, $query)){
                         echo 'Successfully Stored';
                     }else{

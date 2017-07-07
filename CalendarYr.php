@@ -3,8 +3,8 @@
 <html>
 <head>
 
-    <title> <?php echo $title; ?> </title>
-    <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
+    <title>Calendar</title>
+    <link rel="stylesheet" type = "text/css" href = "Styles/stylesheets.css"/>
 
 </head>
 <body>
@@ -14,7 +14,7 @@
     <nav id="navigation">
         <ul id="nav">
             <li><a href="index.php"> Home </a> </li>
-            <li> <a href="ProfileTemplate.php">Profile</a></li>
+            <li> <a href="#">Profile</a></li>
             <li> <a href="MarksTemplate.php">Marks</a></li>
             <li> <a href="attendancetemplate.php">Attendance</a></li>
             <li> <a href="../Log_in_out/logout.php">Logout</a></li>
@@ -22,20 +22,14 @@
     </nav>
 
     <div id="content_area">
-        <div id="content_area">
-            <nav id="term_marks_navigation">
-                <ul id="nav">
-                    <li><a href="TermMarksTemplate.php"> Term Exam Marks </a> </li>
-                </ul>
-            </nav>
-            <nav id="pilot_marks_navigation">
-                <ul id="nav">
-                    <li> <a href="PilotMarksTemplate.php">Pilot Exam Marks</a></li>
+        <form action="Calendar.php" method="get">
+            <fieldset>
+                <label>Enter Year:</label><br><br>
+                <input type="text" name="year" placeholder="Year"><br><br><br>
+                <button type="submit">Submit</button>
+            </fieldset>
+        </form>
 
-                </ul>
-            </nav>
-
-        </div>
     </div>
 
     <div id="sidebar">

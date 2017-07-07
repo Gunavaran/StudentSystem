@@ -6,40 +6,27 @@ if ($link || mysqli_select_db($link,$database)){
     echo "connection failed";
 }
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-
-    $sql = "SELECT * FROM detail WHERE ID=$id";
-    $result = mysqli_query($link, $sql);
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            extract($row);
-            ?>
-            <table>
-                <tbody>
-                <tr>
-                    <td>Student ID</td>
-                    <td><?php echo $row["ID"]; ?></td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td><?php echo $row["First_name"]; ?></td>
-                </tr>
-                <tr>
-                    <td>Grade</td>
-                    <td><?php echo $row["Grade"]; ?></td>
-                </tr>
-                <tr>
-                    <td>Class</td>
-                    <td><?php echo $row["Division"]; ?></td>
-                </tr>
-                <tr>
-                    <td>Address</td>
-                    <td><?php echo $row["Address"]; ?></td>
-                </tr>
-                </tbody>
-            </table>
-            <?php
-        }
-    }
-}
+    if(!empty($_GET['id'])) {
+        if($_GET['id'] === (string)(int) $_GET['id'] AND strlen($_GET['id'])==1) {
+            $id = $_GET['id'];
+            $sql = "SELECT * FROM detail WHERE ID=$id";
+            $result = mysqli_query($link, $sql);
+            if ($result) {
+                if (mysqli_num_rows($result) > 0) {
+                    $row = mysqli_fetch_assoc($result);
+                    echo "Student ID: " . $row["ID"] . '<br>' . '<br>';
+                    echo "First Name: " . $row["First_name"] . '<br>' . '<br>';
+                    echo "Grade: " . $row["Grade"] . '<br>' . '<br>';
+                    echo "Division: " . $row["Division"] . '<br>' . '<br>';
+                    echo "Address: " . $row["Address"] . '<br>' . '<br>';
+                    echo "DOB: " . $row["DOB"] . '<br>' . '<br>';
+                    echo "email: " . $row["email"] . '<br>' . '<br>';
+                    echo "Telephone No: " . $row['Telephone'] . '<br>' . '<br>';
+                } else {
+                    echo "Please check your Student ID...No details were found!!!";
+                }
+            }
+        }else {echo 'Invalid format of Student ID';}
+    }else {echo 'None of the fields can take an empty value';}
+}else {echo 'All the required fields should be filled';}
 ?>

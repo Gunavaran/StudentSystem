@@ -1,9 +1,10 @@
 <?php
-$content="<form action=\"viewDetail.php\" method=\"get\">
-    <label>Enter Student ID</label>
-    <input type=\"text\" name=\"id\" placeholder=\"Student ID\"><br>
-    <button type=\"submit\">Submit</button>
+$content="<form action=\"../detail.php\" method=\"get\">
+    <fieldset>
+        <label>Enter Student ID</label><br><br>
+        <input type=\"text\" name=\"id\" placeholder=\"Student ID\"><br><br><br>
+        <button type=\"submit\">Submit</button>
+    </fieldset>
 </form>";
 
-include '../detail.php';
 include "BasicTemplate.php";

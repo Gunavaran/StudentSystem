@@ -1,9 +1,10 @@
 <?php
-$content="<form action=\"CharacterTemplate.php\" method=\"get\">
-    <label>Enter Student ID</label>
-    <input type=\"text\" name=\"id\" placeholder=\"Student ID\"><br>
-    <button type=\"submit\">Submit</button>
+$content="<form action=\"../Character.php\" method=\"get\">
+    <fieldset>
+        <label>Enter Student ID</label><br><br>
+        <input type=\"text\" name=\"id\" placeholder=\"Student ID\"><br><br><br>
+        <button type=\"submit\">Submit</button>
+    </fieldset>
 </form>";
 
-include '..\Character.php';
 include "BasicTemplate.php";
