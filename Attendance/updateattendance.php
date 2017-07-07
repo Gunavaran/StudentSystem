@@ -11,7 +11,7 @@
 
     <nav id="navigation">
         <ul id="nav">
-            <li><a href="index.php"> Home </a> </li>
+            <li><a href="../Templates/index.php"> Home </a> </li>
             <li> <a href="#">Profile</a></li>
             <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
             <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
@@ -49,10 +49,10 @@
                 $query_attendance_run = mysqli_query($link,$query_attendance);
                 $query_row = mysqli_fetch_assoc($query_attendance_run);
                 $attendance = $query_row['Attendance'];
-                if($attendance == 'a'){
-                    $new_value = 'p';
+                if(strtoupper($attendance) == 'A'){
+                    $new_value = 'P';
                 } else {
-                    $new_value = 'a';
+                    $new_value = 'A';
                 }
                 $query = "UPDATE attendance SET Attendance = '$new_value' WHERE StudentID = '$id' AND Date = '$date'";
                 if($query_run = mysqli_query($link, $query)){

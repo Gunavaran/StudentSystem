@@ -60,7 +60,9 @@ footer{
     padding: 10px;
     border: 3px solid #E3E3E3;
     color: black;
-    text-shadow: 0.1em 0.2em white;
+    font-family: Arial;
+    color: #333333;
+
 
 }
 
@@ -128,10 +130,39 @@ footer{
 }
 
 .form{
+    background-color: lightgray;
     float: right;
     width: 250px;
     height: 400px;
     margin: 20px 10px;
     padding: 10px;
     border: 2px solid #E3E3E3;
+    border-radius: 5px;
+    font-family: "Adobe Gothic Std B";
+}
+
+.footer1{
+    float: left;
+    width: 33%;
+    font-size: small;
+
+}
+
+.footer2{
+    width: 33%;
+    display: inline-block;
+    font-size: small;
+    font-size: small;
+}
+
+.footer3{
+    float: right;
+    width: 33%;
+    font-size: small;
+    text-align: left;
+    padding-top: 30px;
+}
+
+#h3{
+    color: #333333;
 }

@@ -19,7 +19,7 @@ function logged_in(){
 }
 
 function getUserDetail($data){
-    require 'Connect/Connect.php';
+    require '../Connect/Connect.php';
     $username= $_SESSION['username'];
     $query_user_detail = "SELECT $data FROM student_details WHERE StudentID ='$username'";
     if ($query_user_run = mysqli_query($link,$query_user_detail)){
