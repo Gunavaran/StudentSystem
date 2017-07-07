@@ -42,16 +42,12 @@ if (isset($_GET['indexno'])&&isset($_GET['year'])&& isset($_GET['term'])){
                     $grade = $query_row_detail['Grade'];
                     $division = $query_row_detail['Division'];
 
-                    echo 'StudentID: '.$id.'<br/>';
-                    echo 'First Name: '.$firstname.'<br/>';
-                    echo 'Last Name: '.$lastname.'<br/>';
-                    echo 'Grade: '.$grade.'<br/>';
-                    echo 'Division: '.$division.'<br/>';
+                    $content='StudentID: '.$id.'<br/>'.'First Name: '.$firstname.'<br/>'.'Last Name: '.$lastname.'<br/>'.'Grade: '.$grade.'<br/>'.'Division: '.$division.'<br/>';
                 }
                 while($query_row = mysqli_fetch_assoc($query_run)){
                     $subject = $query_row['Subject'];
                     $marks = $query_row['Marks'];
-                    $content= $subject.': '.$marks.'<br/>';
+                    $content.= $subject.': '.$marks.'<br/>';
                 }
             }
         }
