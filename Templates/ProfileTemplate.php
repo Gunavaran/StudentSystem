@@ -30,7 +30,7 @@
             </nav>
             <nav id="term_marks_navigation">
                 <ul id="nav">
-                    <li> <a href="../Details/Update_details.php">Update Details</a></li>
+                    <li> <a href="../Details/updateDetails.php">Update Details</a></li>
 
                 </ul>
             </nav>
