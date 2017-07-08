@@ -31,7 +31,11 @@
         }
         if (isset($_GET['year'])){
             if(!empty($_GET['year'])) {
-                if($_GET['year'] === (string)(int) $_GET['year']){
+                if($_GET['year'] !== (string)(int) $_GET['year']) {
+                    echo 'Year can only be integer number'.'<br>';
+                }else if((int)$_GET['year']<1990 OR (int)$_GET['year']>date("Y")){
+                    echo 'Year should be in range 1991-'.date('Y').'<br>';
+                }else{
                     $year=(int)$_GET['year'];
                     $sql = "SELECT * FROM calendar WHERE YEAR(Date)=$year ORDER BY Date";
                     $result = mysqli_query($link, $sql);
@@ -44,7 +48,7 @@
                             echo "No events!!!";
                         }
                     }
-                }else{echo 'Invalid format of year';}
+                }
             }else{echo 'Year field can not take an empty value';}
         }else {echo 'Year field should be filled';}
         ?>
