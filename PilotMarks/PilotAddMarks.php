@@ -14,7 +14,7 @@
     <nav id="navigation">
         <ul id="nav">
             <li><a href="../Templates/index.php"> Home </a> </li>
-            <li> <a href="#">Profile</a></li>
+            <li> <a href="../Templates/ProfileTemplate.php">Profile</a></li>
             <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
             <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
             <li> <a href="../Log_in_out/logout.php">Logout</a></li>
@@ -24,8 +24,10 @@
     <div id="content_area">
         <form action="PilotAddMarks.php" method="get">
             <fieldset>
+                Year: <br>
+                <input type="text" name="year" placeholder="Year" value="<?php if (isset($_GET['year'])){echo $_GET['year'];} ?>"><br><br>
                 Serial No: <br>
-                <input type="text" name="serial_no" placeholder="Serial No."><br><br>
+                <input type="text" name="serial_no" placeholder="Serial No." value="<?php if (isset($_GET['serial_no'])){echo $_GET['serial_no'];} ?>"><br><br>
                 Student ID:<br>
                 <input type="text" name="id" placeholder="Student ID"><br><br>
                 Part 1:<br>
@@ -40,8 +42,18 @@
                 include '../Connect/Connect.php';
 
                 $error=0;
-                if (isset($_GET['serial_no']) AND isset($_GET['id']) AND isset($_GET['part1']) AND isset($_GET['part2']) ){
-                    if(!empty($_GET['serial_no']) AND !empty($_GET['id']) AND !empty($_GET['part1']) AND !empty($_GET['part2'])){
+                if (isset($_GET['serial_no']) AND isset($_GET['id']) AND isset($_GET['part1']) AND isset($_GET['part2']) AND isset($_GET['year'])){
+                    if(!empty($_GET['serial_no']) AND !empty($_GET['id']) AND !empty($_GET['part1']) AND !empty($_GET['part2']) AND !empty($_GET['year'])){
+                        if($_GET['year'] !== (string)(int) $_GET['year']) {
+                            $error++;
+                            echo 'Year can only be number'.'<br>';
+                        }else if((int)$_GET['year']<1990 OR (int)$_GET['year']>date("Y")){
+                            $error++;
+                            echo 'Year should be in range 1991-'.date('Y').'<br>';
+                        }else{
+                            $year=(int)$_GET['year'];
+                        }
+
                         if($_GET['serial_no'] !== (string)(int) $_GET['serial_no']) {
                             $error++;
                             echo 'Serial Number should be a positive number'.'<br>';
@@ -49,7 +61,7 @@
                             $serial = (int)$_GET['serial_no'];
                         }
 
-                        if($_GET['id'] !== (string)(int) $_GET['id'] OR strlen($_GET['id'])!=1) {
+                        if($_GET['id'] !== (string)(int) $_GET['id'] OR strlen($_GET['id'])!=6) {
                             $error++;
                             echo 'Invalid format of Student ID'.'<br>';
                         }else{
@@ -79,7 +91,7 @@
                         }
 
                         if($error==0) {
-                            $s = "INSERT INTO pilot_marks(ID,Serial_no,Part_1,Part_2) VALUES ($id,$serial,$part1,$part2)";
+                            $s = "INSERT INTO pilot_marks(ID,Serial_no,Year,Part_1,Part_2) VALUES ($id,$serial,$year,$part1,$part2)";
                             if (mysqli_query($link, $s)) {
                                 echo "Marks updated";
                             } else {
@@ -102,14 +114,18 @@
     </div>
 
     <footer>
-        <h3 class="footer-widget-title">Contact Us</h3>
-        <div class="textwidget">
-            <p>J/St.John Bosco Vidyalayam,<br/>
-                Racca Road, Jaffna.</p>
-            <p>Email : stjohnbosco@yahoo.com<br />
-                Tel: Principal office: +940212222540</p>
+        <div class = 'footer1'>
+            <h3 id="h3">Address</h3>
+            J/St.John Bosco Vidyalayam,<br/>
+            Racca Road, Jaffna.
         </div>
-        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
+        <div class = 'footer2'>
+            <h3 id="h3" >Contact Us</h3>
+            Email : stjohnbosco@yahoo.com<br />
+            Tel: Principal office: +940212222540
+        </div>
+        <div class = 'footer3'><i>copyright : Futura Labs</i></div>
+
     </footer>
 
 </div>
