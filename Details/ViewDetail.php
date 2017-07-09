@@ -30,6 +30,7 @@
             echo "connection failed";
         }
         include '../Connect/Connect.php';
+        $error=0;
         $username = $_SESSION['username'];
         $query = "SELECT Role FROM user WHERE username = '$username'";
         $query_run = mysqli_query($link,$query);
@@ -37,35 +38,24 @@
         $role = $query_row['Role'];
         if ($role != 'student') {
             if (!isset($_GET['id'])) {
+                $error=1;
                 echo 'All the required fields should be filled';
             }else if (empty($_GET['id'])) {
+                $error=1;
                 echo 'None of the fields can take an empty value';
             }else if ($_GET['id'] !== (string)(int)$_GET['id']) {
+                $error=1;
                 echo "StudentID can only be numbers";
             }else if (strlen($_GET['id']) != 6) {
+                $error=1;
                 echo "Length of StudentID should be 6";
             }else{
                 $id = $_GET['id'];
-                $sql = "SELECT * FROM detail WHERE ID=$id";
-                $result = mysqli_query($link, $sql);
-                if ($result) {
-                    if (mysqli_num_rows($result) > 0) {
-                        $row = mysqli_fetch_assoc($result);
-                        echo "Student ID: " . $row["ID"] . '<br>' . '<br>';
-                        echo "First Name: " . $row["First_name"] . '<br>' . '<br>';
-                        echo "Grade: " . $row["Grade"] . '<br>' . '<br>';
-                        echo "Division: " . $row["Division"] . '<br>' . '<br>';
-                        echo "Address: " . $row["Address"] . '<br>' . '<br>';
-                        echo "DOB: " . $row["DOB"] . '<br>' . '<br>';
-                        echo "email: " . $row["email"] . '<br>' . '<br>';
-                        echo "Telephone No: " . $row['Telephone'] . '<br>' . '<br>';
-                    } else {
-                        echo "Please check your Student ID...No details were found!!!";
-                    }
-                }
             }
         }else{
             $id = $_SESSION['username'];
+        }
+        if($error==0){
             $sql = "SELECT * FROM detail WHERE ID=$id";
             $result = mysqli_query($link, $sql);
             if ($result) {
@@ -79,6 +69,8 @@
                     echo "DOB: " . $row["DOB"] . '<br>' . '<br>';
                     echo "email: " . $row["email"] . '<br>' . '<br>';
                     echo "Telephone No: " . $row['Telephone'] . '<br>' . '<br>';
+                } else {
+                    echo "Please check your Student ID...No details were found!!!";
                 }
             }
         }
