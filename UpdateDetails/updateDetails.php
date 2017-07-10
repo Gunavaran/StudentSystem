@@ -79,21 +79,20 @@
         <body>
         <h2>Select Details and Update</h2>
         <form action="updateDetails.php" method="post" name="fixedform">
-            ID: <br><br>
-            <input type="text" name="ID"><br><br>
+
             <fieldset>
-                <input type="radio" name="option" value="FirstName" onclick="document.location.href='../UpdateDetails/FirstName.php'"/> First Name <br/>
-                <input type="radio" name="option" value="LastName" onclick="document.location.href='../UpdateDetails/LastName.php'" /> Last Name<br/>
-                <input type="radio" name="option" value="Address" onclick="document.location.href='../UpdateDetails/Address.php'"/> Address<br/>
-                <input type="radio" name="option" value="PhoneNumber" onclick="document.location.href='../UpdateDetails/PhoneNumber.php'"/> Phone Number <br/>
-                <input type="radio" name="option" value="Email" onclick="document.location.href='../UpdateDetails/Email.php'"/> E-Mail <br/>
-                <input type="radio" name="option" value="FatherName" onclick="document.location.href='../UpdateDetails/FatherName.php'"/> Father's Name <br/>
-                <input type="radio" name="option" value="FatherJob" onclick="document.location.href='../UpdateDetails/FatherJob.php'"/> Father's Job <br/>
-                <input type="radio" name="option" value="MotherName" onclick="document.location.href='../UpdateDetails/MotherName.php'"/> Mother's Name <br/>
-                <input type="radio" name="option" value="MotherJob" onclick="document.location.href='../UpdateDetails/MotherJob.php'"/> Mother's Job <br/>
-                <input type="radio" name="option" value="Grade" onclick="document.location.href='../UpdateDetails/Grade.php'"/> Grade <br/>
-                <input type="radio" name="option" value="Division" onclick="document.location.href='../UpdateDetails/Division.php'"/> Division <br/>
-                <input type="radio" name="option" value="DateOfBirth" onclick="document.location.href='../UpdateDetails/DateOfBirth.php'"/> Date Of Birth <br/>
+                <input type="radio" name="option" value="FirstName" onclick="document.location.href='FirstName.php'"/> First Name <br/>
+                <input type="radio" name="option" value="LastName" onclick="document.location.href='LastName.php'" /> Last Name<br/>
+                <input type="radio" name="option" value="Address" onclick="document.location.href='Address.php'"/> Address<br/>
+                <input type="radio" name="option" value="PhoneNumber" onclick="document.location.href='PhoneNumber.php'"/> Phone Number <br/>
+                <input type="radio" name="option" value="Email" onclick="document.location.href='Email.php'"/> E-Mail <br/>
+                <input type="radio" name="option" value="FatherName" onclick="document.location.href='FatherName.php'"/> Father's Name <br/>
+                <input type="radio" name="option" value="FatherJob" onclick="document.location.href='FatherJob.php'"/> Father's Job <br/>
+                <input type="radio" name="option" value="MotherName" onclick="document.location.href='MotherName.php'"/> Mother's Name <br/>
+                <input type="radio" name="option" value="MotherJob" onclick="document.location.href='MotherJob.php'"/> Mother's Job <br/>
+                <input type="radio" name="option" value="Grade" onclick="document.location.href='Grade.php'"/> Grade <br/>
+                <input type="radio" name="option" value="Division" onclick="document.location.href='Division.php'"/> Division <br/>
+                <input type="radio" name="option" value="DateOfBirth" onclick="document.location.href='DateOfBirth.php'"/> Date Of Birth <br/>
             </fieldset>
 
 
