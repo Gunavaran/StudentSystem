@@ -13,10 +13,10 @@
 
     <nav id="navigation">
         <ul id="nav">
-            <li><a href="index.php"> Home </a> </li>
-            <li> <a href="ProfileTemplate.php">Profile</a></li>
-            <li> <a href="MarksTemplate.php">Marks</a></li>
-            <li> <a href="attendancetemplate.php">Attendance</a></li>
+            <li><a href="../Templates/index.php"> Home </a> </li>
+            <li> <a href="../Templates/ProfileTemplate.php">Profile</a></li>
+            <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
+            <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
             <li> <a href="../Log_in_out/logout.php">Logout</a></li>
         </ul>
     </nav>

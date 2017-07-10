@@ -13,10 +13,10 @@
 
     <nav id="navigation">
         <ul id="nav">
-            <li><a href="index.php"> Home </a> </li>
+            <li><a href="../Templates/index.php"> Home </a> </li>
             <li> <a href="../Templates/ProfileTemplate.php">Profile</a></li>
-            <li> <a href="MarksTemplate.php">Marks</a></li>
-            <li> <a href="attendancetemplate.php">Attendance</a></li>
+            <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
+            <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
             <li> <a href="../Log_in_out/logout.php">Logout</a></li>
         </ul>
     </nav>
@@ -29,33 +29,52 @@
         } else {
             echo "connection failed";
         }
-        if (isset($_POST['id'])) {
-            if(!empty($_POST['id'])) {
-                if($_POST['id'] === (string)(int) $_POST['id'] AND strlen($_POST['id'])==6) {
-                    $id = $_POST['id'];
-                    $sql = "SELECT * FROM student_details WHERE StudentID='$id'";
-                    $result = mysqli_query($link, $sql);
-                    if ($result) {
-                        if (mysqli_num_rows($result) > 0) {
-                            $row = mysqli_fetch_assoc($result);
-                            echo "Student ID: " . $row["StudentID"] . '<br>' . '<br>';
-                            echo "First Name: " . $row["FirstName"] . '<br>' . '<br>';
-                            echo "Last Name: " . $row["LastName"] . '<br>' . '<br>';
-                            echo "Grade: " . $row["Grade"] . '<br>' . '<br>';
-                            echo "Division: " . $row["Division"] . '<br>' . '<br>';
-                            echo "Address: " . $row["Address"] . '<br>' . '<br>';
-                            echo "DOB: " . $row["DOB"] . '<br>' . '<br>';
-                            echo "email: " . $row["email"] . '<br>' . '<br>';
-                            echo "Telephone No: " . $row['Telephone'] . '<br>' . '<br>';
-                        } else {
-                            echo "Please check your Student ID...No details were found!!!";
-                        }
-                    }
-                }else {echo 'Invalid format of Student ID';}
-            }else {echo 'None of the fields can take an empty value';}
-        }else {echo 'All the required fields should be filled';}
+        include '../Connect/Connect.php';
+        $error=0;
+        $username = $_SESSION['username'];
+        $query = "SELECT Role FROM user WHERE username = '$username'";
+        $query_run = mysqli_query($link,$query);
+        $query_row = mysqli_fetch_assoc($query_run);
+        $role = $query_row['Role'];
+        if ($role != 'student') {
+            if (!isset($_GET['id'])) {
+                $error=1;
+                echo 'All the required fields should be filled';
+            }else if (empty($_GET['id'])) {
+                $error=1;
+                echo 'None of the fields can take an empty value';
+            }else if ($_GET['id'] !== (string)(int)$_GET['id']) {
+                $error=1;
+                echo "StudentID can only be numbers";
+            }else if (strlen($_GET['id']) != 6) {
+                $error=1;
+                echo "Length of StudentID should be 6";
+            }else{
+                $id = $_GET['id'];
+            }
+        }else{
+            $id = $_SESSION['username'];
+        }
+        if($error==0){
+            $sql = "SELECT * FROM detail WHERE ID=$id";
+            $result = mysqli_query($link, $sql);
+            if ($result) {
+                if (mysqli_num_rows($result) > 0) {
+                    $row = mysqli_fetch_assoc($result);
+                    echo "Student ID: " . $row["ID"] . '<br>' . '<br>';
+                    echo "First Name: " . $row["First_name"] . '<br>' . '<br>';
+                    echo "Grade: " . $row["Grade"] . '<br>' . '<br>';
+                    echo "Division: " . $row["Division"] . '<br>' . '<br>';
+                    echo "Address: " . $row["Address"] . '<br>' . '<br>';
+                    echo "DOB: " . $row["DOB"] . '<br>' . '<br>';
+                    echo "email: " . $row["email"] . '<br>' . '<br>';
+                    echo "Telephone No: " . $row['Telephone'] . '<br>' . '<br>';
+                } else {
+                    echo "Please check your Student ID...No details were found!!!";
+                }
+            }
+        }
         ?>
-
     </div>
 
     <div id="sidebar">
@@ -63,14 +82,18 @@
     </div>
 
     <footer>
-        <h3 class="footer-widget-title">Contact Us</h3>
-        <div class="textwidget">
-            <p>J/St.John Bosco Vidyalayam,<br/>
-                Racca Road, Jaffna.</p>
-            <p>Email : stjohnbosco@yahoo.com<br />
-                Tel: Principal office: +940212222540</p>
+        <div class = 'footer1'>
+            <h3 id="h3">Address</h3>
+            J/St.John Bosco Vidyalayam,<br/>
+            Racca Road, Jaffna.
         </div>
-        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
+        <div class = 'footer2'>
+            <h3 id="h3" >Contact Us</h3>
+            Email : stjohnbosco@yahoo.com<br />
+            Tel: Principal office: +940212222540
+        </div>
+        <div class = 'footer3'><i>copyright : Futura Labs</i></div>
+
     </footer>
 
 </div>
