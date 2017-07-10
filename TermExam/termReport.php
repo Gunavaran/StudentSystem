@@ -44,11 +44,17 @@ if (isset($_GET['indexno'])&&isset($_GET['year'])&& isset($_GET['term'])){
 
                     $content='StudentID: '.$id.'<br/>'.'First Name: '.$firstname.'<br/>'.'Last Name: '.$lastname.'<br/>'.'Grade: '.$grade.'<br/>'.'Division: '.$division.'<br/>';
                 }
+                $total=0;
+                $subcount=0;
                 while($query_row = mysqli_fetch_assoc($query_run)){
                     $subject = $query_row['Subject'];
                     $marks = $query_row['Marks'];
+                    $total+=$marks;
+                    $subcount+=1;
                     $content.= $subject.': '.$marks.'<br/>';
                 }
+                $avg=$total/$subcount;
+                $content.='<br/>Total = '.$total.'<br/>Average = '.$avg.'<br/>';
             }
         }
     }
