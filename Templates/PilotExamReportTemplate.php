@@ -6,6 +6,10 @@
     <title> <?php echo $title; ?> </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
 
+    <?php
+    include '../Styles/FormStyle.html';
+    ?>
+
 </head>
 <body>
 <div id="wrapper">
@@ -22,7 +26,7 @@
     </nav>
 
     <div id="content_area">
-        <form action="PilotExamReportTemplate.php" method="get">
+        <form action="PilotExamReportTemplate.php" method="get" name = "fixedform">
             <fieldset>
                 <legend>Choose Index Number</legend>
                 IndexNo:<br>
@@ -30,10 +34,12 @@
                 <br><br>
                 <input type='submit' value='Submit'>
             </fieldset>
+
+            <?php
+            include '../PilotExam/PilotReport.php';
+            ?>
         </form>
-        <?php
-        include '../PilotExam/PilotReport.php';
-        ?>
+
     </div>
 
     <div id="sidebar">

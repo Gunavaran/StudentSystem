@@ -6,6 +6,15 @@ session_start();
 
     <title> Pilot Exam </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
+    <style>
+        nav[id=competition]{
+            background-color: mediumorchid;
+            height:60px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+    </style>
 
 </head>
 <body>
@@ -63,7 +72,6 @@ session_start();
         </nav>
 
         <?php
-        session_start();
         $username = $_SESSION['username'];
 
         if ($username == 'principal'){
@@ -71,7 +79,7 @@ session_start();
 
             <nav id="competition" style="margin-top: 0px; padding-top: 0px">
                 <ul id="nav" style="margin-top: 0px">
-                    <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 45px"> <a href="../addStaff.php">Add Staff</a></li>
+                    <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 45px"> <a href="../User/addStaff.php">Add Staff</a></li>
                 </ul>
             </nav>
 

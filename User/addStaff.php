@@ -1,7 +1,9 @@
+<!DOCTYPE html>
+
 <html>
 <head>
 
-    <title> Attendance </title>
+    <title> </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
     <style>
         nav[id=competition]{
@@ -10,8 +12,8 @@
             border-radius: 5px;
             margin-top: 10px;
         }
-    </style>
 
+    </style>
 </head>
 <body>
 <div id="wrapper">
@@ -28,50 +30,46 @@
     </nav>
 
     <div id="content_area">
-        <div id="content_area">
+        <form action="addStaff.php" method="post" class="form">
+            Username: <br>
+            <input type="text" name="username"><br><br>
+            Role:<br>
+            <select>
+                <option value="classteacher">ClassTeacher</option>
+                <option value="englishteacher">EnglishTeacher</option>
+            </select><br><br>
+            Grade: <br>
+            <input type="text" name="grade"><br><br>
+            Division: <br>
+            <input type="text" name="division"><br><br>
+            <input type="submit" value="Submit">
+
             <?php
             include '../Connect/Connect.php';
-            session_start();
-            $username = $_SESSION['username'];
-            $query = "SELECT Role FROM users WHERE username = '$username'";
-            $query_run = mysqli_query($link,$query);
-            $query_row = mysqli_fetch_assoc($query_run);
-            $role = $query_row['Role'];
-            if ($role != 'student') {
-                ?>
-                <nav id="term_marks_navigation">
-                    <ul id="nav">
-                        <li><a href="../Attendance/enter_attendance.php"> Enter Attendance </a> </li>
-                    </ul>
-                </nav>
-                <nav id="pilot_marks_navigation">
-                    <ul id="nav">
-                        <li> <a href="../Attendance/updateattendance.php">Update Attendance</a></li>
-                    </ul>
-                </nav>
-                <?php
-            } else{
-                $attendance_query = "SELECT Attendance, Date FROM attendance WHERE StudentID = '$username'";
-                $attendance_query_run = mysqli_query($link, $attendance_query);
-                echo 'You are absent on: <br/>';
-                $count = 0;
-                while($attendance_row = mysqli_fetch_assoc($attendance_query_run)){
-                    $attendance = $attendance_row['Attendance'];
-                    $date = $attendance_row['Date'];
-                    if (strtoupper($attendance)=='A'){
-                        echo $date.'<br/>';
-                        $count++;
+            $message = '';
+            if (isset($_POST['username']) && isset($_POST['role'])) {
+                if (!empty($_POST['username']) && !empty($_POST['role'])){
+                    $name = $_POST['username'];
+                    $role = $_POST['role'];
+                    $query = "INSERT INTO users (username, password, Role) VALUES ('$name',md5('pass123'),'$role')";
+                    if(mysqli_query($link, $query)){
+                        $message = "Stored Successfully";
+                    } else {
+                        $message = "Submit failed!!!";
                     }
-                }
-                if ($count == 0){
-                    echo 'You are always present. Keep it up!!!';
+
                 }
 
             }
             ?>
 
+            <div id="message">
+                <?php
+                echo $message
+                ?>
+            </div>
 
-        </div>
+        </form>
     </div>
 
     <div id="sidebar">
@@ -88,12 +86,15 @@
         </nav>
 
         <?php
+        session_start();
+        $username = $_SESSION['username'];
+
         if ($username == 'principal'){
             ?>
 
             <nav id="competition" style="margin-top: 0px; padding-top: 0px">
                 <ul id="nav" style="margin-top: 0px">
-                    <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 45px"> <a href="../User/addStaff.php">Add Staff</a></li>
+                    <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 45px"> <a href="../addStaff.php">Add Staff</a></li>
                 </ul>
             </nav>
 
@@ -103,7 +104,6 @@
 
 
     </div>
-
     <footer>
         <div class = 'footer1'>
             <h3 id="h3">Address</h3>
@@ -118,6 +118,7 @@
         <div class = 'footer3'><i>copyright : Futura Labs</i></div>
 
     </footer>
+
 </div>
 </body>
 </html>

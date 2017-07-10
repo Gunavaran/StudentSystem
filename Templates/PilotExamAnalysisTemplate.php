@@ -5,6 +5,18 @@
 
     <title> <?php echo $title; ?> </title>
 <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
+    <?php
+    include '../Styles/FormStyle.html';
+    ?>
+    <style>
+        select{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
 
 </head>
 <body>
@@ -22,7 +34,7 @@
     </nav>
 
     <div id="content_area">
-        <form action="PilotExamAnalysisTemplate.php" method="post">
+        <form action="PilotExamAnalysisTemplate.php" method="post" name = "fixedform">
 
             <fieldset>
                 Year: <br>
