@@ -37,8 +37,5 @@
     }
    // $mysql_close($link);
 
-
-
-
     ?>
 
