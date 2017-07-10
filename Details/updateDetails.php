@@ -3,6 +3,61 @@
 
     <title> Update Student Details</title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
+    <style>
+        input[type = text]{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit]{
+
+            padding: 14px 20px;
+            width: 100%;
+            background-color: #4CAF50;
+            border-radius: 2px;
+        }
+
+        input[type = date]{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        form[name = fixedform]{
+            float: left;
+            width: 40%;
+            margin: 20px 10px 0px 300px;
+            padding: 10px;
+            border: 2px solid #E3E3E3;
+            border-radius: 5px;
+            font-family: "Adobe Gothic Std B";
+            background-color: darkgrey;
+        }
+
+        div[id = message]{
+            color: crimson;
+            margin-top: 10px;
+            padding: 14px 20px;
+            width: auto ;
+            border-radius: 2px;
+        }
+
+        .heading{
+            margin-left: 300px;
+        }
+        nav[id=competition]{
+            background-color: mediumorchid;
+            height:60px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+    </style>
 
 </head>
 <body>
@@ -20,59 +75,32 @@
     </nav>
 
     <div id="content_area">
+        <html>
+        <body>
         <h2>Select Details and Update</h2>
         <form action="updateDetails.php" method="post" name="fixedform">
             ID: <br><br>
             <input type="text" name="ID"><br><br>
             <fieldset>
-                <legend>Please what you need to change</legend>
-                <input type="radio" name="fname" id="fname" value="" />         First Name       <input type="text" name="fname1" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​<br />
-                <input type="radio" name="lname" id="lname" value=""  />        Last Name        <input type="text" name="lname1" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​<br />
-                <input type="radio" name="add" id="add" value=""  />            Address          <input type="text" name="add1" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​<br />
-                <input type="radio" name="phone" id="phone" value=""  />        Phone Number     <input type="text" name="phone1" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​<br />
-                <input type="radio" name="mail" id="mail" value=""  />          E-mail           <input type="text" name="mail1" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​<br />
-                <input type="radio" name="dob" id="dob" value=""  />            Date Of Birth    <input type="text" name="dob1" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​<br />
-                <input type="radio" name="fathername" id="fathername" value=""/>Father's Name    <input type="text" name="fathername1" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​<br />
-                <input type="radio" name="mothername" id="mothername" value=""/>Mother's Name    <input type="text" name="mothername1" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​<br />
-                <input type="radio" name="fatherJob" id="fatherJob" value=""  />Father's Job     <input type="text" name="fatherJob1" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​<br />
-                <input type="radio" name="motherJob" id="motherJob" value=""  />Mother's Job     <input type="text" name="motherJob1" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​<br />
+                <input type="radio" name="option" value="FirstName" onclick="document.location.href='../UpdateDetails/FirstName.php'"/> First Name <br/>
+                <input type="radio" name="option" value="LastName" onclick="document.location.href='../UpdateDetails/LastName.php'" /> Last Name<br/>
+                <input type="radio" name="option" value="Address" onclick="document.location.href='../UpdateDetails/Address.php'"/> Address<br/>
+                <input type="radio" name="option" value="PhoneNumber" onclick="document.location.href='../UpdateDetails/PhoneNumber.php'"/> Phone Number <br/>
+                <input type="radio" name="option" value="Email" onclick="document.location.href='../UpdateDetails/Email.php'"/> E-Mail <br/>
+                <input type="radio" name="option" value="FatherName" onclick="document.location.href='../UpdateDetails/FatherName.php'"/> Father's Name <br/>
+                <input type="radio" name="option" value="FatherJob" onclick="document.location.href='../UpdateDetails/FatherJob.php'"/> Father's Job <br/>
+                <input type="radio" name="option" value="MotherName" onclick="document.location.href='../UpdateDetails/MotherName.php'"/> Mother's Name <br/>
+                <input type="radio" name="option" value="MotherJob" onclick="document.location.href='../UpdateDetails/MotherJob.php'"/> Mother's Job <br/>
+                <input type="radio" name="option" value="Grade" onclick="document.location.href='../UpdateDetails/Grade.php'"/> Grade <br/>
+                <input type="radio" name="option" value="Division" onclick="document.location.href='../UpdateDetails/Division.php'"/> Division <br/>
+                <input type="radio" name="option" value="DateOfBirth" onclick="document.location.href='../UpdateDetails/DateOfBirth.php'"/> Date Of Birth <br/>
             </fieldset>
 
-            <input type="submit" value="Submit">
-            <input type="reset">
 
         </form>
+        </body>
+        </html>
 
-        <?php
-        include '../Connect/Connect.php';
-
-
-
-        if (isset($_POST['id']) && isset($_POST['subject']) && isset($_POST['marks']) && isset($_POST['year'])&& isset($_POST['term'])){
-            if(!empty($_POST['id']) && !empty($_POST['subject']) && !empty($_POST['marks']) && !empty($_POST['year'])&& !empty($_POST['term'])){
-
-                $id = $_POST['id'];
-                $subject = $_POST['subject'];
-                $marks = $_POST['marks'];
-                $year = $_POST['year'];
-                $term = $_POST['term'];
-
-                $query = "UPDATE detail SET Marks = '$marks' WHERE ID = '$id' AND Subject = '$subject' AND Year = '$year' AND Term ='$term'";
-                if($query_run = mysqli_query($link, $query)){
-                    $message='Update Successful';
-                } else {
-                    $message= 'Update Failed!!!';
-                }
-
-            } else {
-                $message = 'None of the fields can take an empty value';
-            }
-
-        } else {
-            $message =  'All the required fields should be filled';
-        }
-
-        ?>
 
     </div>
 
