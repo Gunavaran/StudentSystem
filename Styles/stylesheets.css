@@ -37,9 +37,13 @@ body p{
     float: right;
     width: 250px;
     height: 400px;
-    margin: 20px 10px;
-    padding: 10px;
+    margin: 10px 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 0px;
     border: 2px solid #E3E3E3;
+    border-radius: 5px;
+    background-color: #dedede;
 }
 
 #resultbar{
@@ -129,17 +133,6 @@ footer{
     padding: 10px;
 }
 
-.form{
-    background-color: lightgray;
-    float: right;
-    width: 250px;
-    height: 400px;
-    margin: 20px 10px;
-    padding: 10px;
-    border: 2px solid #E3E3E3;
-    border-radius: 5px;
-    font-family: "Adobe Gothic Std B";
-}
 
 .footer1{
     float: left;

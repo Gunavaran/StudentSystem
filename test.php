@@ -5,16 +5,10 @@
  * Date: 7/6/2017
  * Time: 11:44 AM
  */
-$test = '000001';
-$test2 = $test * 1;
-echo $test2;
-echo gettype($test2);
-if (is_numeric($test)){
-    echo 'number of any type';
-}
+$array = array();
+array_push($array,'A');
 
-echo md5('sectionalhead2');
-
+print_r($array);
 /**
  * value = "
 <?php

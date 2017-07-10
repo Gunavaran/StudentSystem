@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title> <?php echo $title; ?> </title>
+    <title> Marks </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
 
 </head>

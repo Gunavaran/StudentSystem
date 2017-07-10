@@ -29,12 +29,18 @@
             <input type="text" name="FirstName"><br><br>
             Last Name:<br><br>
             <input type="text" name="LastName"><br><br>
+            Grade:<br><br>
+            <input type="text" name="grade"><br><br>
+            Division:<br><br>
+            <input type="text" name="division"><br><br>
             Address:<br><br>
             <input type="text" name="Address"><br><br>
             Phone:<br><br>
             <input type="text" name="PhoneNumber"><br><br>
             Date Of Birth:<br><br>
             <input type="date" name="DateOfBirth"><br><br>
+            Email:<br><br>
+            <input type="text" name="Email"><br><br>
             Father's Name:<br><br>
             <input type="text" name="FatherName"><br><br>
             Father's Job:<br><br>
@@ -43,15 +49,13 @@
             <input type="text" name="MotherName"><br><br>
             Mother's Job:<br><br>
             <input type="text" name="MotherJob"><br><br>
-            Email:<br><br>
-            <input type="text" name="Email"><br><br>
             <input type="submit" value="Submit">
 
             <?php
             include '../Connect/Connect.php';
 
-            if (isset($_POST['id']) && isset($_POST['FirstName']) && isset($_POST['LastName'])&& isset($_POST['Address'])&& isset($_POST['PhoneNumber'])&& isset($_POST['Email'])&& isset($_POST['FatherName'])&& isset($_POST['FatherJob'])&& isset($_POST['MotherJob'])&& isset($_POST['DateOfBirth'])&& isset($_POST['MotherName'])){
-                if(!empty($_POST['id']) && !empty($_POST['FirstName']) && !empty($_POST['LastName'])&& !empty($_POST['Email'])&& !empty($_POST['Address'])&& !empty($_POST['PhoneNumber'])&& !empty($_POST['FatherName'])&& !empty($_POST['FatherJob'])&& !empty($_POST['MotherJob'])&& !empty($_POST['MotherName'])&& !empty($_POST['DateOfBirth'])){
+            if (isset($_POST['id']) && isset($_POST['FirstName']) && isset($_POST['LastName'])&& isset($_POST['Address'])&& isset($_POST['PhoneNumber'])&& isset($_POST['Email'])&& isset($_POST['FatherName'])&& isset($_POST['FatherJob'])&& isset($_POST['MotherJob'])&& isset($_POST['DateOfBirth'])&& isset($_POST['MotherName']) && isset($_POST['grade'])&& isset($_POST['division']) ){
+                if(!empty($_POST['id']) && !empty($_POST['FirstName']) && !empty($_POST['LastName'])&& !empty($_POST['Email'])&& !empty($_POST['Address'])&& !empty($_POST['PhoneNumber'])&& !empty($_POST['FatherName'])&& !empty($_POST['FatherJob'])&& !empty($_POST['MotherJob'])&& !empty($_POST['MotherName'])&& !empty($_POST['DateOfBirth'])&& !empty($_POST['grade'])&& !empty($_POST['division'])){
 
                     $id = $_POST['id'];
                     $first = $_POST['FirstName'];
@@ -64,8 +68,10 @@
                     $motherName = $_POST['MotherName'];
                     $motherJob = $_POST['MotherJob'];
                     $dob = $_POST['DateOfBirth'];
+                    $grade = $_POST['grade'];
+                    $division = $_POST['division'];
 
-                    $query = "INSERT INTO sdms (ID, FirstName, LastName, Address, PhoneNumber, E-mail, FatherName, FatherJob, MotherName, MotherJob, DateOfBirth ) VALUES ('$id', '$first', '$last', '$add', '$phone','$mail','$fatherName','$fatherJob','$motherName','$motherJob','$dob')";
+                    $query = "INSERT INTO student_details (StudentID, FirstName, LastName, Address, Telephone, email, FatherName, FatherJob, MotherName, MotherJob, DOB, Grade, Division ) VALUES ('$id', '$first', '$last', '$add', '$phone','$mail','$fatherName','$fatherJob','$motherName','$motherJob','$dob','$grade','$division')";
                     if($query_run = mysqli_query($link, $query)){
                         echo 'Successfully Stored';
                     }else{

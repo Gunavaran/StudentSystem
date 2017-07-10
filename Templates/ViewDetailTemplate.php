@@ -22,7 +22,7 @@
     </nav>
 
     <div id="content_area">
-        <form action="../Details/ViewDetail.php" method="get">
+        <form action="../Details/ViewDetail.php" method="post">
             <fieldset>
                 <label>Enter Student ID</label><br><br>
                 <input type="text" name="id" placeholder="Student ID"><br><br><br>

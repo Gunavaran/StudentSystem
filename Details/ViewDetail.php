@@ -14,7 +14,7 @@
     <nav id="navigation">
         <ul id="nav">
             <li><a href="index.php"> Home </a> </li>
-            <li> <a href="ProfileTemplate.php">Profile</a></li>
+            <li> <a href="../Templates/ProfileTemplate.php">Profile</a></li>
             <li> <a href="MarksTemplate.php">Marks</a></li>
             <li> <a href="attendancetemplate.php">Attendance</a></li>
             <li> <a href="../Log_in_out/logout.php">Logout</a></li>
@@ -29,17 +29,18 @@
         } else {
             echo "connection failed";
         }
-        if (isset($_GET['id'])) {
-            if(!empty($_GET['id'])) {
-                if($_GET['id'] === (string)(int) $_GET['id'] AND strlen($_GET['id'])==1) {
-                    $id = $_GET['id'];
-                    $sql = "SELECT * FROM detail WHERE ID=$id";
+        if (isset($_POST['id'])) {
+            if(!empty($_POST['id'])) {
+                if($_POST['id'] === (string)(int) $_POST['id'] AND strlen($_POST['id'])==6) {
+                    $id = $_POST['id'];
+                    $sql = "SELECT * FROM student_details WHERE StudentID='$id'";
                     $result = mysqli_query($link, $sql);
                     if ($result) {
                         if (mysqli_num_rows($result) > 0) {
                             $row = mysqli_fetch_assoc($result);
-                            echo "Student ID: " . $row["ID"] . '<br>' . '<br>';
-                            echo "First Name: " . $row["First_name"] . '<br>' . '<br>';
+                            echo "Student ID: " . $row["StudentID"] . '<br>' . '<br>';
+                            echo "First Name: " . $row["FirstName"] . '<br>' . '<br>';
+                            echo "Last Name: " . $row["LastName"] . '<br>' . '<br>';
                             echo "Grade: " . $row["Grade"] . '<br>' . '<br>';
                             echo "Division: " . $row["Division"] . '<br>' . '<br>';
                             echo "Address: " . $row["Address"] . '<br>' . '<br>';
