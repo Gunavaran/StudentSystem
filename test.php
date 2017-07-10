@@ -9,6 +9,8 @@ $array = array();
 array_push($array,'A');
 
 print_r($array);
+
+echo md5('pass123');
 /**
  * value = "
 <?php

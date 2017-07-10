@@ -5,7 +5,55 @@
 
     <title>Student Detail </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
+    <style>
+        form[name = fixedform]{
+            float: left;
+            width: 60%;
+            margin: 20px 10px 0px 200px;
+            padding: 10px;
+            border: 2px solid #E3E3E3;
+            border-radius: 5px;
+            font-family: "Adobe Gothic Std B";
+            background-color: darkgrey;
+        }
 
+        input[type=submit]{
+            padding: 14px 20px;
+            width: 20%;
+            margin: 0px 10px 0px 180px;
+            background-color: #490c01;
+            border-radius: 2px;
+            font-style: inherit;
+        }
+
+        div[id = message]{
+            color: crimson;
+            margin-top: 10px;
+            padding: 14px 20px;
+            width: auto ;
+            border-radius: 2px;
+        }
+
+        div[id = message_1]{
+            color: #000000;
+            margin-top: 10px;
+            padding: 10px 20px;
+            width: auto ;
+            border-radius: 2px;
+        }
+
+        div[id = message_2]{
+            color: #7a0a0c;
+            margin-top: 10px;
+            padding: 0px 20px 20px;
+            width: auto ;
+            border-radius: 2px;
+        }
+
+        .heading{
+            margin-left: 325px;
+        }
+    </style>
 </head>
 <body>
 <div id="wrapper">
@@ -22,59 +70,67 @@
     </nav>
 
     <div id="content_area">
-        <?php
-        require '../Connect/Connect.php';
-        if ($link || mysqli_select_db($link,$database)){
-            //echo "Connection successful;";
-        } else {
-            echo "connection failed";
-        }
-        include '../Connect/Connect.php';
-        $error=0;
-        $username = $_SESSION['username'];
-        $query = "SELECT Role FROM user WHERE username = '$username'";
-        $query_run = mysqli_query($link,$query);
-        $query_row = mysqli_fetch_assoc($query_run);
-        $role = $query_row['Role'];
-        if ($role != 'student') {
-            if (!isset($_GET['id'])) {
-                $error=1;
-                echo 'All the required fields should be filled';
-            }else if (empty($_GET['id'])) {
-                $error=1;
-                echo 'None of the fields can take an empty value';
-            }else if ($_GET['id'] !== (string)(int)$_GET['id']) {
-                $error=1;
-                echo "StudentID can only be numbers";
-            }else if (strlen($_GET['id']) != 6) {
-                $error=1;
-                echo "Length of StudentID should be 6";
-            }else{
-                $id = $_GET['id'];
+        <h2 class="heading">Student Detail</h2>
+        <form action="../Templates/ViewDetailTemplate.php" name="fixedform">
+            <?php
+            require '../Connect/Connect.php';
+            $message = '';
+            if ($link || mysqli_select_db($link,$database)){
+                //echo "Connection successful;";
+            } else {
+                $message = "connection failed";
             }
-        }else{
-            $id = $_SESSION['username'];
-        }
-        if($error==0){
-            $sql = "SELECT * FROM detail WHERE ID=$id";
-            $result = mysqli_query($link, $sql);
-            if ($result) {
-                if (mysqli_num_rows($result) > 0) {
-                    $row = mysqli_fetch_assoc($result);
-                    echo "Student ID: " . $row["ID"] . '<br>' . '<br>';
-                    echo "First Name: " . $row["First_name"] . '<br>' . '<br>';
-                    echo "Grade: " . $row["Grade"] . '<br>' . '<br>';
-                    echo "Division: " . $row["Division"] . '<br>' . '<br>';
-                    echo "Address: " . $row["Address"] . '<br>' . '<br>';
-                    echo "DOB: " . $row["DOB"] . '<br>' . '<br>';
-                    echo "email: " . $row["email"] . '<br>' . '<br>';
-                    echo "Telephone No: " . $row['Telephone'] . '<br>' . '<br>';
-                } else {
-                    echo "Please check your Student ID...No details were found!!!";
+            include '../Connect/Connect.php';
+            $username = $_SESSION['username'];
+            $query = "SELECT Role FROM user WHERE username = '$username'";
+            $query_run = mysqli_query($link,$query);
+            $query_row = mysqli_fetch_assoc($query_run);
+            $role = $query_row['Role'];
+            if ($role != 'student') {
+                if (!isset($_GET['id'])) {
+                    $message ='All the required fields should be filled';
+                }else if (empty($_GET['id'])) {
+                    $message ='None of the fields can take an empty value';
+                }else if ($_GET['id'] !== (string)(int)$_GET['id']) {
+                    $message ="StudentID can only be numbers";
+                }else if (strlen($_GET['id']) != 6) {
+                    $message ="Length of StudentID should be 6";
+                }else{
+                    $id = $_GET['id'];
+                }
+            }else{
+                $id = $_SESSION['username'];
+            }
+            if($message == ''){
+                $sql = "SELECT * FROM detail WHERE ID=$id";
+                $result = mysqli_query($link, $sql);
+                if ($result) {
+                    if (mysqli_num_rows($result) > 0) {
+                        $row = mysqli_fetch_assoc($result);
+                        extract($row); ?>
+                        <div id="message_1">
+                            Student ID:<div id="message_2"> <?php echo $row["ID"];?> </div>
+                            First Name:<div id="message_2"> <?php echo $row["First_name"];?> </div>
+                            Grade:<div id="message_2"> <?php echo $row["Grade"];?> </div>
+                            Division:<div id="message_2"> <?php echo $row["Division"];?> </div>
+                            Address:<div id="message_2"> <?php echo $row["Address"];?> </div>
+                            DOB:<div id="message_2"> <?php echo $row["DOB"];?> </div>
+                            email:<div id="message_2"> <?php echo $row["email"];?> </div>
+                            Telephone No:<div id="message_2"> <?php echo $row['Telephone'];?> </div>
+                        </div>
+                    <?php } else {
+                        $message ="Please check your Student ID...No details were found!!!";
+                    }
                 }
             }
-        }
-        ?>
+            ?>
+            <div id="message">
+                <?php
+                echo $message;
+                ?>
+            </div>
+            <input type="submit" value="OK" style="color: #ffffff">
+        </form>
     </div>
 
     <div id="sidebar">
