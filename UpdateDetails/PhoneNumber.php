@@ -80,7 +80,7 @@
         <form action="updateDetails.php" method="post" name="fixedform">
             ID: <br><br>
             <input type="text" name="id"><br><br>
-            Last Name: <br><br>
+            Telephone: <br><br>
             <input type="text" name="phone"><br><br>
 
             <input type="submit" value="Submit">
@@ -97,7 +97,7 @@
                     if ($_POST['phone'] !== (string)(int)$_POST['phone'] AND (int)$_POST['phone'] > 0) {
                         $error++;
                         echo "Phone Number should be a positive number" . "<br>";
-                    } else if (strlen($_POST['id']) != 10) {
+                    } else if (strlen($_POST['phone']) != 10) {
                         $error++;
                         echo "phone Number should be in 10 digits</br>";
                     }
@@ -115,13 +115,13 @@
                         }
 
                     }
-                    if ($error != 0) {
+                    if ($error == 0) {
                         $id = $_POST['id'];
                         $phone = $_POST['phone'];
 
                         $query = "UPDATE student_details SET Telephone=$phone WHERE StudentID=$id";
                         if ($query_run = mysqli_query($link, $query)) {
-                            echo 'Last Name of the student changed Successfully!';
+                            echo 'Phone Number of the student changed Successfully!';
                         } else {
                             echo 'Failed!!!';
                         }

@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title>Update Last Name</title>
+    <title>Update Date Of Birth</title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
     <style>
         input[type = text]{
@@ -80,8 +80,8 @@
         <form action="updateDetails.php" method="post" name="fixedform">
             ID: <br><br>
             <input type="text" name="id"><br><br>
-            Last Name: <br><br>
-            <input type="text" name="last"><br><br>
+            Date Of Birth: <br><br>
+            <input type="date" name="dob"><br><br>
 
             <input type="submit" value="Submit">
 
@@ -92,8 +92,8 @@
             include '../Connect/Connect.php';
             $error=0;
 
-            if (isset($_POST['id'])&& isset($_POST['last'])) {
-                if (!empty($_POST['id'])&& !empty($_POST['last'])) {
+            if (isset($_POST['id'])&& isset($_POST['dob'])) {
+                if (!empty($_POST['id'])&& !empty($_POST['dob'])) {
                     if ($_POST['id'] !== (string)(int)$_POST['id'] AND (int)$_POST['id'] > 0) {
                         $error++;
                         echo "Student ID should be a positive number" . "<br>";
@@ -104,11 +104,11 @@
 
                     if ($error == 0) {
                         $id = $_POST['id'];
-                        $last = $_POST['last'];
+                        $dob = $_POST['dob'];
 
-                        $query = "UPDATE student_details SET FirstName=$last WHERE StudentID=$id";
+                        $query = "UPDATE student_details SET DOB=$dob WHERE StudentID=$id";
                         if ($query_run = mysqli_query($link, $query)) {
-                            echo 'Last Name of the student changed Successfully!';
+                            echo 'Date Of Birth of the student changed Successfully!';
                         } else {
                             echo 'Failed!!!';
                         }
@@ -171,4 +171,3 @@
 </div>
 </body>
 </html>
-

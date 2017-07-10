@@ -81,7 +81,7 @@
         <form action="updateDetails.php" method="post" name="fixedform">
 
             <fieldset>
-                <input type="radio" name="option" value="FirstName" onclick="document.location.href='FirstName.php'"/> First Name <br/>
+                <input type="radio" name="option" value="FirstName" onclick="document.location.href='FisrtName.php'"/> First Name <br/>
                 <input type="radio" name="option" value="LastName" onclick="document.location.href='LastName.php'" /> Last Name<br/>
                 <input type="radio" name="option" value="Address" onclick="document.location.href='Address.php'"/> Address<br/>
                 <input type="radio" name="option" value="PhoneNumber" onclick="document.location.href='PhoneNumber.php'"/> Phone Number <br/>

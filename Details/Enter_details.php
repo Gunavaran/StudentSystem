@@ -85,9 +85,21 @@
             Last Name:<br><br>
             <input type="text" name="LastName"><br><br>
             Grade:<br><br>
-            <input type="text" name="grade"><br><br>
+            <select name='grade'>
+                <option value = '01'>01</option>
+                <option value = '02'>02</option>
+                <option value = '03'>03</option>
+                <option value = '04'>04</option>
+                <option value = '05'>05</option>
+            </select><br><br>
             Division:<br><br>
-            <input type="text" name="division"><br><br>
+            <select name='division'>
+                <option value = 'A'>A</option>
+                <option value = 'B'>B</option>
+                <option value = 'C'>C</option>
+                <option value = 'D'>D</option>
+                <option value = 'E'>E</option>
+            </select><br><br>
             Address:<br><br>
             <input type="text" name="Address"><br><br>
             Phone:<br><br>
