@@ -65,7 +65,7 @@
                     $motherJob = $_POST['MotherJob'];
                     $dob = $_POST['DateOfBirth'];
 
-                    $query = "INSERT INTO sdms (ID, FirstName, LastName, Address, PhoneNumber, E-mail, FatherName, FatherJob, MotherName, MotherJob, DateOfBirth ) VALUES ('$id', '$first', '$last', '$add', '$phone','$mail','$fatherName','$fatherJob','$motherName','$motherJob','$dob')";
+                    $query = "INSERT INTO detail (ID, First_name, Last_name, Address, Telephone, E-mail, FatherName,FatherJob, MotherName, MotherJob, DateOfBirth ) VALUES ('$id', '$first', '$last', '$add', '$phone','$mail','$fatherName','$fatherJob','$motherName','$motherJob','$dob')";
                     if($query_run = mysqli_query($link, $query)){
                         echo 'Successfully Stored';
                     }else{

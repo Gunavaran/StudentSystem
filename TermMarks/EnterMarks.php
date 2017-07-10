@@ -22,9 +22,20 @@
     </nav>
 
     <div id="content_area">
-        <form action="enter_termmarks.php" method="post" name="fixedform">
-            ID: <br><br>
-            <input type="text" name="id"><br><br>
+        <form action="EnterMarks.php" method="post" name="fixedform">
+
+
+
+            Year:<br><br>
+            <input type="text" name="year"><br><br>
+            Term:<br><br>
+            <select name='term'>
+                <option value = 1>I</option>
+                <option value = 2>II</option>
+                <option value = 3>III</option>
+
+
+            </select><br><br>
             Subject:<br><br>
             <select name='subject'>
                 <option value = 'religion_hin'>Religion-Hindu</option>
@@ -34,16 +45,10 @@
                 <option value = 'social'>Social</option>
                 <option value = 'english'>English</option>
             </select><br><br>
+            ID: <br><br>
+            <input type="text" name="id"><br><br>
             Marks:<br><br>
             <input type="text" name="marks"><br><br>
-            Year:<br><br>
-            <input type="text" name="year"><br><br>
-            Term:<br><br>
-            <select name='term'>
-                <option value = 1>I</option>
-                <option value = 2>II</option>
-                <option value = 3>III</option>
-            </select><br><br>
 
             <input type="submit" value="Submit">
 
@@ -59,7 +64,7 @@
                     $year = $_POST['year'];
                     $term = $_POST['term'];
 
-                    $query = "INSERT INTO sdms (StudentID, Subject, Marks, Year, Term ) VALUES ('$id', '$subject', '$marks', '$year', '$term')";
+                    $query = "INSERT INTO term_marks (ID, Subject, Marks, Year, Term ) VALUES ('$id', '$subject', '$marks', '$year', '$term')";
                     if($query_run = mysqli_query($link, $query)){
                         echo 'Successfully Stored';
                     }else{
