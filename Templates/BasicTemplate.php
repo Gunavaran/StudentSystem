@@ -39,7 +39,7 @@
     <div id="sidebar">
         <nav id="competition">
             <ul id="nav">
-                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="../compDetail.php">Competition Details</a></li>
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="CompDetailTemplate.php">Competition Details</a></li>
             </ul>
         </nav>
 
