@@ -5,6 +5,46 @@
 
     <title> Character Certificate </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
+    <style>
+        form[name = fixedform]{
+        float: left;
+        width: 60%;
+        margin: 20px 10px 0px 200px;
+        padding: 10px;
+        border: 2px solid #E3E3E3;
+        border-radius: 5px;
+        font-family: "Adobe Gothic Std B";
+        background-color: darkgrey;
+        }
+
+        div[id = message]{
+        color: crimson;
+        margin-top: 10px;
+        padding: 14px 20px;
+        width: auto ;
+        border-radius: 2px;
+        }
+
+        div[id = message_1]{
+        color: #000000;
+        margin-top: 10px;
+        padding: 14px 20px;
+        width: auto ;
+        border-radius: 2px;
+        }
+
+        div[id = message_2]{
+            color: #7a0a0c;
+            margin-top: 0px;
+            padding: 10px 40px;
+            width: auto ;
+            border-radius: 2px;
+        }
+
+        .heading{
+        margin-left: 200px;
+        }
+    </style>
 
 </head>
 <body>
@@ -22,15 +62,17 @@
     </nav>
 
     <div id="content_area">
+        <form name="fixedform">
         <?php
         require '../Connect/Connect.php';
+        $message = '';
         if ($link || mysqli_select_db($link,$database)){
             //echo "Connection successful;";
         } else {
-            echo "Connection failed";
+            $message ="Connection failed";
         }
 
-        $error=0;
+
         $username = $_SESSION['username'];
         $query = "SELECT Role FROM user WHERE username = '$username'";
         $query_run = mysqli_query($link,$query);
@@ -38,24 +80,20 @@
         $role = $query_row['Role'];
         if ($role != 'student') {
             if (!isset($_GET['id'])) {
-                $error=1;
-                echo 'All the required fields should be filled';
+                $message ='All the required fields should be filled';
             }else if (empty($_GET['id'])) {
-                $error=1;
-                echo 'None of the fields can take an empty value';
-            }else if ($_GET['id'] !== (string)(int)$_GET['id']) {
-                $error=1;
-                echo "StudentID can only be numbers";
+                $message ='None of the fields can take an empty value';
+            }else if ($_GET['id'] !== (string)(int)$_GET['id'] OR (int)$_GET['id']<0) {
+                $message ="StudentID can only be a positive numbers";
             }else if (strlen($_GET['id']) != 6) {
-                $error=1;
-                echo "Length of StudentID should be 6";
+                $message ="Length of StudentID should be 6";
             }else{
-                $id = $_GET['id'];
+                $id = (int)$_GET['id'];
             }
         }else{
             $id = $_SESSION['username'];
         }
-        if($error==0){
+        if($message == ''){
             $sql = "SELECT First_name,Last_name,Grade FROM `detail` WHERE ID=$id";
             $result = mysqli_query($link, $sql);
             if ($result) {
@@ -63,27 +101,38 @@
                     $first = $row['First_name'];
                     $last = $row['Last_name'];
                     $grade = $row['Grade'];
-                    echo "First Name: " . '<br/>' . $first . '<br/><br>';
-                    echo "Last Name: " . '<br/>' . $last . '<br/><br>';
-                    echo "Grade: " . '<br/>' . $grade . '<br/><br>';
+
+                    echo '<div id="message_1">'."First Name: ".'</div>'.'<div id="message_2">'.$first.'</div>';
+                    echo '<div id="message_1">'."Last Name: ".'</div>'.'<div id="message_2">'.$last.'</div>';
+                    echo '<div id="message_1">'."Grade: ".'</div>'.'<div id="message_2">'.$grade.'</div>';
                 }
             } else {
-                echo "No data has been found";
+                $message ="No data has been found";
             }
-            echo "Character Detail: " . '<br/>';
+            echo '<div id="message_1">'."Character Detail: ".'</div>';
             $sql = "SELECT Character_detail FROM `character` WHERE ID=$id";
             $result = mysqli_query($link, $sql);
             if ($result) {
                 if (mysqli_num_rows($result)>0) {
                     while ($row = mysqli_fetch_assoc($result)) {
                         $character = $row['Character_detail'];
-                        echo $character . '<br/>';
+                        echo '<div id="message_2">';
+                        echo $character;
+                        echo '</div>';
                     }
                 }
             }
+            echo '<div id="message_2">';
             echo 'Good Student';
+            echo '</div>';
         }
         ?>
+            <div id="message">
+                <?php
+                echo $message
+                ?>
+            </div>
+        </form>
     </div>
     <div id="sidebar">
         <nav id="competition">

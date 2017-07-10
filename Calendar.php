@@ -58,7 +58,7 @@
         }
 
         .heading{
-            margin-left: 300px;
+            margin-left: 200px;
         }
 
     </style>
@@ -84,7 +84,7 @@
             <fieldset>
                 <label>Year:</label><br><br>
                 <input type="text" name="year" placeholder="Year"><br><br><br>
-                <input type="submit"> </input> <br>
+                <input type="submit" value="submit">
                 <?php
                 require_once "./Connect/Connect.php";
                 $message = '';
@@ -130,13 +130,13 @@
     <div id="sidebar">
         <nav id="competition">
             <ul id="nav">
-                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="../compDetail.php">Competition Details</a></li>
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="compDetail.php">Competition Details</a></li>
             </ul>
         </nav>
 
         <nav id="competition" style="margin-top: 0px; padding-top: 0px">
             <ul id="nav" style="margin-top: 0px">
-                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 20px"> <a href="../Calendar.php">School Calendar</a></li>
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 20px"> <a href="Calendar.php">School Calendar</a></li>
             </ul>
         </nav>
 
