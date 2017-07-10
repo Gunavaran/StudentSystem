@@ -57,7 +57,7 @@
                 $year = $_POST['year'];
                 $term = $_POST['term'];
 
-                $query = "UPDATE termmarks SET Marks = '$marks' WHERE ID = '$id' AND Subject = '$subject' AND Year = '$year' AND Term ='$term'";
+                $query = "UPDATE detail SET Marks = '$marks' WHERE ID = '$id' AND Subject = '$subject' AND Year = '$year' AND Term ='$term'";
                 if($query_run = mysqli_query($link, $query)){
                     $message='Update Successful';
                 } else {
