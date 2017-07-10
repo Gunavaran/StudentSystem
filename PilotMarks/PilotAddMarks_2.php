@@ -5,6 +5,18 @@
 
     <title> Add Pilot Marks </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
+    <?php
+    include '../Styles/FormStyle.html';
+    ?>
+    <style>
+        div[id = message_updade]{
+            color: darkgreen;
+            margin-top: 10px;
+            padding: 14px 20px;
+            width: auto ;
+            border-radius: 2px;
+        }
+    </style>
 
 </head>
 <body>
@@ -24,102 +36,74 @@
     <div id="content_area">
         <?php
         require_once '../Connect/Connect.php';
-        $error=0;
+
         session_start();
         $year=$_SESSION['year'];
         $serial=$_SESSION['serial'];
         $id_array=$_SESSION['id_array'];
-
+        ?>
+        <form name="fixedform" action="PilotAddMark_1.php">
+        <?php
         for ($i=0; $i<sizeof($id_array,1);$i++) {
             require_once '../Connect/Connect.php';
-            $error = 0;
+            $message='';
+            $message_update='';
             if (isset($_GET['part1_'.$i]) AND isset($_GET['part2_'.$i])) {
                 if (!empty($_GET['part1_' . $i]) AND !empty($_GET['part2_' . $i])) {
                     if ($_GET['part1_' . $i] !== (string)(int)$_GET['part1_' . $i]) {
-                        $error++;
-                        echo 'Marks should be an integer in part-1 of '.$id_array[$i].'<br>';
+                        $message=$message.'- Marks should be an integer in part-1 of '.$id_array[$i].'<br>';
                     } else {
                         $part1 = (int)$_GET['part1_' . $i];
                         if ($part1 > 100 OR $part1 < 0) {
-                            $error++;
-                            echo "Marks should be in range 0 - 100 in part-1 of ".$id_array[$i].'<br>';
+                            $message=$message."- Marks should be in range 0 - 100 in part-1 of ".$id_array[$i].'<br>';
                         }
                     }
 
                     if ($_GET['part2_' . $i] !== (string)(int)$_GET['part2_' . $i]) {
-                        $error++;
-                        echo 'Marks should be an integer in part-2 of '.$id_array[$i].'<br>';
+                        $message=$message.'- Marks should be an integer in part-2 of '.$id_array[$i].'<br>';
                     } else {
                         $part2 = (int)$_GET['part2_' . $i];
                         if ($part2 > 100 OR $part2 < 0) {
-                            $error++;
-                            echo "Marks should be in range 0 - 100 in part-2 of ".$id_array[$i].'<br>';
+                            $message=$message."- Marks should be in range 0 - 100 in part-2 of ".$id_array[$i].'<br>';
                         }
                     }
 
-                    if ($error == 0) {
+                    if ($message=='') {
                         $s = "INSERT INTO pilot_marks(ID,Serial_no,Year,Part_1,Part_2) VALUES ($id_array[$i],$serial,$year,$part1,$part2)";
                         if (mysqli_query($link, $s)) {
-                            echo "Marks updated for ".$id_array[$i].'<br>';
+                            $message_update=$message_update."- Marks updated for ".$id_array[$i].'<br>';
 
                         } else {
-                            echo "Marks not updated for ".$id_array[$i].'<br>';
+                            $message=$message."- Marks not updated... Already marks entered for ".$id_array[$i].'<br>';
                         }
                     }
                 } else {
-                    echo "All marks should be entered for index no ".$id_array[$i].'<br>';
+                    $message=$message."- All marks should be entered for index no ".$id_array[$i].'<br>';
                 }
             }
+            ?>
+            <div id="message_updade">
+                <?php
+                echo $message_update
+                ?>
+            </div>
+            <div id="message">
+                <?php
+                echo $message;
+                ?>
+            </div>
+            <?php
         }?>
 
-    </div>
 
-    <div id="sidebar">
-        <nav id="competition">
-            <ul id="nav">
-                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="../compDetail.php">Competition Details</a></li>
-            </ul>
-        </nav>
-
-        <nav id="competition" style="margin-top: 0px; padding-top: 0px">
-            <ul id="nav" style="margin-top: 0px">
-                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 20px"> <a href="../Calendar.php">School Calendar</a></li>
-            </ul>
-        </nav>
-
-        <?php
-        session_start();
-        $username = $_SESSION['username'];
-
-        if ($username == 'principal'){
-            ?>
-
-            <nav id="competition" style="margin-top: 0px; padding-top: 0px">
-                <ul id="nav" style="margin-top: 0px">
-                    <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 45px"> <a href="../addStaff.php">Add Staff</a></li>
-                </ul>
-            </nav>
-
-            <?php
-        }
-        ?>
-
+        </form>
 
     </div>
-    <footer>
-        <div class = 'footer1'>
-            <h3 id="h3">Address</h3>
-            J/St.John Bosco Vidyalayam,<br/>
-            Racca Road, Jaffna.
-        </div>
-        <div class = 'footer2'>
-            <h3 id="h3" >Contact Us</h3>
-            Email : stjohnbosco@yahoo.com<br />
-            Tel: Principal office: +940212222540
-        </div>
-        <div class = 'footer3'><i>copyright : Futura Labs</i></div>
 
-    </footer>
+    <?php
+    include '../Styles/SidebarStyle.html';
+    include '../Styles/FooterStyle.html';
+    ?>
 
 </div>
 </body>

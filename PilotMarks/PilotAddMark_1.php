@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
 
-    <title> <?php echo $title; ?> </title>
+    <title> Add Pilot Marks </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
+    <?php
+    include '../Styles/FormStyle.html';
+    ?>
     <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
         th, td {
             padding: 8px;
+            background-color: darkgrey;
+        }
+        input[type=submit]{
+            padding: 14px 20px;
+            width: 20%;
+            margin: 0px 0px 20px 300px;
+            background-color: #4CAF50;
+            border-radius: 2px;
         }
     </style>
 </head>
+
 <body>
 <div id="wrapper">
     <div id="banner"></div>
@@ -30,32 +38,32 @@
     </nav>
 
     <div id="content_area">
+        <h2 class="heading">Enter Marks</h2>
+
         <?php
         include '../Connect/Connect.php';
-        $error=0;
+        $message='';
         session_start();
+        echo '<fieldset style="background: darkgray">';
         if (isset($_GET['serial_no']) AND isset($_GET['year'])){
             if(!empty($_GET['serial_no']) AND !empty($_GET['year'])){
                 if($_GET['year'] !== (string)(int) $_GET['year']) {
-                    $error++;
-                    echo 'Year can only be number'.'<br>';
+                    $message=$message.'Year can only be number'.'<br>';
                 }else if((int)$_GET['year']<1990 OR (int)$_GET['year']>date("Y")){
-                    $error++;
-                    echo 'Year should be in range 1991-'.date('Y').'<br>';
+                    $message=$message.'Year should be in range 1991-'.date('Y').'<br>';
                 }else{
                     $year=(int)$_GET['year'];
                     $_SESSION['year']=$year;
 
                 }
 
-                if($_GET['serial_no'] !== (string)(int) $_GET['serial_no'] AND (int)$_GET['serial_no']>0) {
-                    $error++;
-                    echo 'Serial Number should be a positive number'.'<br>';
+                if($_GET['serial_no'] !== (string)(int) $_GET['serial_no'] OR (int)$_GET['serial_no']<0) {
+                    $message=$message.'Serial Number should be a positive number'.'<br>';
                 }else {
                     $serial = (int)$_GET['serial_no'];
                     $_SESSION['serial']=$serial;
                 }
-                if($error==0) {
+                if($message=='') {
                     $id_array = array();
                     $sql = "SELECT ID FROM detail WHERE Grade='5'";
                     $result = mysqli_query($link, $sql);
@@ -75,7 +83,7 @@
                                 <?php
                     for ($i=0; $i<sizeof($id_array,1);$i++){
                     ?>
-                        <form action="PilotAddMarks_2.php" method="get">
+                        <form action="PilotAddMarks_2.php" method="get" name="fixedform">
                             <tr>
                                 <th><?php echo $id_array[$i]; ?></th>
                                 <td><input type="text" name="<?php echo 'part1_'.$i; ?>" placeholder="Part-1"></td>
@@ -85,68 +93,31 @@
                             <?php
                     } ?>
                     </table><br><br>
-                            <input type="submit" value="Submit"><br><br>
-                        </form>
-
-
+                            <input type="submit" value="Submit">
                         <?php
                 }
             } else {
-                echo 'None of the fields can take an empty value';
+                $message='None of the fields can take an empty value';
             }
         } else {
-            echo 'All the required fields should be filled';
+            $message='All the required fields should be filled';
         }
         ?>
-
-</div>
-
-    <div id="sidebar">
-        <nav id="competition">
-            <ul id="nav">
-                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="../compDetail.php">Competition Details</a></li>
-            </ul>
-        </nav>
-
-        <nav id="competition" style="margin-top: 0px; padding-top: 0px">
-            <ul id="nav" style="margin-top: 0px">
-                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 20px"> <a href="../Calendar.php">School Calendar</a></li>
-            </ul>
-        </nav>
-
-        <?php
-        session_start();
-        $username = $_SESSION['username'];
-
-        if ($username == 'principal'){
-            ?>
-
-            <nav id="competition" style="margin-top: 0px; padding-top: 0px">
-                <ul id="nav" style="margin-top: 0px">
-                    <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 45px"> <a href="../addStaff.php">Add Staff</a></li>
-                </ul>
-            </nav>
-
+        <div id="message">
             <?php
-        }
-        ?>
+            echo $message;
+            ?>
+        </div>
+                    </fieldset>
 
+    </form>
 
     </div>
-    <footer>
-        <div class = 'footer1'>
-            <h3 id="h3">Address</h3>
-            J/St.John Bosco Vidyalayam,<br/>
-            Racca Road, Jaffna.
-        </div>
-        <div class = 'footer2'>
-            <h3 id="h3" >Contact Us</h3>
-            Email : stjohnbosco@yahoo.com<br />
-            Tel: Principal office: +940212222540
-        </div>
-        <div class = 'footer3'><i>copyright : Futura Labs</i></div>
 
-    </footer>
+    <?php
+    include '../Styles/SidebarStyle.html';
+    include '../Styles/FooterStyle.html';
+    ?>
 
 </div>
 </body>
