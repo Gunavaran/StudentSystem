@@ -55,14 +55,26 @@
     </nav>
 
     <div id="content_area">
-        <h2 class="heading">Enter Student ID to view the Character Certificate</h2>
-        <form action="../Details/Character.php" method="get" name="fixedform">
-            <fieldset>
-                <label>Student ID</label><br><br>
-                <input type="text" name="id" placeholder="Student ID"><br><br><br>
-                <input type="submit" value="Submit">
-            </fieldset>
-        </form>
+        <?php
+        include '../Connect/Connect.php';
+        $username = $_SESSION['username'];
+        $query = "SELECT Role FROM user WHERE username = '$username'";
+        $query_run = mysqli_query($link,$query);
+        $query_row = mysqli_fetch_assoc($query_run);
+        $role = $query_row['Role'];
+        if ($role != 'student') {
+            ?>
+            <h2 class="heading">Enter Student ID to view the Character Certificate</h2>
+            <form action="../Details/Character.php" method="get" name="fixedform">
+                <fieldset>
+                    <label>Student ID</label><br><br>
+                    <input type="text" name="id" placeholder="Student ID"><br><br><br>
+                    <input type="submit" value="Submit">
+                </fieldset>
+            </form>
+        <?php }else{
+            header('Location: ../Details/Character.php');
+        } ?>
     </div>
 
     <div id="sidebar">
