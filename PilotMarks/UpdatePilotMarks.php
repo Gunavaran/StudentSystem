@@ -5,7 +5,9 @@
 
     <title>Update Pilot Marks</title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
-
+    <?php
+    include '../Styles/FormStyle.html';
+    ?>
 </head>
 <body>
 <div id="wrapper">
@@ -22,7 +24,7 @@
     </nav>
 
     <div id="content_area">
-        <form action="UpdatePilotMarks.php" method="get">
+        <form action="UpdatePilotMarks.php" method="get" name="fixedform">
             Year:<br>
             <input type="text" name="year"><br><br>
             Serial No:<br>
@@ -79,21 +81,28 @@
                         }
 
                         if($error==0) {
-                            $part=$_GET['part'];
-                            if($part=='part1'){
-                                $query = "UPDATE pilot_marks SET Part1 = '$marks' WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
-                                if($query_run = mysqli_query($link, $query)){
-                                    echo 'Update Successful';
-                                } else {
-                                    echo 'Update Failed';
+                            $query = "SELECT * FROM pilot_marks WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
+                            $query_run=mysqli_query($link,$query);
+                            if (mysqli_num_rows($query_run) == NULL){
+                                echo "No such record is found";
+                            } else {
+                                $part = $_GET['part'];
+                                if ($part == 'part1') {
+                                    $query2 = "UPDATE pilot_marks SET Part1 = '$marks' WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
+                                    if ($query2_run = mysqli_query($link, $query2)) {
+                                        echo 'Update Successful';
+                                    } else {
+                                        echo 'Update Failed';
+                                    }
+                                } elseif ($part == 'part2') {
+                                    $query2 = "UPDATE pilot_marks SET Part2 = '$marks' WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
+                                    if ($query2_run = mysqli_query($link, $query2)) {
+                                        echo 'Update Successful';
+                                    } else {
+                                        echo 'Update Failed';
+                                    }
                                 }
-                            }elseif ($part=='part2'){
-                                $query = "UPDATE pilot_marks SET Part2 = '$marks' WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
-                                if($query_run = mysqli_query($link, $query)){
-                                    echo 'Update Successful';
-                                } else {
-                                    echo 'Update Failed';
-                                }
+
                             }
                         }
                     }else {
