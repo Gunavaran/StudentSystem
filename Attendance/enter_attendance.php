@@ -53,6 +53,12 @@
         .heading{
             margin-left: 300px;
         }
+        nav[id=competition]{
+            background-color: mediumorchid;
+            height:60px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
 
     </style>
 
@@ -116,7 +122,25 @@
                         if (!in_array($divisiondb,$division_array)){
                             array_push($division_array,$divisiondb);
                         }
+                    }
 
+                    $query_sync = "SELECT Division FROM student_details WHERE Grade = '$grade'";
+                    $query_sync_run = mysqli_query($link,$query_sync);
+                    $sync_array = array();
+                    while($query_sync_row = mysqli_fetch_assoc($query_sync_run)){
+                        $sync =  $query_sync_row['Division'];
+                        if (!in_array($sync,$sync_array)){
+                            array_push($sync_array,$sync);
+                        }
+                    }
+
+                    $query_id_sync = "SELECT StudentID FROM student_details WHERE Grade = '$grade' AND Division = '$division'";
+                    $query_id_sync_run = mysqli_query($link,$query_id_sync);
+                    $id_sync_array = array();
+
+                    while($id_sync_row = mysqli_fetch_assoc($query_id_sync_run)){
+                        $iddb = $id_sync_row['StudentID'];
+                        array_push($id_sync_array,$iddb);
                     }
 
                     if($attendance != 'A' && $attendance != 'P') {
@@ -143,6 +167,10 @@
                         $message = 'Grade does not exist. Submit Failed!!!';
                     } else if (!in_array($division,$division_array)) {
                         $message = 'Division does not exist. Submit Failed!!!';
+                    } else if (!in_array($division,$sync_array)) {
+                        $message = 'Division does not exist for the given grade. Submit Failed!!!';
+                    } else if (!in_array($id,$id_sync_array)) {
+                        $message = 'StudentId does not belong to the given grade and division. Submit Failed!!!';
                     } else {
                         $query = "INSERT INTO attendance (StudentID, Attendance, Date) VALUES ('$id', '$attendance', '$date')";
                         if($query_run = mysqli_query($link, $query)){
@@ -171,6 +199,35 @@
     </div>
 
     <div id="sidebar">
+        <nav id="competition">
+            <ul id="nav">
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="../compDetail.php">Competition Details</a></li>
+            </ul>
+        </nav>
+
+        <nav id="competition" style="margin-top: 0px; padding-top: 0px">
+            <ul id="nav" style="margin-top: 0px">
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 20px"> <a href="../Calendar.php">School Calendar</a></li>
+            </ul>
+        </nav>
+
+        <?php
+        session_start();
+        $username = $_SESSION['username'];
+
+        if ($username == 'principal'){
+            ?>
+
+            <nav id="competition" style="margin-top: 0px; padding-top: 0px">
+                <ul id="nav" style="margin-top: 0px">
+                    <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 45px"> <a href="../addStaff.php">Add Staff</a></li>
+                </ul>
+            </nav>
+
+            <?php
+        }
+        ?>
+
 
     </div>
 
