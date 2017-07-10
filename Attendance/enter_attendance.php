@@ -113,6 +113,9 @@
                         if (!in_array($gradedb,$grade_array)){
                             array_push($grade_array,$gradedb);
                         }
+                        if (!in_array($divisiondb,$division_array)){
+                            array_push($division_array,$divisiondb);
+                        }
 
                     }
 
@@ -138,6 +141,8 @@
                         $message = 'Grade can only be an integer values. Submit Failed!!!';
                     } else if (!in_array($grade,$grade_array)) {
                         $message = 'Grade does not exist. Submit Failed!!!';
+                    } else if (!in_array($division,$division_array)) {
+                        $message = 'Division does not exist. Submit Failed!!!';
                     } else {
                         $query = "INSERT INTO attendance (StudentID, Attendance, Date) VALUES ('$id', '$attendance', '$date')";
                         if($query_run = mysqli_query($link, $query)){
