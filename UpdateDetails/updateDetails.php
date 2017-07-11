@@ -75,8 +75,7 @@
     </nav>
 
     <div id="content_area">
-        <html>
-        <body>
+
         <h2>Select Details and Update</h2>
         <form action="updateDetails.php" method="post" name="fixedform">
 
@@ -97,29 +96,52 @@
 
 
         </form>
-        </body>
-        </html>
-
-
     </div>
-
     <div id="sidebar">
+        <nav id="competition">
+            <ul id="nav">
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="../Templates/CompDetailTemplate.php">Competition Details</a></li>
+            </ul>
+        </nav>
+
+        <nav id="competition" style="margin-top: 0px; padding-top: 0px">
+            <ul id="nav" style="margin-top: 0px">
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 20px"> <a href="../Calendar.php">School Calendar</a></li>
+            </ul>
+        </nav>
+
         <?php
-        echo $message;
+        session_start();
+        $username = $_SESSION['username'];
+
+        if ($username == 'principal'){
+            ?>
+
+            <nav id="competition" style="margin-top: 0px; padding-top: 0px">
+                <ul id="nav" style="margin-top: 0px">
+                    <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 45px"> <a href="../addStaff.php">Add Staff</a></li>
+                </ul>
+            </nav>
+
+            <?php
+        }
         ?>
 
+
     </div>
 
-    <footer>
-        <h3 class="footer-widget-title">Contact Us</h3>
-        <div class="textwidget">
-            <p>J/St.John Bosco Vidyalayam,<br/>
-                Racca Road, Jaffna.</p>
-            <p>Email : stjohnbosco@yahoo.com<br />
-                Tel: Principal office: +940212222540</p>
-        </div>
-        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
-    </footer>
+
+
+
+
+
+
+
+
+    <?php
+    include '../Styles/FooterStyle.html';
+    ?>
+
 
 </div>
 </body>

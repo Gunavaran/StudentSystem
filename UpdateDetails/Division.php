@@ -77,7 +77,7 @@
     </nav>
 
     <div id="content_area">
-        <form action="updateDetails.php" method="post" name="fixedform">
+        <form action="Division.php" method="post" name="fixedform">
             ID: <br><br>
             <input type="text" name="id"><br><br>
             Division:<br><br>
@@ -169,17 +169,10 @@
 
     </div>
 
-    <footer>
-        <h3 class="footer-widget-title">Contact Us</h3>
-        <div class="textwidget">
-            <p>J/St.John Bosco Vidyalayam,<br/>
-                Racca Road, Jaffna.</p>
-            <p>Email : stjohnbosco@yahoo.com<br />
-                Tel: Principal office: +940212222540</p>
-        </div>
-        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
-    </footer>
+    <?php
 
+    include '../Styles/FooterStyle.html';
+    ?>
 </div>
 </body>
 </html>

@@ -77,9 +77,9 @@
 
     <div id="content_area">
         <h2>Enter TermMarks To Be Altered</h2>
-        <form action="updatetermmarks.php" method="post" name="fixedform">
+        <form action="updateTermMarks.php" method="post" name="fixedform">
             ID: <br><br>
-            <input type="text" name="ID"><br><br>
+            <input type="text" name="id"><br><br>
             Subject:<br><br>
             <select name='subject'>
                 <option value = 'religion_hin'>Religion-Hindu</option>
@@ -101,10 +101,13 @@
             </select><br><br>
             <input type="submit" value="Submit">
 
-        </form>
+
 
         <?php
         include '../Connect/Connect.php';
+
+
+        $error= 0;
 
         if (isset($_POST['id']) AND isset($_POST['year'])) {
             if (!empty($_POST['id']) AND !empty($_POST['year'])) {
@@ -141,51 +144,74 @@
 
                     }
                 }
-                if($error!=0) {
+
+                if ($error==0) {
                     $id = $_POST['id'];
                     $subject = $_POST['subject'];
                     $marks = $_POST['marks'];
                     $year = $_POST['year'];
                     $term = $_POST['term'];
 
-                    $query = "UPDATE term_marks SET Marks = '$marks' WHERE ID = '$id' AND Subject = '$subject' AND Year = '$year' AND Term ='$term'";
-                    if ($query_run = mysqli_query($link, $query)) {
-                        $message = 'Update Successful';
+                    $query = "UPDATE termmarks SET Marks = '$marks' WHERE ID = '$id' AND Subject = '$subject' AND Year = '$year' AND Term ='$term'";
+                    if (mysqli_query($link, $query)) {
+                        echo 'Update Successful';
                     } else {
-                        $message = 'Update Failed!!!';
+                        echo 'Update Failed!!!';
                     }
                 }
 
             } else {
-                $message = 'None of the fields can take an empty value';
+                echo 'None of the fields can take an empty value';
             }
 
+
         } else {
-            $message =  'All the required fields should be filled';
+            echo 'All the required fields should be filled';
         }
 
         ?>
-
+        </form>
     </div>
 
     <div id="sidebar">
+        <nav id="competition">
+            <ul id="nav">
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="../Templates/CompDetailTemplate.php">Competition Details</a></li>
+            </ul>
+        </nav>
+
+        <nav id="competition" style="margin-top: 0px; padding-top: 0px">
+            <ul id="nav" style="margin-top: 0px">
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 20px"> <a href="../Calendar.php">School Calendar</a></li>
+            </ul>
+        </nav>
+
         <?php
-        echo $message;
+        session_start();
+        $username = $_SESSION['username'];
+
+        if ($username == 'principal'){
+            ?>
+
+            <nav id="competition" style="margin-top: 0px; padding-top: 0px">
+                <ul id="nav" style="margin-top: 0px">
+                    <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 45px"> <a href="../addStaff.php">Add Staff</a></li>
+                </ul>
+            </nav>
+
+            <?php
+        }
         ?>
+
+
+
 
     </div>
 
-    <footer>
-        <h3 class="footer-widget-title">Contact Us</h3>
-        <div class="textwidget">
-            <p>J/St.John Bosco Vidyalayam,<br/>
-                Racca Road, Jaffna.</p>
-            <p>Email : stjohnbosco@yahoo.com<br />
-                Tel: Principal office: +940212222540</p>
-        </div>
-        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
-    </footer>
+    <?php
 
+    include '../Styles/FooterStyle.html';
+    ?>
 </div>
 </body>
 </html>

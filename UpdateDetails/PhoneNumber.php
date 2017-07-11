@@ -77,7 +77,7 @@
     </nav>
 
     <div id="content_area">
-        <form action="updateDetails.php" method="post" name="fixedform">
+        <form action="PhoneNumber.php" method="post" name="fixedform">
             ID: <br><br>
             <input type="text" name="id"><br><br>
             Telephone: <br><br>
@@ -92,9 +92,9 @@
             include '../Connect/Connect.php';
             $error=0;
 
-            if(isset($_POST['phone'])) {
-                if (!empty($_POST['phone'])) {
-                    if ($_POST['phone'] !== (string)(int)$_POST['phone'] AND (int)$_POST['phone'] > 0) {
+            if(isset($_POST['phone']) && (isset($_POST['id'])))  {
+                if (!empty($_POST['phone']) && (!empty($_POST['id']))) {
+                    if ($_POST['phone'] != (string)(int)$_POST['phone'] AND (int)$_POST['phone'] <0) {
                         $error++;
                         echo "Phone Number should be a positive number" . "<br>";
                     } else if (strlen($_POST['phone']) != 10) {
@@ -125,13 +125,14 @@
                         } else {
                             echo 'Failed!!!';
                         }
+                    }
                     } else {
                         echo 'The field cannot take an empty value';
                     }
 
                 } else {
                     echo 'The field should be filled';
-                }
+
             }
             ?>
         </form>
@@ -140,7 +141,7 @@
     <div id="sidebar">
         <nav id="competition">
             <ul id="nav">
-                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="../compDetail.php">Competition Details</a></li>
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="../Templates/CompDetailTemplate.php">Competition Details</a></li>
             </ul>
         </nav>
 
@@ -169,17 +170,10 @@
 
 
     </div>
+    <?php
 
-    <footer>
-        <h3 class="footer-widget-title">Contact Us</h3>
-        <div class="textwidget">
-            <p>J/St.John Bosco Vidyalayam,<br/>
-                Racca Road, Jaffna.</p>
-            <p>Email : stjohnbosco@yahoo.com<br />
-                Tel: Principal office: +940212222540</p>
-        </div>
-        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
-    </footer>
+    include '../Styles/FooterStyle.html';
+    ?>
 
 </div>
 </body>

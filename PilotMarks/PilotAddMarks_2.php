@@ -9,6 +9,7 @@
     include '../Styles/FormStyle.html';
     ?>
     <style>
+
         div[id = message_updade]{
             color: darkgreen;
             margin-top: 10px;
@@ -42,7 +43,7 @@
         $serial=$_SESSION['serial'];
         $id_array=$_SESSION['id_array'];
         ?>
-        <form name="fixedform" action="PilotAddMark_1.php">
+        <form name="fixedform" action="../Templates/PilotAddMarksTemplate.php">
         <?php
         for ($i=0; $i<sizeof($id_array,1);$i++) {
             require_once '../Connect/Connect.php';
@@ -51,51 +52,47 @@
             if (isset($_GET['part1_'.$i]) AND isset($_GET['part2_'.$i])) {
                 if (!empty($_GET['part1_' . $i]) AND !empty($_GET['part2_' . $i])) {
                     if ($_GET['part1_' . $i] !== (string)(int)$_GET['part1_' . $i]) {
-                        $message=$message.'- Marks should be an integer in part-1 of '.$id_array[$i].'<br>';
+                        $message='- Marks should be an integer in part-1 of '.$id_array[$i].'<br>';
                     } else {
                         $part1 = (int)$_GET['part1_' . $i];
                         if ($part1 > 100 OR $part1 < 0) {
-                            $message=$message."- Marks should be in range 0 - 100 in part-1 of ".$id_array[$i].'<br>';
+                            $message="- Marks should be in range 0 - 100 in part-1 of ".$id_array[$i].'<br>';
                         }
                     }
 
                     if ($_GET['part2_' . $i] !== (string)(int)$_GET['part2_' . $i]) {
-                        $message=$message.'- Marks should be an integer in part-2 of '.$id_array[$i].'<br>';
+                        $message=$message.'- Marks should be an integer in part-2 of '.$id_array[$i];
                     } else {
                         $part2 = (int)$_GET['part2_' . $i];
                         if ($part2 > 100 OR $part2 < 0) {
-                            $message=$message."- Marks should be in range 0 - 100 in part-2 of ".$id_array[$i].'<br>';
+                            $message=$message."- Marks should be in range 0 - 100 in part-2 of ".$id_array[$i];
                         }
                     }
 
                     if ($message=='') {
-                        $s = "INSERT INTO pilot_marks(ID,Serial_no,Year,Part_1,Part_2) VALUES ($id_array[$i],$serial,$year,$part1,$part2)";
+                        $s = "INSERT INTO pilot_marks(StudentID,SerialNo,Year,Part_1,Part_2) VALUES ($id_array[$i],$serial,$year,$part1,$part2)";
                         if (mysqli_query($link, $s)) {
-                            $message_update=$message_update."- Marks updated for ".$id_array[$i].'<br>';
+                            $message_update="- Marks updated for ".$id_array[$i];
 
                         } else {
-                            $message=$message."- Marks not updated... Already marks entered for ".$id_array[$i].'<br>';
+                            $message="- Marks not updated... Already marks entered for ".$id_array[$i];
                         }
                     }
                 } else {
-                    $message=$message."- All marks should be entered for index no ".$id_array[$i].'<br>';
+                    $message="- All marks should be entered for index no ".$id_array[$i];
                 }
             }
             ?>
             <div id="message_updade">
                 <?php
-                echo $message_update
-                ?>
+                if ($message_update!='') {echo $message_update;} ?>
             </div>
             <div id="message">
                 <?php
-                echo $message;
-                ?>
+                if ($message!=''){echo $message;} ?>
             </div>
             <?php
         }?>
-
-
         </form>
 
     </div>
