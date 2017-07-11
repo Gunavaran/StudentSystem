@@ -63,41 +63,54 @@
                     $serial = (int)$_GET['serial_no'];
                     $_SESSION['serial']=$serial;
                 }
+
+                $username = $_SESSION['username'];
+                $query = "SELECT Role FROM users WHERE username = '$username'";
+                $query_run = mysqli_query($link,$query);
+                $query_row = mysqli_fetch_assoc($query_run);
+                $role = $query_row['Role'];
+
+
+                if ($role == 'teacher') {
+                    $user_division=$_SESSION['user_division'];
+                    $sql = "SELECT StudentID FROM student_details WHERE Grade=5 AND Division='$user_division'";
+                }else{
+                    $sql = "SELECT StudentID FROM student_details WHERE Grade=5";
+                }
                 if($message=='') {
                     $id_array = array();
-                    $sql = "SELECT ID FROM detail WHERE Grade='5'";
                     $result = mysqli_query($link, $sql);
                     if ($result->num_rows > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            array_push($id_array, $row['ID']);
+                            array_push($id_array, $row['StudentID']);
 
                         }
                     }
                     $_SESSION['id_array']=$id_array;?>
                     <table style="width: 100%">
-                            <tr>
-                                <th>Student ID</th>
-                                <th>Part 1</th>
-                                <th>Part 2</th>
-                            </tr>
-                                <?php
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Part 1</th>
+                            <th>Part 2</th>
+                        </tr>
+                    <?php
                     for ($i=0; $i<sizeof($id_array,1);$i++){
                     ?>
-                        <form action="PilotAddMarks_2.php" method="get" name="fixedform">
-                            <tr>
-                                <th><?php echo $id_array[$i]; ?></th>
-                                <td><input type="text" name="<?php echo 'part1_'.$i; ?>" placeholder="Part-1"></td>
-                                <td><input type="text" name="<?php echo 'part2_'.$i; ?>" placeholder="Part-2"></td>
-                            </tr>
+                    <form action="PilotAddMarks_2.php" method="get" name="fixedform">
+                        <tr>
+                            <th><?php echo $id_array[$i]; ?></th>
+                            <td><input type="text" name="<?php echo 'part1_'.$i; ?>" placeholder="Part-1"></td>
+                            <td><input type="text" name="<?php echo 'part2_'.$i; ?>" placeholder="Part-2"></td>
+                        </tr>
 
-                            <?php
-                    } ?>
-                    </table><br><br>
-                            <input type="submit" value="Submit">
                         <?php
-                }
+                        } ?>
+                </table><br><br>
+                <input type="submit" value="Submit">
+                <?php
+                    }
             } else {
-                $message='None of the fields can take an empty value';
+            $message = 'None of the fields can take an empty value';
             }
         } else {
             $message='All the required fields should be filled';
