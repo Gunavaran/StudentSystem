@@ -32,33 +32,37 @@
     <div id="content_area">
         <?php
         include '../Connect/Connect.php';
+        session_start();
         $username = $_SESSION['username'];
         $query = "SELECT Role FROM users WHERE username = '$username'";
         $query_run = mysqli_query($link,$query);
         $query_row = mysqli_fetch_assoc($query_run);
-        $role = $query_row['Role'];?>
+        $role = $query_row['Role'];
 
+        if ($role == 'principal' OR $role=='teacher') {?>
         <nav id="term_marks_navigation">
             <ul id="nav">
                 <li><a href='../TermMarks/EnterMarks.php'>Enter Term Marks </a> </li>
             </ul>
         </nav>
+        <?php }?>
+
         <nav id="term_marks_navigation">
             <ul id="nav">
                 <li><a href='../TermMarks/updatetermmarks.php'>Update Term Marks </a> </li>
             </ul>
         </nav>
+
         <nav id="term_marks_navigation">
-            <ul id=\"nav\">
+            <ul id="nav">
                 <li><a href='TermReportTemplate.php'> Term Exam Report </a> </li>
             </ul>
         </nav>
 
         <?php
-        if ($role != 'student') {
-        ?>
+        if ($role != 'student') { ?>
         <nav id="pilot_marks_navigation">
-            <ul id=\"nav\">
+            <ul id="nav">
                 <li> <a href="TermExamAnalysisTemplate.php">Term Exam Analysis</a></li>
             </ul>
         </nav>
