@@ -151,26 +151,32 @@
 
                         $sql_g_d="SELECT grade,division FROM student_details WHERE StudentID=$id";
                         $quer=mysqli_query($link,$sql_g_d);
-                        $quer_row=mysqli_fetch_assoc($quer);
-                        $grade=$quer_row['grade'];
-                        $division=$quer_row['division'];
+                        if($quer->num_rows>0) {
+                            $quer_row = mysqli_fetch_assoc($quer);
+                            $grade = $quer_row['grade'];
+                            $division = $quer_row['division'];
 
-                        session_start();
-                        $username = $_SESSION['username'];
-                        $query = "SELECT Role FROM users WHERE username = '$username'";
-                        $query_run = mysqli_query($link,$query);
-                        $query_row = mysqli_fetch_assoc($query_run);
-                        $role = $query_row['Role'];
-                        if($role=='teacher'){
-                            $sqli="SELECT grade,division FROM staffuser WHERE username='$username'";
-                            $que=mysqli_query($link,$sqli);
-                            $que_row=mysqli_fetch_assoc($que);
-                            $user_grade=$que_row['grade'];
-                            $user_division=$que_row['division'];
-                            if($grade!=$user_grade OR $division!=$user_division){
-                                $message="You can only enter marks for Grade ".$user_grade." ".$user_division." students";
+                            session_start();
+                            $username = $_SESSION['username'];
+                            $query = "SELECT Role FROM users WHERE username = '$username'";
+                            $query_run = mysqli_query($link,$query);
+                            $query_row = mysqli_fetch_assoc($query_run);
+                            $role = $query_row['Role'];
+
+                            if($role=='teacher'){
+                                $sqli="SELECT grade,division FROM staffuser WHERE username='$username'";
+                                $que=mysqli_query($link,$sqli);
+                                $que_row=mysqli_fetch_assoc($que);
+                                $user_grade=$que_row['grade'];
+                                $user_division=$que_row['division'];
+                                if($grade!=$user_grade OR $division!=$user_division){
+                                    $message="You can only enter marks for Grade ".$user_grade." ".$user_division." students";
+                                }
                             }
+                        }else{
+                            $message='Index number does not exist';
                         }
+
                         if($message=='') {
                             $query = "INSERT INTO term_marks (ID, Subject, Marks, Year, Term ) VALUES ('$id', '$subject', '$marks', '$year', '$term')";
                             if (mysqli_query($link, $query)) {
