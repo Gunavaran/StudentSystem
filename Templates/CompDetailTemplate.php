@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title> Get Term Exam Report</title>
+    <title> View Competition Details</title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
     <style>
         input[type = text]{
@@ -17,6 +17,14 @@
             width: 100%;
             background-color: #4CAF50;
             border-radius: 2px;
+        }
+
+        input[type = date]{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
 
         form[name = fixedform]{
@@ -64,21 +72,30 @@
     </nav>
 
     <div id="content_area">
-        <h2>Enter the following details to obtain Report</h2>
-        <form action="../TermExam/termReport.php" method="get" name="fixedform">
-            IndexNo:<br>
-            <input type='text' name='indexno' >
+        <h2>Enter Grade and Term to view the Competition details</h2>
+        <form action="../compDetail.php" method="GET" name="fixedform">
+            <!--Year: <br><input type="number" name="year"><br>
+            Term: <br><input type="number" name="term"><br>-->
             <br>
-            Year:<br>
-            <input type='text' name='year' >
+            Grade:
+            <select name="grade">
+                <!--<option value="NULL">----</option>-->
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <br>
             <br>
             Term:
             <select name="term">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
-            </select><br><br>
-            <input type="submit" value="Submit">
+            </select>
+            <br>
+            <br><input type="submit" value="Submit"><br><br>
         </form>
     </div>
     <div id="sidebar">
@@ -94,11 +111,22 @@
             </ul>
         </nav>
 
+        <?php
+        session_start();
+        $username = $_SESSION['username'];
+
+        if ($username == 'principal'){
+            ?>
+
             <nav id="competition" style="margin-top: 0px; padding-top: 0px">
                 <ul id="nav" style="margin-top: 0px">
                     <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 45px"> <a href="../User/addStaff.php">Add Staff</a></li>
                 </ul>
             </nav>
+
+            <?php
+        }
+        ?>
 
 
     </div>

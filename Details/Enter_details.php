@@ -5,6 +5,61 @@
 
     <title> Enter Details </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
+    <style>
+        input[type = text]{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit]{
+
+            padding: 14px 20px;
+            width: 100%;
+            background-color: #4CAF50;
+            border-radius: 2px;
+        }
+
+        input[type = date]{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        form[name = fixedform]{
+            float: left;
+            width: 40%;
+            margin: 20px 10px 0px 300px;
+            padding: 10px;
+            border: 2px solid #E3E3E3;
+            border-radius: 5px;
+            font-family: "Adobe Gothic Std B";
+            background-color: darkgrey;
+        }
+
+        div[id = message]{
+            color: crimson;
+            margin-top: 10px;
+            padding: 14px 20px;
+            width: auto ;
+            border-radius: 2px;
+        }
+
+        .heading{
+            margin-left: 300px;
+        }
+        nav[id=competition]{
+            background-color: mediumorchid;
+            height:60px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+    </style>
 
 </head>
 <body>
@@ -29,12 +84,30 @@
             <input type="text" name="FirstName"><br><br>
             Last Name:<br><br>
             <input type="text" name="LastName"><br><br>
+            Grade:<br><br>
+            <select name='grade'>
+                <option value = '01'>01</option>
+                <option value = '02'>02</option>
+                <option value = '03'>03</option>
+                <option value = '04'>04</option>
+                <option value = '05'>05</option>
+            </select><br><br>
+            Division:<br><br>
+            <select name='division'>
+                <option value = 'A'>A</option>
+                <option value = 'B'>B</option>
+                <option value = 'C'>C</option>
+                <option value = 'D'>D</option>
+                <option value = 'E'>E</option>
+            </select><br><br>
             Address:<br><br>
             <input type="text" name="Address"><br><br>
             Phone:<br><br>
             <input type="text" name="PhoneNumber"><br><br>
             Date Of Birth:<br><br>
             <input type="date" name="DateOfBirth"><br><br>
+            Email:<br><br>
+            <input type="text" name="Email"><br><br>
             Father's Name:<br><br>
             <input type="text" name="FatherName"><br><br>
             Father's Job:<br><br>
@@ -43,15 +116,13 @@
             <input type="text" name="MotherName"><br><br>
             Mother's Job:<br><br>
             <input type="text" name="MotherJob"><br><br>
-            Email:<br><br>
-            <input type="text" name="Email"><br><br>
             <input type="submit" value="Submit">
 
             <?php
             include '../Connect/Connect.php';
 
-            if (isset($_POST['id']) && isset($_POST['FirstName']) && isset($_POST['LastName'])&& isset($_POST['Address'])&& isset($_POST['PhoneNumber'])&& isset($_POST['Email'])&& isset($_POST['FatherName'])&& isset($_POST['FatherJob'])&& isset($_POST['MotherJob'])&& isset($_POST['DateOfBirth'])&& isset($_POST['MotherName'])){
-                if(!empty($_POST['id']) && !empty($_POST['FirstName']) && !empty($_POST['LastName'])&& !empty($_POST['Email'])&& !empty($_POST['Address'])&& !empty($_POST['PhoneNumber'])&& !empty($_POST['FatherName'])&& !empty($_POST['FatherJob'])&& !empty($_POST['MotherJob'])&& !empty($_POST['MotherName'])&& !empty($_POST['DateOfBirth'])){
+            if (isset($_POST['id']) && isset($_POST['FirstName']) && isset($_POST['LastName'])&& isset($_POST['Address'])&& isset($_POST['PhoneNumber'])&& isset($_POST['Email'])&& isset($_POST['FatherName'])&& isset($_POST['FatherJob'])&& isset($_POST['MotherJob'])&& isset($_POST['DateOfBirth'])&& isset($_POST['MotherName']) && isset($_POST['grade'])&& isset($_POST['division']) ){
+                if(!empty($_POST['id']) && !empty($_POST['FirstName']) && !empty($_POST['LastName'])&& !empty($_POST['Email'])&& !empty($_POST['Address'])&& !empty($_POST['PhoneNumber'])&& !empty($_POST['FatherName'])&& !empty($_POST['FatherJob'])&& !empty($_POST['MotherJob'])&& !empty($_POST['MotherName'])&& !empty($_POST['DateOfBirth'])&& !empty($_POST['grade'])&& !empty($_POST['division'])){
 
                     $id = $_POST['id'];
                     $first = $_POST['FirstName'];
@@ -64,8 +135,10 @@
                     $motherName = $_POST['MotherName'];
                     $motherJob = $_POST['MotherJob'];
                     $dob = $_POST['DateOfBirth'];
+                    $grade = $_POST['grade'];
+                    $division = $_POST['division'];
 
-                    $query = "INSERT INTO sdms (ID, FirstName, LastName, Address, PhoneNumber, E-mail, FatherName, FatherJob, MotherName, MotherJob, DateOfBirth ) VALUES ('$id', '$first', '$last', '$add', '$phone','$mail','$fatherName','$fatherJob','$motherName','$motherJob','$dob')";
+                    $query = "INSERT INTO student_details (StudentID, FirstName, LastName, Address, Telephone, email, FatherName, FatherJob, MotherName, MotherJob, DOB, Grade, Division ) VALUES ('$id', '$first', '$last', '$add', '$phone','$mail','$fatherName','$fatherJob','$motherName','$motherJob','$dob','$grade','$division')";
                     if($query_run = mysqli_query($link, $query)){
                         echo 'Successfully Stored';
                     }else{
@@ -84,9 +157,6 @@
         </form>
     </div>
 
-    <div id="sidebar">
-
-    </div>
 
     <footer>
         <h3 class="footer-widget-title">Contact Us</h3>

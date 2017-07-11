@@ -1,7 +1,15 @@
 <html>
 <head>
-    <title> View Competition Details</title>
+    <title> Competition Details</title>
     <link rel="stylesheet" type = "text/css" href = "Styles/stylesheets.css"/>
+    <style>
+        nav[id=competition]{
+            background-color: mediumorchid;
+            height:60px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 <div id="wrapper">
@@ -9,41 +17,15 @@
 
     <nav id="navigation">
         <ul id="nav">
-            <li><a href="index.php"> Home </a> </li>
+            <li><a href="Templates/index.php"> Home </a> </li>
             <li> <a href="#">Profile</a></li>
-            <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
-            <li> <a href="../Templates/TermMarksTemplate.php">TermMarks</a></li>
-            <li> <a href="../Log_in_out/logout.php">Logout</a></li>
+            <li> <a href="Templates/MarksTemplate.php">Marks</a></li>
+            <li> <a href="Templates/attendancetemplate.php">Attendance</a></li>
+            <li> <a href="Log_in_out/logout.php">Logout</a></li>
         </ul>
     </nav>
 
     <div id="content_area">
-        <h2>Enter Grade and Term to view the Competition details</h2>
-    <form action="compDetail.php" method="GET">
-    <!--Year: <br><input type="number" name="year"><br>
-    Term: <br><input type="number" name="term"><br>-->
-    <br>
-Grade:
-    <select name="grade">
-        <!--<option value="NULL">----</option>-->
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-    </select>
-    <br>
-    <br>
-Term:
-    <select name="term">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
-    <br>
-    <br><input type="submit" value="Submit">
-</form>
-
 <?php
 if (isset($_GET['grade'])&& isset($_GET['term'])){
     $grade=$_GET['grade'];
@@ -55,7 +37,7 @@ if (isset($_GET['grade'])&& isset($_GET['term'])){
     }elseif (empty($term)){
         echo 'Please enter term';
     }else{
-        echo 'You are directed to competition details of term '.$term.' of '.'grade '.$grade.'<br>';
+        echo 'Competition Details of term '.$term.' of '.'grade '.$grade.' are as follows.<br>';
         $host = 'localhost';
         $username = 'root';
         $password = '';
@@ -78,17 +60,51 @@ if (isset($_GET['grade'])&& isset($_GET['term'])){
 ?>
 </div>
     <div id="sidebar">
+        <nav id="competition">
+            <ul id="nav">
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="Templates/CompDetailTemplate.php">Competition Details</a></li>
+            </ul>
+        </nav>
+
+        <nav id="competition" style="margin-top: 0px; padding-top: 0px">
+            <ul id="nav" style="margin-top: 0px">
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 20px"> <a href="Calendar.php">School Calendar</a></li>
+            </ul>
+        </nav>
+
+        <?php
+        session_start();
+        $username = $_SESSION['username'];
+
+        if ($username == 'principal'){
+            ?>
+
+            <nav id="competition" style="margin-top: 0px; padding-top: 0px">
+                <ul id="nav" style="margin-top: 0px">
+                    <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 45px"> <a href="User/addStaff.php">Add Staff</a></li>
+                </ul>
+            </nav>
+
+            <?php
+        }
+        ?>
+
+
     </div>
 
     <footer>
-        <h3 class="footer-widget-title">Contact Us</h3>
-        <div class="textwidget">
-            <p>J/St.John Bosco Vidyalayam,<br/>
-                Racca Road, Jaffna.</p>
-            <p>Email : stjohnbosco@yahoo.com<br />
-                Tel: Principal office: +940212222540</p>
+        <div class = 'footer1'>
+            <h3 id="h3">Address</h3>
+            J/St.John Bosco Vidyalayam,<br/>
+            Racca Road, Jaffna.
         </div>
-        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
+        <div class = 'footer2'>
+            <h3 id="h3" >Contact Us</h3>
+            Email : stjohnbosco@yahoo.com<br />
+            Tel: Principal office: +940212222540
+        </div>
+        <div class = 'footer3'><i>copyright : Futura Labs</i></div>
+
     </footer>
 
 </div>

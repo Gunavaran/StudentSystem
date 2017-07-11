@@ -3,8 +3,16 @@
 <html>
 <head>
 
-    <title> <?php echo $title; ?> </title>
+    <title> Marks </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
+    <style>
+        nav[id=competition]{
+            background-color: mediumorchid;
+            height:60px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
 
 </head>
 <body>
@@ -38,25 +46,10 @@
         </div>
     </div>
 
-    <div id="sidebar">
-
-    </div>
-
-    <footer>
-        <div class = 'footer1'>
-            <h3 id="h3">Address</h3>
-            J/St.John Bosco Vidyalayam,<br/>
-            Racca Road, Jaffna.
-        </div>
-        <div class = 'footer2'>
-            <h3 id="h3" >Contact Us</h3>
-            Email : stjohnbosco@yahoo.com<br />
-            Tel: Principal office: +940212222540
-        </div>
-        <div class = 'footer3'><i>copyright : Futura Labs</i></div>
-
-    </footer>
-
+    <?php
+    include '../Styles/SidebarStyle.html';
+    include '../Styles/FooterStyle.html';
+    ?>
 </div>
 </body>
 </html>

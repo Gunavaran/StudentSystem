@@ -13,7 +13,7 @@ $content = "<div id=\"content_area\">
         </nav>
         <nav id=\"term_marks_navigation\">
             <ul id=\"nav\">
-                <li><a href='#'> Term Exam Report </a> </li>
+                <li><a href='TermReportTemplate.php'> Term Exam Report </a> </li>
             </ul>
         </nav>
         <nav id=\"pilot_marks_navigation\">

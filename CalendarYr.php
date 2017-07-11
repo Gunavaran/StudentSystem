@@ -5,6 +5,9 @@
 
     <title>Calendar</title>
     <link rel="stylesheet" type = "text/css" href = "Styles/stylesheets.css"/>
+    <?php
+    include 'Styles/FormStyle.html';
+    ?>
 
 </head>
 <body>
@@ -22,34 +25,21 @@
     </nav>
 
     <div id="content_area">
-        <form action="Calendar.php" method="get">
+        <h2 class="heading">Enter Year to view the School Calendar</h2>
+        <form action="Calendar.php" method="get" name="fixedform">
             <fieldset>
-                <label>Enter Year:</label><br><br>
+                <label>Year:</label><br><br>
                 <input type="text" name="year" placeholder="Year"><br><br><br>
-                <button type="submit">Submit</button>
+                <input type="submit" value="submit">
             </fieldset>
         </form>
 
     </div>
 
-    <div id="sidebar">
-
-    </div>
-
-    <footer>
-        <div class = 'footer1'>
-            <h3 id="h3">Address</h3>
-            J/St.John Bosco Vidyalayam,<br/>
-            Racca Road, Jaffna.
-        </div>
-        <div class = 'footer2'>
-            <h3 id="h3" >Contact Us</h3>
-            Email : stjohnbosco@yahoo.com<br />
-            Tel: Principal office: +940212222540
-        </div>
-        <div class = 'footer3'><i>copyright : Futura Labs</i></div>
-
-    </footer>
+    <?php
+    include 'Styles/SidebarStyle.html';
+    include 'Styles/FooterStyle.html';
+    ?>
 
 </div>
 </body>

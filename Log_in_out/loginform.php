@@ -47,6 +47,18 @@ if (isset($_POST['username']) && isset($_POST['password'])){
             border-radius: 2px;
         }
 
+        .form{
+            background-color: lightgray;
+            float: right;
+            width: 250px;
+            height: 300px;
+            margin: 20px 10px;
+            padding: 10px;
+            border: 2px solid #E3E3E3;
+            border-radius: 5px;
+            font-family: "Adobe Gothic Std B";
+        }
+
 
     </style>
 </head>
