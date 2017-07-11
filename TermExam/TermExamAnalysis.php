@@ -10,7 +10,7 @@
     ?>
     <style>
         .heading{
-            margin-left: 100px;
+            margin-left: 250px;
         }
 
         form[name = fixedform]{
@@ -27,19 +27,20 @@
         input[type=submit]{
             padding: 14px 20px;
             width: 20%;
-            margin: 0px 10px 0px 180px;
+            margin: 0px 10px 0px 300px;
             background-color: #490c01;
             border-radius: 2px;
             font-style: inherit;
         }
 
         table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
+            border: 1px darkgrey;
+            margin: 10px 10px 0px 0px;
         }
         th, td {
             padding: 8px;
-            background: darkgrey;
+            background: white;
+            text-align: left;
         }
     </style>
 
@@ -59,7 +60,7 @@
     </nav>
 
     <div id="content_area">
-        <h2 class="heading">Enter Student ID to view the Character Certificate</h2>
+        <h2 class="heading">Term Analysis Report</h2>
         <form action="../Templates/TermExamAnalysisTemplate.php" name="fixedform">
             <?php
             require '../Connect/Connect.php';
@@ -73,16 +74,19 @@
                             $term = $_GET['term'];
                             $subject = $_GET['subject'];
                             $division = $_GET['division'];
+
                             if ($link || mysqli_select_db($link, $database)) {
                                 //echo "Connection successful;";
                             } else {
                                 $message ="connection failed";
                             }
+
                             if ($subject == 'all') {
                                 $subject_all = ['religion_hin', 'religion_rc', 'tamil', 'mathematics', 'social', 'english'];
                             } else {
                                 $subject_all = [$subject];
                             }
+
                             session_start();
                             $username = $_SESSION['username'];
                             $query = "SELECT Role FROM users WHERE username = '$username'";
@@ -101,24 +105,9 @@
                                     $message="You can only view Grade ".$user_grade." ".$user_division." students analysis report";
                                 }
                             }
+
                             if($message=='') {
-                                ?>
-                                <table style="width: 100%">
-                                <tr>
-                                    <th>Subject</th>
-                                    <th>0-10</th>
-                                    <th>11-20</th>
-                                    <th>21-30</th>
-                                    <th>31-40</th>
-                                    <th>41-50</th>
-                                    <th>51-60</th>
-                                    <th>61-70</th>
-                                    <th>71-80</th>
-                                    <th>81-90</th>
-                                    <th>91-100</th>
-                                    <th>Pass</th>
-                                </tr>
-                                <?php
+                                $head=0;
                                 foreach ($subject_all as $subject) {
                                     if ($division == 'all') {
                                         $sql = "SELECT Marks FROM term_marks LEFT JOIN student_details ON term_marks.ID=student_details.StudentID WHERE term_marks.Year='$year' AND term_marks.Term=$term AND term_marks.Subject='$subject' AND student_details.Grade='$grade'";
@@ -164,6 +153,27 @@
                                                 }
                                             }
                                             $pass = ($count4 + $count5 + $count6 + $count7 + $count8 + $count9 + $count10) / mysqli_num_rows($result) * 100;
+
+                                            if($head==0){
+                                                ?>
+                                                <table style="width: 100%">
+                                                <tr>
+                                                    <th>Subject</th>
+                                                    <th>0-10</th>
+                                                    <th>11-20</th>
+                                                    <th>21-30</th>
+                                                    <th>31-40</th>
+                                                    <th>41-50</th>
+                                                    <th>51-60</th>
+                                                    <th>61-70</th>
+                                                    <th>71-80</th>
+                                                    <th>81-90</th>
+                                                    <th>91-100</th>
+                                                    <th>Pass</th>
+                                                </tr>
+                                                <?php
+                                                $head=1;
+                                            }
                                             ?>
 
                                             <tr>
