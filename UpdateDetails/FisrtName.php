@@ -100,6 +100,9 @@
                     } else if (strlen($_POST['id']) != 6) {
                         $error++;
                         echo "Student ID should be in 6 digits</br>";
+                    } else if (!ctype_alpha($_POST['first'])) {
+                        $error++;
+                        echo "First Name should contains only alphaphets" . "<br>";
                     }
 
                     if ($error == 0) {
@@ -112,13 +115,15 @@
                         } else {
                             echo 'Failed!!!';
                         }
+                    }
+
                     } else {
                         echo 'The field cannot take an empty value';
                     }
 
                 } else {
                     echo 'The field should be filled';
-                }
+
             }
             ?>
         </form>

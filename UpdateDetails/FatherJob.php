@@ -101,6 +101,10 @@
                         $error++;
                         echo "Student ID should be in 6 digits</br>";
                     }
+                    else if (!ctype_alpha($_POST['fatherJob'])) {
+                        $error++;
+                        echo "Father's Job should contains only alphaphets" . "<br>";
+                    }
 
                     if ($error == 0) {
                         $id = $_POST['id'];
@@ -112,13 +116,14 @@
                         } else {
                             echo 'Failed!!!';
                         }
+                    }
                     } else {
                         echo 'The field cannot take an empty value';
                     }
 
+
                 } else {
                     echo 'The field should be filled';
-                }
             }
             ?>
         </form>

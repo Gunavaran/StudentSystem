@@ -113,13 +113,14 @@
                         } else {
                             echo 'Failed!!!';
                         }
+                    }
                     } else {
                         echo 'The field cannot take an empty value';
                     }
 
                 } else {
                     echo 'The field should be filled';
-                }
+
             }
             ?>
         </form>

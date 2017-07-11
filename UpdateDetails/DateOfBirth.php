@@ -91,7 +91,7 @@
 
             include '../Connect/Connect.php';
             $error=0;
-
+            $thisyear=$today->format('Y');
             if (isset($_POST['id'])&& isset($_POST['dob'])) {
                 if (!empty($_POST['id'])&& !empty($_POST['dob'])) {
                     if ($_POST['id'] !== (string)(int)$_POST['id'] AND (int)$_POST['id'] > 0) {
@@ -100,6 +100,10 @@
                     } else if (strlen($_POST['id']) != 6) {
                         $error++;
                         echo "Student ID should be in 6 digits</br>";
+                    }
+                    else if($thisyear-(($_POST['DateOfBirth'])->format('Y'))<5 &&$thisyear-(($_POST['DateOfBirth'])->format('Y'))>12) {
+                        $error++;
+                        echo "Please enter correct Date of Birth"."<br>";
                     }
 
                     if ($error == 0) {
@@ -112,13 +116,14 @@
                         } else {
                             echo 'Failed!!!';
                         }
+                    }
                     } else {
                         echo 'The field cannot take an empty value';
                     }
 
                 } else {
                     echo 'The field should be filled';
-                }
+
             }
             ?>
         </form>

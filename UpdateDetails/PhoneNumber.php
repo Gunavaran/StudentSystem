@@ -92,9 +92,9 @@
             include '../Connect/Connect.php';
             $error=0;
 
-            if(isset($_POST['phone'])) {
-                if (!empty($_POST['phone'])) {
-                    if ($_POST['phone'] !== (string)(int)$_POST['phone'] AND (int)$_POST['phone'] > 0) {
+            if(isset($_POST['phone']) && (isset($_POST['id'])))  {
+                if (!empty($_POST['phone']) && (!empty($_POST['id']))) {
+                    if ($_POST['phone'] != (string)(int)$_POST['phone'] AND (int)$_POST['phone'] <0) {
                         $error++;
                         echo "Phone Number should be a positive number" . "<br>";
                     } else if (strlen($_POST['phone']) != 10) {
@@ -125,13 +125,14 @@
                         } else {
                             echo 'Failed!!!';
                         }
+                    }
                     } else {
                         echo 'The field cannot take an empty value';
                     }
 
                 } else {
                     echo 'The field should be filled';
-                }
+
             }
             ?>
         </form>

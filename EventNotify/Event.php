@@ -12,10 +12,11 @@ include '../Connect/Connect.php';
     date_add($today,date_interval_create_from_date_string("2 days"));
     $date2= date_format($today,"Y-m-d");
 
-
+    $thisyear=$today->format('Y');
+    echo $thisyear."<br>";
 // $diff=date_diff($date1,$date2);
 // echo $diff->format("%R%a ");
-    echo $date1, $date2;
+    echo $date1."<br>", $date2."<br>";
 
 $today= date('Y-m-d');
 
