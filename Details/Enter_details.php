@@ -124,6 +124,33 @@
 
             if (isset($_POST['id']) && isset($_POST['FirstName']) && isset($_POST['LastName'])&& isset($_POST['Address'])&& isset($_POST['PhoneNumber'])&& isset($_POST['Email'])&& isset($_POST['FatherName'])&& isset($_POST['FatherJob'])&& isset($_POST['MotherJob'])&& isset($_POST['DateOfBirth'])&& isset($_POST['MotherName']) && isset($_POST['grade'])&& isset($_POST['division']) ){
                 if(!empty($_POST['id']) && !empty($_POST['FirstName']) && !empty($_POST['LastName'])&& !empty($_POST['Email'])&& !empty($_POST['Address'])&& !empty($_POST['PhoneNumber'])&& !empty($_POST['FatherName'])&& !empty($_POST['FatherJob'])&& !empty($_POST['MotherJob'])&& !empty($_POST['MotherName'])&& !empty($_POST['DateOfBirth'])&& !empty($_POST['grade'])&& !empty($_POST['division'])){
+                    if ($_POST['phone'] !== (string)(int)$_POST['phone'] AND (int)$_POST['phone'] > 0) {
+                        $error++;
+                        echo "Phone Number should be a positive number" . "<br>";
+                    } else if (strlen($_POST['phone']) != 10) {
+                        $error++;
+                        echo "phone Number should be in 10 digits</br>";
+                    }
+                    else if($_POST['id'] !== (string)(int)$_POST['id'] AND (int)$_POST['id'] > 0) {
+                        $error++;
+                        echo "Student ID should be a positive number" . "<br>";
+                    } else if (strlen($_POST['id']) != 6) {
+                        $error++;
+                        echo "Student ID should be in 6 digits</br>";
+                    }
+                    else if(!ctype_alpha($_POST['FirstName'])){
+                        $error++;
+                        echo "First Name should contains only alphaphets"."<br>";
+                    }
+                    else if(!ctype_alpha($_POST['LastName'])) {
+                        $error++;
+                        echo "Last Name should contains only alphaphets" . "<br>";
+                    }else if(!ctype_alpha($_POST['FatherName'])) {
+                        $error++;
+                        echo "Father's Name should contains only alphaphets" . "<br>";
+                    }else if(!ctype_alpha($_POST['MotherName'])){
+                        $error++;
+                         echo "Mother;s Name should contains only alphaphets"."<br>";
 
 
                     $id = $_POST['id'];
