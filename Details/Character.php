@@ -72,7 +72,6 @@
 
     <div id="content_area">
         <h2 class="heading">Character Certificate</h2>
-        <form action="../Templates/CharacterTemplate.php" name="fixedform">
             <?php
             require '../Connect/Connect.php';
             $message = '';
@@ -82,13 +81,14 @@
                 $message ="Connection failed";
             }
 
-
+            session_start();
             $username = $_SESSION['username'];
-            $query = "SELECT Role FROM user WHERE username = '$username'";
+            $query = "SELECT Role FROM users WHERE username = '$username'";
             $query_run = mysqli_query($link,$query);
             $query_row = mysqli_fetch_assoc($query_run);
             $role = $query_row['Role'];
-            if ($role != 'student') {
+            if ($role != 'student') {?>
+                <form action="../Templates/CharacterTemplate.php" name="fixedform"><?php
                 if (!isset($_GET['id'])) {
                     $message ='All the required fields should be filled';
                 }else if (empty($_GET['id'])) {
@@ -100,41 +100,58 @@
                 }else{
                     $id = (int)$_GET['id'];
                 }
-            }else{
+            }else{?>
+                    <form action="../Templates/ProfileTemplate.php" name="fixedform"><?php
                 $id = $_SESSION['username'];
             }
             if($message == ''){
-                $sql = "SELECT First_name,Last_name,Grade FROM `detail` WHERE ID=$id";
+                $sql = "SELECT FirstName,LastName,Grade,Division FROM student_details WHERE StudentID=$id";
                 $result = mysqli_query($link, $sql);
                 if ($result) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $first = $row['First_name'];
-                        $last = $row['Last_name'];
-                        $grade = $row['Grade'];
-
-                        echo '<div id="message_1">'."First Name: ".'<div id="message_2">'.$first.'</div>';
-                        echo "Last Name: ".'<div id="message_2">'.$last.'</div>';
-                        echo "Grade: ".'<div id="message_2">'.$grade.'</div>';
-                    }
-                } else {
-                    $message ="No data has been found";
-                }
-                echo "Character Detail: ";
-                $sql = "SELECT Character_detail FROM `character` WHERE ID=$id";
-                $result = mysqli_query($link, $sql);
-                if ($result) {
-                    if (mysqli_num_rows($result)>0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $character = $row['Character_detail'];
-                            echo '<div id="message_2">';
-                            echo $character;
-                            echo '</div>';
+                    if (mysqli_num_rows($result) > 0) {
+                        $row = mysqli_fetch_assoc($result);
+                        extract($row);
+                        if($role=='sectionalHead' OR $role=='teacher'){
+                            $sqli="SELECT grade,division FROM staffuser WHERE username='$username'";
+                            $que=mysqli_query($link,$sqli);
+                            $que_row=mysqli_fetch_assoc($que);
+                            $user_grade=$que_row['grade'];
+                            $user_division=$que_row['division'];
+                            if($row["Grade"]!=$user_grade){
+                                $message="You can only view Grade ".$user_grade." students detail";
+                            }elseif ($user_division!='all' AND $row["Division"]!=$user_division){
+                                $message="You can only view Grade ".$user_grade." ".$user_division." students detail";
+                            }
                         }
+                        if($message == '') {
+                            $first = $row['FirstName'];
+                            $last = $row['LastName'];
+                            $grade = $row['Grade'];
+
+                            echo '<div id="message_1">' . "First Name: " . '<div id="message_2">' . $first . '</div>';
+                            echo "Last Name: " . '<div id="message_2">' . $last . '</div>';
+                            echo "Grade: " . '<div id="message_2">' . $grade . '</div>';
+                            echo "Character Detail: ";
+                            $sql = "SELECT Character_detail FROM `character` WHERE ID=$id";
+                            $result = mysqli_query($link, $sql);
+                            if ($result) {
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $character = $row['Character_detail'];
+                                        echo '<div id="message_2">';
+                                        echo $character;
+                                        echo '</div>';
+                                    }
+                                }
+                            }
+                            echo '<div id="message_2">';
+                            echo 'Good Student';
+                            echo '</div>' . '</div>';
+                        }
+                    } else {
+                        $message = "No data has been found";
                     }
                 }
-                echo '<div id="message_2">';
-                echo 'Good Student';
-                echo '</div>'.'</div>';
             }
             ?>
             <div id="message">

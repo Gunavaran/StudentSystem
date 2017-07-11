@@ -57,8 +57,9 @@
     <div id="content_area">
         <?php
         include '../Connect/Connect.php';
+        session_start();
         $username = $_SESSION['username'];
-        $query = "SELECT Role FROM user WHERE username = '$username'";
+        $query = "SELECT Role FROM users WHERE username = '$username'";
         $query_run = mysqli_query($link,$query);
         $query_row = mysqli_fetch_assoc($query_run);
         $role = $query_row['Role'];
