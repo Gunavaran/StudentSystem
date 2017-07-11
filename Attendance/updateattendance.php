@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 <head>
 
@@ -49,15 +52,30 @@
                     $query_attendance_run = mysqli_query($link,$query_attendance);
                     $query_row = mysqli_fetch_assoc($query_attendance_run);
                     $attendance = $query_row['Attendance'];
+
+                    $user = $_SESSION['username'];
+                    $query_user = "SELECT grade , division FROM staffuser WHERE username = '$user'";
+                    $query_user_run = mysqli_query($link, $query_user);
+                    $query_user_row = mysqli_fetch_assoc($query_user_run);
+                    $staff_grade = $query_user_row['grade'];
+                    $staff_division = $query_user_row['division'];
+
                     if(strtoupper($attendance) == 'A'){
                         $new_value = 'P';
                     } else {
                         $new_value = 'A';
                     }
+
                     $query = "UPDATE attendance SET Attendance = '$new_value' WHERE StudentID = '$id' AND Date = '$date'";
-                    if($query_run = mysqli_query($link, $query)){
+                    if ($grade != 'all' && $grade != $staff_grade){
+                        $message = "Access denied to the given Grade. Submit Failed!!!";
+                    } else if($division != 'all' && $division != $staff_division){
+                        $message = "Access denied to the given Division. Submit Failed!!!";
+                    } else if($attendance == NULL){
+                        $message='Attendance does not exist';
+                    } else if($query_run = mysqli_query($link, $query)){
                         $message='Update Successful';
-                    } else {
+                    }  else {
                         $message= 'Update Failed!!!';
                     }
 
