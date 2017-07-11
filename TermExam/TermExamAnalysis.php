@@ -83,8 +83,27 @@
                             } else {
                                 $subject_all = [$subject];
                             }
-                            ?>
-                            <table style="width: 100%">
+                            session_start();
+                            $username = $_SESSION['username'];
+                            $query = "SELECT Role FROM users WHERE username = '$username'";
+                            $query_run = mysqli_query($link,$query);
+                            $query_row = mysqli_fetch_assoc($query_run);
+                            $role = $query_row['Role'];
+                            if($role=='sectionalHead' OR $role=='teacher'){
+                                $sqli="SELECT grade,division FROM staffuser WHERE username='$username'";
+                                $que=mysqli_query($link,$sqli);
+                                $que_row=mysqli_fetch_assoc($que);
+                                $user_grade=$que_row['grade'];
+                                $user_division=$que_row['division'];
+                                if($grade!=$user_grade){
+                                    $message="You can only view Grade ".$user_grade." students analysis report";
+                                }elseif ($user_division!='all' AND $division!=$user_division){
+                                    $message="You can only view Grade ".$user_grade." ".$user_division." students analysis report";
+                                }
+                            }
+                            if($message=='') {
+                                ?>
+                                <table style="width: 100%">
                                 <tr>
                                     <th>Subject</th>
                                     <th>0-10</th>
@@ -102,9 +121,9 @@
                                 <?php
                                 foreach ($subject_all as $subject) {
                                     if ($division == 'all') {
-                                        $sql = "SELECT Marks FROM term_marks LEFT JOIN detail ON term_marks.ID=detail.ID WHERE term_marks.Year='$year' AND term_marks.Term=$term AND term_marks.Subject='$subject' AND detail.Grade='$grade'";
+                                        $sql = "SELECT Marks FROM term_marks LEFT JOIN student_details ON term_marks.ID=student_details.StudentID WHERE term_marks.Year='$year' AND term_marks.Term=$term AND term_marks.Subject='$subject' AND student_details.Grade='$grade'";
                                     } else {
-                                        $sql = "SELECT Marks FROM term_marks LEFT JOIN detail ON term_marks.ID=detail.ID WHERE term_marks.Year='$year' AND term_marks.Term=$term AND term_marks.Subject='$subject' AND detail.Grade='$grade' AND detail.Division='$division'";
+                                        $sql = "SELECT Marks FROM term_marks LEFT JOIN student_details ON term_marks.ID=student_details.StudentID WHERE term_marks.Year='$year' AND term_marks.Term=$term AND term_marks.Subject='$subject' AND student_details.Grade='$grade' AND student_details.Division='$division'";
                                     }
                                     $result = mysqli_query($link, $sql);
                                     if ($result) {
@@ -164,10 +183,11 @@
                                             </tr>
                                             <?php
                                         } else {
-                                            $message =$message."No marks entered for " . $subject . '<br><br>';
+                                            $message = $message . "No marks entered for " . $subject . '<br><br>';
                                         }
                                     }
-                                }?>
+                                }
+                            }?>
                                 </table>
                                 <?php
                         }else{$message ='Year should be in range 1991-'.date('Y');}

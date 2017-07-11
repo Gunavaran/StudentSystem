@@ -54,6 +54,15 @@ session_start();
                 </nav>
                 <?php
             }
+            if ($role == 'principal' OR $role=='teacher') {
+                ?>
+                <nav id="pilot_marks_navigation">
+                    <ul id="nav">
+                        <li><a href="PilotAddMarksTemplate.php">Enter Pilot Marks</a></li>
+                    </ul>
+                </nav>
+                <?php
+            }
             ?>
         </div>
     </div>

@@ -69,7 +69,7 @@
                     }
 
                     if ($message=='') {
-                        $s = "INSERT INTO pilot_marks(ID,Serial_no,Year,Part_1,Part_2) VALUES ($id_array[$i],$serial,$year,$part1,$part2)";
+                        $s = "INSERT INTO pilot_marks(StudentID,SerialNo,Year,Part_1,Part_2) VALUES ($id_array[$i],$serial,$year,$part1,$part2)";
                         if (mysqli_query($link, $s)) {
                             $message_update=$message_update."- Marks updated for ".$id_array[$i].'<br>';
 
