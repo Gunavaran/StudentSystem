@@ -148,9 +148,10 @@
                     }else if(!ctype_alpha($_POST['FatherName'])) {
                         $error++;
                         echo "Father's Name should contains only alphaphets" . "<br>";
-                    }else if(!ctype_alpha($_POST['MotherName'])){
+                    }else if(!ctype_alpha($_POST['MotherName'])) {
                         $error++;
-                         echo "Mother;s Name should contains only alphaphets"."<br>";
+                        echo "Mother;s Name should contains only alphaphets" . "<br>";
+                    }
 
 
                     $id = $_POST['id'];
