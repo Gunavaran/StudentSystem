@@ -115,11 +115,7 @@ session_start();
                         $message = "Length of Division should be 1. Submit Failed!!!";
                     } else if(!ctype_alpha($division)){
                         $message = "Division should be an alphabet. Submit Failed!!!";
-                    } else if($grade != 'all' && $grade != $staff_grade){
-                        $message = "Access denied to the given Grade. Submit Failed!!!";
-                    } else if($division != 'all' && $division != $staff_division){
-                        $message = "Access denied to the given Division. Submit Failed!!!";
-                    }else if(!is_numeric($grade)){
+                    } else if(!is_numeric($grade)){
                         $message = "Grade can only be numbers. Submit Failed!!!";
                     } else if (!is_int($grade2)) {
                         $message = 'Grade can only be an integer values. Submit Failed!!!';
@@ -131,6 +127,10 @@ session_start();
                         $message = 'Division does not exist for the given grade. Submit Failed!!!';
                     } else if (!in_array($id,$id_sync_array)) {
                         $message = 'StudentId does not belong to the given grade and division. Submit Failed!!!';
+                    } else if($staff_grade != 'all' && $grade != $staff_grade){
+                        $message = "Access denied to the given Grade. Submit Failed!!!";
+                    } else if($staff_division != 'all' && $division != $staff_division){
+                        $message = "Access denied to the given Division. Submit Failed!!!";
                     } else {
                         $query = "INSERT INTO attendance (StudentID, Attendance, Date) VALUES ('$id', '$attendance', '$date')";
                         if($query_run = mysqli_query($link, $query)){

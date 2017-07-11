@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 
 <html>
@@ -6,6 +9,15 @@
     <title> Enter Details </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
     <style>
+
+        select{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
         input[type = text]{
             width: 100%;
             height: 30px;
@@ -78,13 +90,13 @@
 
     <div id="content_area">
         <form action="Enter_details.php" method="post" name="fixedform">
-            ID: <br><br>
+            ID: <br>
             <input type="text" name="id"><br><br>
-            First Name:<br><br>
+            First Name:<br>
             <input type="text" name="FirstName"><br><br>
-            Last Name:<br><br>
+            Last Name:<br>
             <input type="text" name="LastName"><br><br>
-            Grade:<br><br>
+            Grade:<br>
             <select name='grade'>
                 <option value = '01'>01</option>
                 <option value = '02'>02</option>
@@ -92,7 +104,7 @@
                 <option value = '04'>04</option>
                 <option value = '05'>05</option>
             </select><br><br>
-            Division:<br><br>
+            Division:<br>
             <select name='division'>
                 <option value = 'A'>A</option>
                 <option value = 'B'>B</option>
@@ -100,21 +112,21 @@
                 <option value = 'D'>D</option>
                 <option value = 'E'>E</option>
             </select><br><br>
-            Address:<br><br>
+            Address:<br>
             <input type="text" name="Address"><br><br>
-            Phone:<br><br>
+            Phone:<br>
             <input type="text" name="PhoneNumber"><br><br>
-            Date Of Birth:<br><br>
+            Date Of Birth:<br>
             <input type="date" name="DateOfBirth"><br><br>
-            Email:<br><br>
+            Email:<br>
             <input type="text" name="Email"><br><br>
-            Father's Name:<br><br>
+            Father's Name:<br>
             <input type="text" name="FatherName"><br><br>
-            Father's Job:<br><br>
+            Father's Job:<br>
             <input type="text" name="FatherJob"><br><br>
-            Mother's Name:<br><br>
+            Mother's Name:<br>
             <input type="text" name="MotherName"><br><br>
-            Mother's Job:<br><br>
+            Mother's Job:<br>
             <input type="text" name="MotherJob"><br><br>
             <input type="submit" value="Submit">
 
@@ -157,17 +169,11 @@
         </form>
     </div>
 
+    <?php
+    include '../Styles/SidebarStyle.html';
+    include '../Styles/FooterStyle.html';
+    ?>
 
-    <footer>
-        <h3 class="footer-widget-title">Contact Us</h3>
-        <div class="textwidget">
-            <p>J/St.John Bosco Vidyalayam,<br/>
-                Racca Road, Jaffna.</p>
-            <p>Email : stjohnbosco@yahoo.com<br />
-                Tel: Principal office: +940212222540</p>
-        </div>
-        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
-    </footer>
 
 </div>
 </body>
