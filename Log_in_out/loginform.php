@@ -5,7 +5,7 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     $password = $_POST['password'];
     $password_md5 = md5($_POST['password']);
 
-    if (!empty($username) && !empty($password)){
+    if (!empty($username1) && !empty($password)){
         $query = "SELECT id, username FROM users WHERE username = '$username1' AND password = '$password_md5'";
         if($query_run = mysqli_query($link,$query)){
             if (mysqli_num_rows($query_run)==0){

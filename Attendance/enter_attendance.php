@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 
 <html>
@@ -90,6 +92,13 @@
                         array_push($id_sync_array,$iddb);
                     }
 
+                    $user = $_SESSION['username'];
+                    $query_user = "SELECT grade , division FROM staffuser WHERE username = '$user'";
+                    $query_user_run = mysqli_query($link, $query_user);
+                    $query_user_row = mysqli_fetch_assoc($query_user_run);
+                    $staff_grade = $query_user_row['grade'];
+                    $staff_division = $query_user_row['division'];
+
                     if($attendance != 'A' && $attendance != 'P') {
                         $message = 'Attendance can take values p/P or a/A only. Submit Failed!!!';
                     } else if(strlen($id) != 6){
@@ -106,7 +115,11 @@
                         $message = "Length of Division should be 1. Submit Failed!!!";
                     } else if(!ctype_alpha($division)){
                         $message = "Division should be an alphabet. Submit Failed!!!";
-                    } else if(!is_numeric($grade)){
+                    } else if($grade != 'all' && $grade != $staff_grade){
+                        $message = "Access denied to the given Grade. Submit Failed!!!";
+                    } else if($division != 'all' && $division != $staff_division){
+                        $message = "Access denied to the given Division. Submit Failed!!!";
+                    }else if(!is_numeric($grade)){
                         $message = "Grade can only be numbers. Submit Failed!!!";
                     } else if (!is_int($grade2)) {
                         $message = 'Grade can only be an integer values. Submit Failed!!!';
@@ -144,6 +157,7 @@
 
         </form>
     </div>
+
 
     <?php
     include '../Styles/SidebarStyle.html';
