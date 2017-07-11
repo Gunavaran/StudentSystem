@@ -1,4 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        div {
+            background-color: lightblue;
+            width: 300px;
+            border: 25px solid dimgray;
+            padding: 25px;
+            margin: 25px;
+        }
+    </style>
+</head>
+<body>
 
+<div>
     <?php
     include '../Connect/Connect.php';
     $date=array();
@@ -42,9 +57,13 @@
     if (mysqli_num_rows($result) != NULL) {
         while ($row = mysqli_fetch_assoc($result)) {
             $today_event = $row['Event'];
-            echo 'There will be a ' . $today_event .' on '.$today . '<br/>';
+            echo 'There will be a ' . $today_event .' Today!!'. '<br/>';
         }
     }
 
 
     ?>
+</div>
+
+</body>
+</html>
