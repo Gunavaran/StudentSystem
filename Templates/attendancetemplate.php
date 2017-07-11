@@ -65,10 +65,10 @@
                         $count++;
                     }
                 }
-                $absence=$count/$days;
+                $absence=floor(($count*10000)/($days*100));
                 if ($count == 0){
                     echo 'You are always present. Keep it up!!!';
-                }else if($absence>0.2){
+                }else if($absence>20){
                     $attendancenoti ="INSERT INTO notify_attendance (StudentID, Absence) VALUES ('$id',$absence)";
                     $attendancenoti_run=mysqli_query($link,$attendancenoti);
                 }
