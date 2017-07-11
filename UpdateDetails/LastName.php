@@ -77,7 +77,7 @@
     </nav>
 
     <div id="content_area">
-        <form action="updateDetails.php" method="post" name="fixedform">
+        <form action="LastName.php" method="post" name="fixedform">
             ID: <br><br>
             <input type="text" name="id"><br><br>
             Last Name: <br><br>

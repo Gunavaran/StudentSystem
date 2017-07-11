@@ -77,13 +77,14 @@
     </nav>
 
     <div id="content_area">
-        <form action="updateDetails.php" method="post" name="fixedform">
+        <form action="Address.php" method="post" name="fixedform">
             ID: <br><br>
             <input type="text" name="id"><br><br>
             Address: <br><br>
             <input type="text" name="add"><br><br>
 
             <input type="submit" value="Submit">
+
 
 
 
