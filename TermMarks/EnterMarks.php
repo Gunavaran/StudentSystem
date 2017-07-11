@@ -147,28 +147,31 @@
 
                         }
                     }
-                    if ($error != 0) {
+                    if ($error == 0) {
                         $id = $_POST['id'];
                         $year = $_POST['year'];
                         $subject = $_POST['subject'];
                         $marks = $_POST['marks'];
                         $term = $_POST['term'];
 
-                        $query = "INSERT INTO term_marks (ID, Subject, Marks, Year, Term ) VALUES ('$id', '$subject', '$marks', '$year', '$term')";
-                        if ($query_run = mysqli_query($link, $query)) {
+                        $query = "INSERT INTO termmarks (ID, Subject, Marks, Year, Term ) VALUES ('$id', '$subject', '$marks', '$year', '$term')";
+                        if (mysqli_query($link, $query)) {
                             echo 'Successfully Stored';
+                            if($marks<35){
+                                $notiquery= "INSERT INTO notify_marks (StudentID, Subject) VALUES ('$id', '$subject')";
+                                $notiquery_run= mysqli_query($link,$notiquery);
+                            }
                         } else {
                             echo 'Failed!!!';
                         }
                     }
-                    else {
-                        echo 'None of the fields can take an empty value';
-                    }
+                } else {
+                    echo 'None of the fields can take an empty value';
                 }
 
-                    else {
-                            echo 'All the required fields should be filled';
-                        }
+            }
+            else {
+                echo 'All the required fields should be filled';
             }
 
 
@@ -213,17 +216,11 @@
 
 
     </div>
+    <?php
 
-    <footer>
-        <h3 class="footer-widget-title">Contact Us</h3>
-        <div class="textwidget">
-            <p>J/St.John Bosco Vidyalayam,<br/>
-                Racca Road, Jaffna.</p>
-            <p>Email : stjohnbosco@yahoo.com<br />
-                Tel: Principal office: +940212222540</p>
-        </div>
-        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
-    </footer>
+    include '../Styles/FooterStyle.html';
+    ?>
+
 
 </div>
 </body>

@@ -107,7 +107,7 @@
             Date Of Birth:<br><br>
             <input type="date" name="DateOfBirth"><br><br>
             Email:<br><br>
-            <input type="text" name="Email"><br><br>
+            <input type="email" name="Email"><br><br>
             Father's Name:<br><br>
             <input type="text" name="FatherName"><br><br>
             Father's Job:<br><br>
@@ -139,7 +139,7 @@
                     $division = $_POST['division'];
 
                     $query = "INSERT INTO student_details (StudentID, FirstName, LastName, Address, Telephone, email, FatherName, FatherJob, MotherName, MotherJob, DOB, Grade, Division ) VALUES ('$id', '$first', '$last', '$add', '$phone','$mail','$fatherName','$fatherJob','$motherName','$motherJob','$dob','$grade','$division')";
-                    if($query_run = mysqli_query($link, $query)){
+                    if(mysqli_query($link, $query)){
                         echo 'Successfully Stored';
                     }else{
                         echo 'Failed!!!';
@@ -157,19 +157,43 @@
         </form>
     </div>
 
+    <div id="sidebar">
+        <nav id="competition">
+            <ul id="nav">
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="../Templates/CompDetailTemplate.php">Competition Details</a></li>
+            </ul>
+        </nav>
 
-    <footer>
-        <h3 class="footer-widget-title">Contact Us</h3>
-        <div class="textwidget">
-            <p>J/St.John Bosco Vidyalayam,<br/>
-                Racca Road, Jaffna.</p>
-            <p>Email : stjohnbosco@yahoo.com<br />
-                Tel: Principal office: +940212222540</p>
-        </div>
-        <p align="center" style="font-size: large"><b>All rights reserved</b> </p>
-    </footer>
+        <nav id="competition" style="margin-top: 0px; padding-top: 0px">
+            <ul id="nav" style="margin-top: 0px">
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 20px"> <a href="../Calendar.php">School Calendar</a></li>
+            </ul>
+        </nav>
+
+        <?php
+        session_start();
+        $username = $_SESSION['username'];
+
+        if ($username == 'principal'){
+            ?>
+
+            <nav id="competition" style="margin-top: 0px; padding-top: 0px">
+                <ul id="nav" style="margin-top: 0px">
+                    <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 45px"> <a href="../addStaff.php">Add Staff</a></li>
+                </ul>
+            </nav>
+
+            <?php
+        }
+        ?>
+
+
+    </div>
+
+    <?php
+    include '../Styles/FooterStyle.html';
+    ?>
 
 </div>
 </body>
 </html>
-
