@@ -208,8 +208,41 @@
         </form>
     </div>
 
+    <div id="sidebar">
+        <nav id="competition">
+            <ul id="nav">
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-bottom: 0px"> <a href="../Templates/CompDetailTemplate.php">Competition Details</a></li>
+            </ul>
+        </nav>
+
+        <nav id="competition" style="margin-top: 0px; padding-top: 0px">
+            <ul id="nav" style="margin-top: 0px">
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 20px"> <a href="../Calendar.php">School Calendar</a></li>
+            </ul>
+        </nav>
+
+        <?php
+        session_start();
+        $username = $_SESSION['username'];
+
+        if ($username == 'principal'){
+            ?>
+
+            <nav id="competition" style="margin-top: 0px; padding-top: 0px">
+                <ul id="nav" style="margin-top: 0px">
+                    <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 45px"> <a href="../addStaff.php">Add Staff</a></li>
+                </ul>
+            </nav>
+
+            <?php
+        }
+        ?>
+
+
+
+
+    </div>
     <?php
-    include '../Styles/SidebarStyle.html';
     include '../Styles/FooterStyle.html';
     ?>
 

@@ -121,7 +121,7 @@
             <?php
             include '../Connect/Connect.php';
             $error=0;
-            $thisyear=$today->format('Y');
+
             if (isset($_POST['id']) && isset($_POST['FirstName']) && isset($_POST['LastName'])&& isset($_POST['Address'])&& isset($_POST['PhoneNumber'])&& isset($_POST['Email'])&& isset($_POST['FatherName'])&& isset($_POST['FatherJob'])&& isset($_POST['MotherJob'])&& isset($_POST['DateOfBirth'])&& isset($_POST['MotherName']) && isset($_POST['grade'])&& isset($_POST['division']) ){
                 if(!empty($_POST['id']) && !empty($_POST['FirstName']) && !empty($_POST['LastName'])&& !empty($_POST['Email'])&& !empty($_POST['Address'])&& !empty($_POST['PhoneNumber'])&& !empty($_POST['FatherName'])&& !empty($_POST['FatherJob'])&& !empty($_POST['MotherJob'])&& !empty($_POST['MotherName'])&& !empty($_POST['DateOfBirth'])&& !empty($_POST['grade'])&& !empty($_POST['division'])) {
                     if ($_POST['PhoneNumber'] != (string)(int)$_POST['PhoneNumber'] AND (int)$_POST['PhoneNumber'] < 0) {
@@ -154,9 +154,6 @@
                     } else if (!ctype_alpha($_POST['MotherJob'])) {
                         $error++;
                         echo "Mother's Job should contains only alphaphets" . "<br>";
-                    } else if($thisyear-(($_POST['DateOfBirth'])->format('Y'))<5 &&$thisyear-(($_POST['DateOfBirth'])->format('Y'))>12) {
-                        $error++;
-                        echo "Please enter correct Date of Birth"."<br>";
                     }
                     else{
 
@@ -196,6 +193,7 @@
         </form>
     </div>
 
+
     <div id="sidebar">
         <nav id="competition">
             <ul id="nav">
@@ -225,6 +223,8 @@
             <?php
         }
         ?>
+
+
 
 
     </div>
