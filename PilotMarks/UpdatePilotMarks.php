@@ -85,28 +85,47 @@ if (logged_in()) {
                         }
 
                         if($error==0) {
-                            $query = "SELECT * FROM pilot_marks WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
-                            $query_run=mysqli_query($link,$query);
-                            if (mysqli_num_rows($query_run) == NULL){
-                                echo "No such record is found";
-                            } else {
-                                $part = $_GET['part'];
-                                if ($part == 'part1') {
-                                    $query2 = "UPDATE pilot_marks SET Part1 = '$marks' WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
-                                    if ($query2_run = mysqli_query($link, $query2)) {
-                                        echo 'Update Successful';
-                                    } else {
-                                        echo 'Update Failed';
-                                    }
-                                } elseif ($part == 'part2') {
-                                    $query2 = "UPDATE pilot_marks SET Part2 = '$marks' WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
-                                    if ($query2_run = mysqli_query($link, $query2)) {
-                                        echo 'Update Successful';
-                                    } else {
-                                        echo 'Update Failed';
-                                    }
-                                }
+                            $query_details = "SELECT * FROM student_details where StudentID = '$indexnum'";
+                            $query_run_detail = mysqli_query($link, $query_details);
+                            $query_row_detail = mysqli_fetch_assoc($query_run_detail);
+                            $grade = $query_row_detail['Grade'];
+                            $division = $query_row_detail['Division'];
 
+                            $user =$_SESSION['username'];
+                            $query_user = "SELECT grade , division FROM staffuser WHERE username = '$user'";
+                            $query_user_run = mysqli_query($link, $query_user);
+                            $query_user_row = mysqli_fetch_assoc($query_user_run);
+                            $staff_grade = $query_user_row['grade'];
+                            $staff_division = $query_user_row['division'];
+
+
+
+                            if(($staff_grade != 'all' && $grade != $staff_grade) || ($staff_division != 'all' && $division != $staff_division)){
+                                echo 'You are restricted to access the requested details...!';
+                            }else {
+                                $query = "SELECT * FROM pilot_marks WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
+                                $query_run = mysqli_query($link, $query);
+                                if (mysqli_num_rows($query_run) == NULL) {
+                                    echo "No such record is found";
+                                } else {
+                                    $part = $_GET['part'];
+                                    if ($part == 'part1') {
+                                        $query2 = "UPDATE pilot_marks SET Part1 = '$marks' WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
+                                        if ($query2_run = mysqli_query($link, $query2)) {
+                                            echo 'Update Successful';
+                                        } else {
+                                            echo 'Update Failed';
+                                        }
+                                    } elseif ($part == 'part2') {
+                                        $query2 = "UPDATE pilot_marks SET Part2 = '$marks' WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
+                                        if ($query2_run = mysqli_query($link, $query2)) {
+                                            echo 'Update Successful';
+                                        } else {
+                                            echo 'Update Failed';
+                                        }
+                                    }
+
+                                }
                             }
                         }
                     }else {
