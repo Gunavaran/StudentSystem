@@ -44,19 +44,42 @@ if (logged_in()) {
 
             include '../Connect/Connect.php';
             $error=0;
-            $thisyear=$today->format('Y');
+
             if (isset($_POST['id'])&& isset($_POST['dob'])) {
                 if (!empty($_POST['id'])&& !empty($_POST['dob'])) {
-                    if ($_POST['id'] !== (string)(int)$_POST['id'] AND (int)$_POST['id'] > 0) {
+
+                    $today= date_create(date('Y-m-d'));
+                    $thisyear=$today->format('Y');
+                    $date=($_POST['dob']);
+                    $enterYear= date('Y',strtotime($date));
+
+                    if ($_POST['id'] != (string)(int)$_POST['id'] || (int)$_POST['id'] < 0) {
                         $error++;
                         echo "Student ID should be a positive number" . "<br>";
-                    } else if (strlen($_POST['id']) != 6 && (!is_numeric($_POST['id']))) {
+                    } else if ((strlen($_POST['id']) != 6) || (!is_numeric($_POST['id']))) {
                         $error++;
                         echo "Student ID should be in 6 digits</br>";
                     }
-                    else if($thisyear-(($_POST['DateOfBirth'])->format('Y'))<5 &&$thisyear-(($_POST['DateOfBirth'])->format('Y'))>12) {
+                    else if(((int)$thisyear-((int)$enterYear))<5 || (((int)$thisyear-((int)$enterYear))>12)) {
                         $error++;
                         echo "Please enter correct Date of Birth"."<br>";
+                    }
+                    if ($error==0) {
+                        $id = (int)$_GET['id'];
+                        $year = $_GET['year'];
+                        $subject = $_GET['subject'];
+                        $marks = $_GET['marks'];
+                        $term = $_GET['term'];
+
+                        $sql_g_d="SELECT DOB FROM student_details WHERE StudentID=$id";
+                      //  $quer=mysqli_query($link,$sql_g_d);
+                        if(mysqli_query($link,$sql_g_d)) {
+                            $error=0;
+
+                        }else{
+                            $error++;
+                            echo  'Index number does not exist';
+                        }
                     }
 
                     if ($error == 0) {

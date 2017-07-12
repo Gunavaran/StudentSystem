@@ -47,10 +47,10 @@ if (logged_in()) {
 
             if (isset($_POST['id'])&& isset($_POST['motherJob'])) {
                 if (!empty($_POST['id'])&& !empty($_POST['motherJob'])) {
-                    if ($_POST['id'] !== (string)(int)$_POST['id'] AND (int)$_POST['id'] > 0) {
+                    if ($_POST['id'] != (string)(int)$_POST['id'] || (int)$_POST['id']< 0) {
                         $error++;
                         echo "Student ID should be a positive number" . "<br>";
-                    } else if (strlen($_POST['id']) != 6  && (!is_numeric($_POST['id']))) {
+                    } else if (strlen($_POST['id']) != 6  || (!is_numeric($_POST['id']))) {
                         $error++;
                         echo "Student ID should be in 6 digits</br>";
                     }
@@ -58,6 +58,24 @@ if (logged_in()) {
                         $error++;
                         echo "Mother's Job should contains only alphaphets" . "<br>";
                     }
+                    if ($error==0) {
+                        $id = (int)$_GET['id'];
+                        $year = $_GET['year'];
+                        $subject = $_GET['subject'];
+                        $marks = $_GET['marks'];
+                        $term = $_GET['term'];
+
+                        $sql_g_d="SELECT MotherJob FROM student_details WHERE StudentID=$id";
+                      //  $quer=mysqli_query($link,$sql_g_d);
+                        if(mysqli_query($link,$sql_g_d)) {
+                            $error=0;
+
+                        }else{
+                            $error++;
+                            echo  'Index number does not exist';
+                        }
+                    }
+
 
                     if ($error == 0) {
                         $id = $_POST['id'];

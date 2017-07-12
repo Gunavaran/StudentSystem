@@ -83,21 +83,20 @@ if (logged_in()) {
                 }
                 if (isset($_POST['id'])) {
                     if (!empty($_POST['id'])) {
-                        if ($_POST['id'] !== (string)(int)$_POST['id'] AND (int)$_POST['id'] > 0) {
+                        if ($_POST['id'] !== (string)(int)$_POST['id'] || (int)$_POST['id'] < 0) {
                             $error++;
                             echo "Student ID should be a positive number" . "<br>";
-                        } else if (strlen($_POST['id']) != 6) {
+                        } else if ((strlen($_POST['id']) != 6) || (!is_numeric($_POST['id']))) {
                             $error++;
                             echo "Student ID should be in 6 digits</br>";
                         }
-
 
                     }
 
                 }
                 if (isset($_POST['marks'])) {
                     if (!empty($_POST['marks'])) {
-                        if ($_POST['marks'] !== (string)(int)$_POST['marks'] AND (int)$_POST['marks'] > 0) {
+                        if ($_POST['marks'] != (string)(int)$_POST['marks'] || (int)$_POST['marks'] < 0) {
                             $error++;
                             echo "Marks should be a positive number" . "<br>";
                         } elseif ((int)$_POST['marks'] > 100) {
@@ -105,6 +104,42 @@ if (logged_in()) {
                             echo "Marks should be less than or equal to 100";
                         }
 
+                    }
+                }
+                if ($error==0) {
+                    $id = (int)$_POST['id'];
+                    $year = $_POST['year'];
+                    $subject = $_POST['subject'];
+                    $marks = $_POST['marks'];
+                    $term = $_POST['term'];
+
+                    $sql_g_d = "SELECT Subject FROM termmarks WHERE StudentID=$id";
+                  ///  $quer = mysqli_query($link, $sql_g_d);
+                    if (mysqli_query($link, $sql_g_d)) {
+                        $quer_row = mysqli_fetch_assoc($quer);
+                        $grade = $quer_row['grade'];
+                        $division = $quer_row['division'];
+
+
+                        $username = $_SESSION['username'];
+                        $query = "SELECT Role FROM users WHERE username = '$username'";
+                        $query_run = mysqli_query($link, $query);
+                        $query_row = mysqli_fetch_assoc($query_run);
+                        $role = $query_row['Role'];
+
+                        if ($role == 'teacher') {
+                            $sqli = "SELECT grade,division FROM staffuser WHERE username='$username'";
+                            $que = mysqli_query($link, $sqli);
+                            $que_row = mysqli_fetch_assoc($que);
+                            $user_grade = $que_row['grade'];
+                            $user_division = $que_row['division'];
+                            if ($grade != $user_grade OR $division != $user_division) {
+                                $message = "You can only update marks for Grade " . $user_grade . " " . $user_division . " students";
+                            }
+                        }
+                    } else {
+                        $error++;
+                        echo "The index number does not exist";
                     }
                 }
 

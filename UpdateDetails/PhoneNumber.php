@@ -47,7 +47,7 @@ if (logged_in()) {
 
             if(isset($_POST['phone']) && (isset($_POST['id'])))  {
                 if (!empty($_POST['phone']) && (!empty($_POST['id']))) {
-                    if ($_POST['phone'] != (string)(int)$_POST['phone'] AND (int)$_POST['phone'] <0) {
+                    if ($_POST['phone'] != (string)(int)$_POST['phone']||(int)$_POST['phone'] <0) {
                         $error++;
                         echo "Phone Number should be a positive number" . "<br>";
                     } else if (strlen($_POST['phone']) != 10) {
@@ -56,10 +56,10 @@ if (logged_in()) {
                     }
                     if (isset($_POST['id'])) {
                         if (!empty($_POST['id'])) {
-                            if ($_POST['id'] !== (string)(int)$_POST['id'] AND (int)$_POST['id'] > 0) {
+                            if ($_POST['id'] !== (string)(int)$_POST['id']|| (int)$_POST['id']<0) {
                                 $error++;
                                 echo "Student ID should be a positive number" . "<br>";
-                            } else if (strlen($_POST['id']) != 6  && (!is_numeric($_POST['id']))) {
+                            } else if (strlen($_POST['id']) != 6  || (!is_numeric($_POST['id']))) {
                                 $error++;
                                 echo "Student ID should be in 6 digits</br>";
                             }
@@ -68,6 +68,24 @@ if (logged_in()) {
                         }
 
                     }
+                    if ($error==0) {
+                        $id = (int)$_GET['id'];
+                        $year = $_GET['year'];
+                        $subject = $_GET['subject'];
+                        $marks = $_GET['marks'];
+                        $term = $_GET['term'];
+
+                        $sql_g_d="SELECT Telephone FROM student_details WHERE StudentID=$id";
+                    //    $quer=mysqli_query($link,$sql_g_d);
+                        if(mysqli_query($link,$sql_g_d)) {
+                            $error=0;
+
+                        }else{
+                            $error++;
+                            echo  'Index number does not exist';
+                        }
+                    }
+
                     if ($error == 0) {
                         $id = $_POST['id'];
                         $phone = $_POST['phone'];

@@ -86,9 +86,9 @@ if (logged_in()) {
 
                     if (isset($_GET['id'])) {
                         if (!empty($_GET['id'])) {
-                            if ($_GET['id'] !== (string)(int)$_GET['id'] AND (int)$_GET['id'] > 0) {
+                            if ($_GET['id'] != (string)(int)$_GET['id'] AND (int)$_GET['id'] < 0) {
                                 $message=$message."Student ID should be a positive number" . "<br>";
-                            } else if (strlen($_GET['id']) != 6  && (!is_numeric($_POST['id']))) {
+                            } else if (strlen($_GET['id']) != 6  || (!is_numeric($_POST['id']))) {
                                 $message=$message."Student ID should be in 6 digits</br>";
                             }
                         }
@@ -115,8 +115,8 @@ if (logged_in()) {
                         $term = $_GET['term'];
 
                         $sql_g_d="SELECT grade,division FROM student_details WHERE StudentID=$id";
-                        $quer=mysqli_query($link,$sql_g_d);
-                        if($quer->num_rows>0) {
+                        //$qmysqli_query($link,$sql_g_d);
+                        if(mysqli_query($link,$sql_g_d)) {
                             $quer_row = mysqli_fetch_assoc($quer);
                             $grade = $quer_row['grade'];
                             $division = $quer_row['division'];
