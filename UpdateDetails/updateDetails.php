@@ -1,7 +1,9 @@
 <?php
-session_start();
-?>
-<html>
+include "../Log_in_out/core.php";
+if (logged_in()) {
+    ?>
+
+    <html>
 <head>
 
     <title> Update Student Details</title>
@@ -56,3 +58,7 @@ session_start();
 </div>
 </body>
 </html>
+<?php
+} else {
+    include '../Log_in_out/loginform.php';
+}

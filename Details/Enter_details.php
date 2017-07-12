@@ -2,6 +2,7 @@
 include "../Log_in_out/core.php";
 if (logged_in()) {
 ?>
+
 <!DOCTYPE html>
 
 <html>
@@ -134,18 +135,28 @@ if (logged_in()) {
             <?php
             include '../Connect/Connect.php';
 
+
+
+            //    $enterYear= $date ->format('Y');
+
             if (isset($_POST['id']) && isset($_POST['FirstName']) && isset($_POST['LastName'])&& isset($_POST['Address'])&& isset($_POST['PhoneNumber'])&& isset($_POST['Email'])&& isset($_POST['FatherName'])&& isset($_POST['FatherJob'])&& isset($_POST['MotherJob'])&& isset($_POST['DateOfBirth'])&& isset($_POST['MotherName']) && isset($_POST['grade'])&& isset($_POST['division']) ){
                 if(!empty($_POST['id']) && !empty($_POST['FirstName']) && !empty($_POST['LastName'])&& !empty($_POST['Email'])&& !empty($_POST['Address'])&& !empty($_POST['PhoneNumber'])&& !empty($_POST['FatherName'])&& !empty($_POST['FatherJob'])&& !empty($_POST['MotherJob'])&& !empty($_POST['MotherName'])&& !empty($_POST['DateOfBirth'])&& !empty($_POST['grade'])&& !empty($_POST['division'])){
+                    $error=0;
+                    $today= date_create(date('Y-m-d'));
+                    $thisyear=$today->format('Y');
+
+                    $date = $_POST['DateOfBirth'];
+                    $enterYear= date('Y',$date);
                     if ($_POST['PhoneNumber'] != (string)(int)$_POST['PhoneNumber'] AND (int)$_POST['PhoneNumber'] < 0) {
                         $error++;
                         echo "Phone Number should be a positive number" . "<br>";
                     } else if (strlen($_POST['PhoneNumber']) != 10) {
                         $error++;
                         echo "phone Number should be in 10 digits</br>";
-                    } else if ($_POST['id'] !== (string)(int)$_POST['id'] AND (int)$_POST['id'] > 0) {
+                    } else if ($_POST['id'] != (string)(int)$_POST['id'] AND (int)$_POST['id'] < 0) {
                         $error++;
                         echo "Student ID should be a positive number" . "<br>";
-                    } else if (strlen($_POST['id']) != 6) {
+                    } else if (strlen($_POST['id']) != 6 && (!is_numeric($_POST['id']))) {
                         $error++;
                         echo "Student ID should be in 6 digits</br>";
                     } else if (!ctype_alpha($_POST['FirstName'])) {
@@ -166,7 +177,14 @@ if (logged_in()) {
                     } else if (!ctype_alpha($_POST['MotherJob'])) {
                         $error++;
                         echo "Mother's Job should contains only alphaphets" . "<br>";
-                    } else {
+                    } else if($thisyear-($enterYear)<5 &&($thisyear-($enterYear)>12)) {
+                        $error++;
+                        echo "Please enter correct Date of Birth"."<br>";
+                    }
+                    else{
+
+
+
                         $id = $_POST['id'];
                         $first = $_POST['FirstName'];
                         $last = $_POST['LastName'];
@@ -210,7 +228,9 @@ if (logged_in()) {
 </div>
 </body>
 </html>
+
     <?php
 } else {
     include '../Log_in_out/loginform.php';
 }
+

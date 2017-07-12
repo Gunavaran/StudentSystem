@@ -1,7 +1,9 @@
 <?php
-session_start();
-?>
-<!DOCTYPE html>
+include "../Log_in_out/core.php";
+if (logged_in()) {
+    ?>
+
+    <!DOCTYPE html>
 
 <html>
 <head>
@@ -54,7 +56,7 @@ session_start();
                             if ($_POST['id'] !== (string)(int)$_POST['id'] AND (int)$_POST['id'] > 0) {
                                 $error++;
                                 echo "Student ID should be a positive number" . "<br>";
-                            } else if (strlen($_POST['id']) != 6) {
+                            } else if (strlen($_POST['id']) != 6  && (!is_numeric($_POST['id']))) {
                                 $error++;
                                 echo "Student ID should be in 6 digits</br>";
                             }
@@ -94,3 +96,7 @@ session_start();
 </div>
 </body>
 </html>
+<?php
+} else {
+    include '../Log_in_out/loginform.php';
+}
