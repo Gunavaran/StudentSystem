@@ -136,26 +136,57 @@ if (logged_in()) {
 
             if (isset($_POST['id']) && isset($_POST['FirstName']) && isset($_POST['LastName'])&& isset($_POST['Address'])&& isset($_POST['PhoneNumber'])&& isset($_POST['Email'])&& isset($_POST['FatherName'])&& isset($_POST['FatherJob'])&& isset($_POST['MotherJob'])&& isset($_POST['DateOfBirth'])&& isset($_POST['MotherName']) && isset($_POST['grade'])&& isset($_POST['division']) ){
                 if(!empty($_POST['id']) && !empty($_POST['FirstName']) && !empty($_POST['LastName'])&& !empty($_POST['Email'])&& !empty($_POST['Address'])&& !empty($_POST['PhoneNumber'])&& !empty($_POST['FatherName'])&& !empty($_POST['FatherJob'])&& !empty($_POST['MotherJob'])&& !empty($_POST['MotherName'])&& !empty($_POST['DateOfBirth'])&& !empty($_POST['grade'])&& !empty($_POST['division'])){
+                    if ($_POST['PhoneNumber'] != (string)(int)$_POST['PhoneNumber'] AND (int)$_POST['PhoneNumber'] < 0) {
+                        $error++;
+                        echo "Phone Number should be a positive number" . "<br>";
+                    } else if (strlen($_POST['PhoneNumber']) != 10) {
+                        $error++;
+                        echo "phone Number should be in 10 digits</br>";
+                    } else if ($_POST['id'] !== (string)(int)$_POST['id'] AND (int)$_POST['id'] > 0) {
+                        $error++;
+                        echo "Student ID should be a positive number" . "<br>";
+                    } else if (strlen($_POST['id']) != 6) {
+                        $error++;
+                        echo "Student ID should be in 6 digits</br>";
+                    } else if (!ctype_alpha($_POST['FirstName'])) {
+                        $error++;
+                        echo "First Name should contains only alphaphets" . "<br>";
+                    } else if (!ctype_alpha($_POST['LastName'])) {
+                        $error++;
+                        echo "Last Name should contains only alphaphets" . "<br>";
+                    } else if (!ctype_alpha($_POST['FatherName'])) {
+                        $error++;
+                        echo "Father's Name should contains only alphaphets" . "<br>";
+                    } else if (!ctype_alpha($_POST['MotherName'])) {
+                        $error++;
+                        echo "Mother's Name should contains only alphaphets" . "<br>";
+                    } else if (!ctype_alpha($_POST['FatherJob'])) {
+                        $error++;
+                        echo "Father's Job should contains only alphaphets" . "<br>";
+                    } else if (!ctype_alpha($_POST['MotherJob'])) {
+                        $error++;
+                        echo "Mother's Job should contains only alphaphets" . "<br>";
+                    } else {
+                        $id = $_POST['id'];
+                        $first = $_POST['FirstName'];
+                        $last = $_POST['LastName'];
+                        $add = $_POST['Address'];
+                        $mail = $_POST['Email'];
+                        $phone = $_POST['PhoneNumber'];
+                        $fatherName = $_POST['FatherName'];
+                        $fatherJob = $_POST['FatherJob'];
+                        $motherName = $_POST['MotherName'];
+                        $motherJob = $_POST['MotherJob'];
+                        $dob = $_POST['DateOfBirth'];
+                        $grade = $_POST['grade'];
+                        $division = $_POST['division'];
 
-                    $id = $_POST['id'];
-                    $first = $_POST['FirstName'];
-                    $last = $_POST['LastName'];
-                    $add = $_POST['Address'];
-                    $mail = $_POST['Email'];
-                    $phone = $_POST['PhoneNumber'];
-                    $fatherName = $_POST['FatherName'];
-                    $fatherJob = $_POST['FatherJob'];
-                    $motherName = $_POST['MotherName'];
-                    $motherJob = $_POST['MotherJob'];
-                    $dob = $_POST['DateOfBirth'];
-                    $grade = $_POST['grade'];
-                    $division = $_POST['division'];
-
-                    $query = "INSERT INTO student_details (StudentID, FirstName, LastName, Address, Telephone, email, FatherName, FatherJob, MotherName, MotherJob, DOB, Grade, Division ) VALUES ('$id', '$first', '$last', '$add', '$phone','$mail','$fatherName','$fatherJob','$motherName','$motherJob','$dob','$grade','$division')";
-                    if($query_run = mysqli_query($link, $query)){
-                        echo 'Successfully Stored';
-                    }else{
-                        echo 'Failed!!!';
+                        $query = "INSERT INTO student_details (StudentID, FirstName, LastName, Address, Telephone, email, FatherName, FatherJob, MotherName, MotherJob, DOB, Grade, Division ) VALUES ('$id', '$first', '$last', '$add', '$phone','$mail','$fatherName','$fatherJob','$motherName','$motherJob','$dob','$grade','$division')";
+                        if ($query_run = mysqli_query($link, $query)) {
+                            echo 'Successfully Stored';
+                        } else {
+                            echo 'Failed!!!';
+                        }
                     }
                 } else {
                     echo 'None of the fields can take an empty value';
