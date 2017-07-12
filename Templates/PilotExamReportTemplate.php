@@ -59,7 +59,7 @@ session_start();
                 $query_marks_run = mysqli_query($link, $query_marks);
 
                 if (mysqli_num_rows($query_marks_run) == NULL){
-                    echo "No amrks has been found";
+                    echo "No marks has been found";
                 } else {
                     while ($query_row = mysqli_fetch_assoc($query_marks_run)) {
                         $serial = $query_row['SerialNo'];
@@ -75,8 +75,6 @@ session_start();
                     }
 
                 }
-
-
             }
             ?>
 

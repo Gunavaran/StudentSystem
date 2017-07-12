@@ -5,39 +5,9 @@
 
     <title> Character Certificate </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
-    <style>
-        input[type = text]{
-            width: 100%;
-            height: 30px;
-            display: inline-block;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        input[type=submit]{
-
-            padding: 14px 20px;
-            width: 100%;
-            background-color: #4CAF50;
-            border-radius: 2px;
-        }
-
-        form[name = fixedform]{
-            float: left;
-            width: 60%;
-            margin: 20px 10px 0px 200px;
-            padding: 10px;
-            border: 2px solid #E3E3E3;
-            border-radius: 5px;
-            font-family: "Adobe Gothic Std B";
-            background-color: darkgrey;
-        }
-
-        .heading{
-            margin-left: 200px;
-        }
-
-    </style>
+    <?php
+    include '../Styles/FormStyle.html';
+    ?>
 
 </head>
 <body>

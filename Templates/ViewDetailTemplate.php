@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 
 <html>
@@ -5,39 +8,9 @@
 
     <title> View Student Detail </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
-    <style>
-        input[type = text]{
-            width: 100%;
-            height: 30px;
-            display: inline-block;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        input[type=submit]{
-
-            padding: 14px 20px;
-            width: 100%;
-            background-color: #4CAF50;
-            border-radius: 2px;
-        }
-
-        form[name = fixedform]{
-            float: left;
-            width: 40%;
-            margin: 20px 10px 0px 300px;
-            padding: 10px;
-            border: 2px solid #E3E3E3;
-            border-radius: 5px;
-            font-family: "Adobe Gothic Std B";
-            background-color: darkgrey;
-        }
-
-        .heading{
-            margin-left: 180px;
-        }
-
-    </style>
+    <?php
+    include '../Styles/FormStyle.html';
+    ?>
 
 </head>
 <body>
@@ -57,7 +30,6 @@
     <div id="content_area">
         <?php
         include '../Connect/Connect.php';
-        session_start();
         $username = $_SESSION['username'];
         $query = "SELECT Role FROM users WHERE username = '$username'";
         $query_run = mysqli_query($link,$query);

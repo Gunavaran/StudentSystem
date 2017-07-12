@@ -53,6 +53,12 @@
         .heading{
             margin-left: 325px;
         }
+        nav[id=competition]{
+            background-color: mediumorchid;
+            height:60px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>

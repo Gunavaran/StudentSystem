@@ -39,12 +39,28 @@ session_start();
                     <li><a href="TermMarksTemplate.php"> Term Exam Marks </a> </li>
                 </ul>
             </nav>
-            <nav id="pilot_marks_navigation">
-                <ul id="nav">
-                    <li> <a href="PilotMarksTemplate.php">Pilot Exam Marks</a></li>
+            <?php
+            include "../Connect/Connect.php";
+            $username = $_SESSION['username'];
 
-                </ul>
-            </nav>
+            $query = "SELECT Grade FROM student_details WHERE StudentID = '$username'";
+            $query_run = mysqli_query($link,$query);
+            $query_row = mysqli_fetch_assoc($query_run);
+            $grade = $query_row['Grade'];
+
+            if ($grade ==5 ) {
+
+
+                ?>
+                <nav id="pilot_marks_navigation">
+                    <ul id="nav">
+                        <li><a href="PilotMarksTemplate.php">Pilot Exam Marks</a></li>
+
+                    </ul>
+                </nav>
+                <?php
+            }
+            ?>
 
         </div>
     </div>
