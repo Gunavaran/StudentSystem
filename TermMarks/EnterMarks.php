@@ -88,7 +88,7 @@ if (logged_in()) {
                         if (!empty($_GET['id'])) {
                             if ($_GET['id'] !== (string)(int)$_GET['id'] AND (int)$_GET['id'] > 0) {
                                 $message=$message."Student ID should be a positive number" . "<br>";
-                            } else if (strlen($_GET['id']) != 6) {
+                            } else if (strlen($_GET['id']) != 6  && (!is_numeric($_POST['id']))) {
                                 $message=$message."Student ID should be in 6 digits</br>";
                             }
                         }
@@ -96,10 +96,12 @@ if (logged_in()) {
 
                     if (isset($_GET['marks'])) {
                         if (!empty($_GET['marks'])) {
-                            if ($_GET['marks'] !== (string)(int)$_GET['marks'] AND (int)$_GET['marks'] > 0) {
+                            if ($_GET['marks'] !== (string)(int)$_GET['marks'] AND (int)$_GET['marks'] < 0) {
                                 $message=$message."Marks should be a positive number" . "<br>";
                             } elseif ((int)$_GET['marks'] > 100) {
                                 $message=$message."Marks should be less than or equal to 100";
+                            }else if (!is_numeric($_POST['marks'])){
+                                $message=$message."Marks should be in integer";
                             }
 
                         }
