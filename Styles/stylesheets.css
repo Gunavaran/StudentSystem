@@ -83,6 +83,7 @@ footer{
     border: 3px solid #E3E3E3;
     margin-top: 20px;
     text-shadow: 0.1em 0.1em #333;
+    border-radius: 10px;
 }
 
 #pilot_marks_navigation{
@@ -91,6 +92,7 @@ footer{
     border: 3px solid #E3E3E3;
     margin-top: 20px;
     text-shadow: 0.1em 0.1em #333;
+    border-radius: 10px;
 }
 
 #nav{

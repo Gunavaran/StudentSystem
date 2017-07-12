@@ -32,19 +32,31 @@ session_start();
         </ul>
     </nav>
 
-    <div id="content_area">
-        <div id="content_area">
-            <nav id="term_marks_navigation">
-                <ul id="nav">
-                    <li><a href="../Details/Enter_details.php"> Enter Details </a> </li>
-                </ul>
-            </nav>
-            <nav id="term_marks_navigation">
-                <ul id="nav">
-                    <li> <a href="../UpdateDetails/updateDetails.php">Update Details</a></li>
 
-                </ul>
-            </nav>
+        <div id="content_area">
+            <?php
+            include '../Connect/Connect.php';
+            $username = $_SESSION['username'];
+            $query = "SELECT Role FROM users WHERE username = '$username'";
+            $query_run = mysqli_query($link,$query);
+            $query_row = mysqli_fetch_assoc($query_run);
+            $role = $query_row['Role'];
+            if ($role != 'student') {
+                ?>
+                <nav id="term_marks_navigation">
+                    <ul id="nav">
+                        <li><a href="../Details/Enter_details.php"> Enter Details </a></li>
+                    </ul>
+                </nav>
+                <nav id="term_marks_navigation">
+                    <ul id="nav">
+                        <li><a href="../UpdateDetails/updateDetails.php">Update Details</a></li>
+
+                    </ul>
+                </nav>
+                <?php
+            }
+            ?>
             <nav id="term_marks_navigation">
                 <ul id="nav">
                     <li> <a href="ViewDetailTemplate.php">View Details</a></li>
@@ -59,7 +71,7 @@ session_start();
             </nav>
 
         </div>
-    </div>
+
     <?php
     include '../Styles/SidebarStyle.html';
     include '../Styles/FooterStyle.html';
