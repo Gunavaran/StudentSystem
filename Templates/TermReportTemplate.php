@@ -18,7 +18,7 @@ if (logged_in()) {
     <nav id="navigation">
         <ul id="nav">
             <li><a href="index.php"> Home </a> </li>
-            <li> <a href="#">Profile</a></li>
+            <li> <a href="ProfileTemplate.php">Profile</a></li>
             <li> <a href="MarksTemplate.php">Marks</a></li>
             <li> <a href="attendancetemplate.php">Attendance</a></li>
             <li> <a href="../Log_in_out/logout.php">Logout</a></li>
@@ -28,9 +28,18 @@ if (logged_in()) {
     <div id="content_area">
         <h2>Enter the following details to obtain Report</h2>
         <form action="../TermExam/termReport.php" method="get" name="fixedform">
-            IndexNo:<br>
-            <input type='text' name='indexno' >
-            <br>
+            <?php
+            include '../Connect/Connect.php';
+            $username='150196'; //$_SESSION['username'];
+            $query = "SELECT Role FROM users WHERE username = '$username'";
+            $query_run = mysqli_query($link,$query);
+            $query_row = mysqli_fetch_assoc($query_run);
+            $role = $query_row['Role'];
+            if ($role != 'student') {?>
+                IndexNo:<br>
+                <input type='text' name='indexno' >
+                <br>
+            <?php } ?>
             Year:<br>
             <input type='text' name='year' >
             <br>
