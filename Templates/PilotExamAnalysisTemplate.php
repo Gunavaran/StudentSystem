@@ -21,6 +21,14 @@ if (logged_in()) {
             border-radius: 4px;
             box-sizing: border-box;
         }
+
+        div[id = message]{
+            color: crimson;
+            margin-top: 10px;
+            padding: 14px 20px;
+            width: auto ;
+            border-radius: 2px;
+        }
     </style>
 
 </head>
@@ -58,11 +66,19 @@ if (logged_in()) {
                 </select><br><br>
                 <input type='submit' value='Submit'>
             </fieldset>
-        </form>
-        <?php
+
+            <?php
             include '../PilotExam/PilotAnalysis.php';
 
-        ?>
+            ?>
+            <div id="message">
+                <?php
+                echo $message
+                ?>
+            </div>
+
+        </form>
+
     </div>
 
     <?php

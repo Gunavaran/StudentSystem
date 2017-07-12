@@ -57,6 +57,12 @@ if (logged_in()) {
         .heading{
             margin-left: 300px;
         }
+        nav[id=competition]{
+            background-color: mediumorchid;
+            height:60px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
     </style>
 
 </head>

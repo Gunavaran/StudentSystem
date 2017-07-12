@@ -1,10 +1,15 @@
-<!DOCTYPE html>
+<?php
+include "../Log_in_out/core.php";
+if (logged_in()) {
+    ?>
+
+    <!DOCTYPE html>
 
 <html>
 <head>
 
     <title> Calendar </title>
-    <link rel="stylesheet" type = "text/css" href = "Styles/stylesheets.css"/>
+    <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
     <style>
 
         input[type=submit]{
@@ -71,11 +76,11 @@
 
     <nav id="navigation">
         <ul id="nav">
-            <li><a href="Templates/index.php"> Home </a> </li>
-            <li> <a href="Templates/ProfileTemplate.php">Profile</a></li>
-            <li> <a href="Templates/MarksTemplate.php">Marks</a></li>
-            <li> <a href="Templates/attendancetemplate.php">Attendance</a></li>
-            <li> <a href="Log_in_out/logout.php">Logout</a></li>
+            <li><a href="../Templates/index.php"> Home </a> </li>
+            <li> <a href="../Templates/ProfileTemplate.php">Profile</a></li>
+            <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
+            <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
+            <li> <a href="../Log_in_out/logout.php">Logout</a></li>
         </ul>
     </nav>
 
@@ -83,7 +88,7 @@
         <h2 class="heading">School Calendar</h2>
         <form action="CalendarYr.php" name="fixedform">
         <?php
-        require_once "./Connect/Connect.php";
+        require_once "../Connect/Connect.php";
         $message = '';
         if ($link || mysqli_select_db($link,$database)){
             //echo "Connection successful;";
@@ -124,10 +129,14 @@
     </div>
 
     <?php
-    include 'Styles/SidebarStyle.html';
-    include 'Styles/FooterStyle.html';
+    include '../Styles/SidebarStyle.html';
+    include '../Styles/FooterStyle.html';
     ?>
 
 </div>
 </body>
 </html>
+<?php
+} else {
+    include '../Log_in_out/loginform.php';
+}

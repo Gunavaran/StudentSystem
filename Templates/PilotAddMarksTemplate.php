@@ -31,7 +31,7 @@ if (logged_in()) {
     <div id="content_area">
         <?php
         require_once "../Connect/Connect.php";
-        session_start();
+
         $message='';
         $username = $_SESSION['username'];
         $query = "SELECT Role FROM users WHERE username = '$username'";

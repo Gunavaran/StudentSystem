@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        div {
-            background-color: lightblue;
-            width: 300px;
-            border: 25px solid dimgray;
-            padding: 25px;
-            margin: 25px;
-        }
-    </style>
-</head>
-<body>
 
 <div>
     <?php
@@ -65,5 +51,3 @@
     ?>
 </div>
 
-</body>
-</html>

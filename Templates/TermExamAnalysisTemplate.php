@@ -13,7 +13,15 @@ if (logged_in()) {
     <?php
     include '../Styles/FormStyle.html';
     ?>
-
+<style>
+    select{
+        width: 100%;
+        height: 30px;
+        display: inline-block;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+</style>
 </head>
 <body>
 <div id="wrapper">

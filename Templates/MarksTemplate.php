@@ -49,7 +49,12 @@ if (logged_in()) {
             $query_row = mysqli_fetch_assoc($query_run);
             $grade = $query_row['Grade'];
 
-            if ($grade ==5 ) {
+            $query = "SELECT Role FROM users WHERE username = '$username'";
+            $query_run = mysqli_query($link, $query);
+            $query_row = mysqli_fetch_assoc($query_run);
+            $role = $query_row['Role'];
+
+            if (($role == 'student' && $grade ==5) || $role != 'student') {
 
 
                 ?>

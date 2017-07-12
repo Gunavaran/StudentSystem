@@ -66,7 +66,7 @@ if (logged_in()) {
                 </nav>
                 <nav id="term_marks_navigation">
                     <ul id="nav">
-                        <li><a href="#"> Update Pilot Marks </a> </li>
+                        <li><a href="../PilotMarks/UpdatePilotMarks.php"> Update Pilot Marks </a> </li>
                     </ul>
                 </nav>
                 <?php }

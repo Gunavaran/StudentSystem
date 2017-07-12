@@ -13,6 +13,15 @@ if (logged_in()) {
     <?php
     include "../Styles/FormStyle.html";
     ?>
+    <style>
+        select{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
 
 </head>
 <body>
@@ -32,9 +41,9 @@ if (logged_in()) {
     <div id="content_area">
         <h2>Enter TermMarks To Be Altered</h2>
         <form action="updateTermMarks.php" method="post" name="fixedform">
-            ID: <br><br>
+            ID: <br>
             <input type="text" name="id"><br><br>
-            Subject:<br><br>
+            Subject:<br>
             <select name='subject'>
                 <option value = 'religion_hin'>Religion-Hindu</option>
                 <option value = 'religion_rc'>Religion-RC</option>
@@ -43,11 +52,11 @@ if (logged_in()) {
                 <option value = 'social'>Social</option>
                 <option value = 'english'>English</option>
             </select><br><br>
-            Marks:<br><br>
+            Marks:<br>
             <input type="text" name="marks"><br><br>
-            Year:<br><br>
+            Year:<br>
             <input type="text" name="year"><br><br>
-            Term:<br><br>
+            Term:<br>
             <select name='term'>
                 <option value = 1>I</option>
                 <option value = 2>II</option>

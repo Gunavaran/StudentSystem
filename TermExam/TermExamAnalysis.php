@@ -92,7 +92,7 @@ if (logged_in()) {
                                 $subject_all = [$subject];
                             }
 
-                            session_start();
+
                             $username = $_SESSION['username'];
                             $query = "SELECT Role FROM users WHERE username = '$username'";
                             $query_run = mysqli_query($link,$query);
@@ -115,9 +115,9 @@ if (logged_in()) {
                                 $head=0;
                                 foreach ($subject_all as $subject) {
                                     if ($division == 'all') {
-                                        $sql = "SELECT Marks FROM term_marks LEFT JOIN student_details ON term_marks.ID=student_details.StudentID WHERE term_marks.Year='$year' AND term_marks.Term=$term AND term_marks.Subject='$subject' AND student_details.Grade='$grade'";
+                                        $sql = "SELECT Marks FROM termmarks LEFT JOIN student_details ON termmarks.StudentID=student_details.StudentID WHERE termmarks.Year='$year' AND termmarks.Term=$term AND termmarks.Subject='$subject' AND student_details.Grade='$grade'";
                                     } else {
-                                        $sql = "SELECT Marks FROM term_marks LEFT JOIN student_details ON term_marks.ID=student_details.StudentID WHERE term_marks.Year='$year' AND term_marks.Term=$term AND term_marks.Subject='$subject' AND student_details.Grade='$grade' AND student_details.Division='$division'";
+                                        $sql = "SELECT Marks FROM termmarks LEFT JOIN student_details ON termmarks.StudentID=student_details.StudentID WHERE termmarks.Year='$year' AND termmarks.Term=$term AND termmarks.Subject='$subject' AND student_details.Grade='$grade' AND student_details.Division='$division'";
                                     }
                                     $result = mysqli_query($link, $sql);
                                     if ($result) {

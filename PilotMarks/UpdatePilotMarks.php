@@ -12,6 +12,15 @@ if (logged_in()) {
     <?php
     include '../Styles/FormStyle.html';
     ?>
+    <style>
+        select{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
 <div id="wrapper">
@@ -148,7 +157,7 @@ if (logged_in()) {
 
         <nav id="competition" style="margin-top: 0px; padding-top: 0px">
             <ul id="nav" style="margin-top: 0px">
-                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 20px"> <a href="../Calendar.php">School Calendar</a></li>
+                <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 20px"> <a href="../Calendar/Calendar.php">School Calendar</a></li>
             </ul>
         </nav>
 

@@ -15,6 +15,16 @@ if (logged_in()) {
     include "../Styles/FormStyle.html";
     ?>
 
+    <style>
+        select{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+
 </head>
 <body>
 <div id="wrapper">
@@ -35,16 +45,16 @@ if (logged_in()) {
 
 
 
-            Year:<br><br>
+            Year:<br>
             <input type="text" name="year"><br><br>
-            Term:<br><br>
+            Term:<br>
             <select name='term'>
                 <option value = 1>I</option>
                 <option value = 2>II</option>
                 <option value = 3>III</option>
             </select><br><br>
 
-            Subject:<br><br>
+            Subject:<br>
             <select name='subject'>
                 <option value = 'religion_hin'>Religion-Hindu</option>
                 <option value = 'religion_rc'>Religion-RC</option>
@@ -54,10 +64,10 @@ if (logged_in()) {
                 <option value = 'english'>English</option>
             </select><br><br>
 
-            ID: <br><br>
+            ID: <br>
             <input type="text" name="id"><br><br>
 
-            Marks:<br><br>
+            Marks:<br>
             <input type="text" name="marks"><br><br>
 
             <input type="submit" value="Submit">
@@ -109,7 +119,7 @@ if (logged_in()) {
                             $grade = $quer_row['grade'];
                             $division = $quer_row['division'];
 
-                            session_start();
+
                             $username = $_SESSION['username'];
                             $query = "SELECT Role FROM users WHERE username = '$username'";
                             $query_run = mysqli_query($link,$query);

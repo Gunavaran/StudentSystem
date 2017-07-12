@@ -45,7 +45,7 @@ session_start();
 
             if (isset($_POST['id'])&& isset($_POST['first'])) {
                 if (!empty($_POST['id'])&& !empty($_POST['first'])) {
-                    if ($_POST['id'] !== (string)(int)$_POST['id'] AND (int)$_POST['id'] > 0) {
+                    if ($_POST['id'] != (string)(int)$_POST['id'] AND (int)$_POST['id'] > 0) {
                         $error++;
                         echo "Student ID should be a positive number" . "<br>";
                     } else if (strlen($_POST['id']) != 6) {

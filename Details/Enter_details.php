@@ -133,7 +133,7 @@ if (logged_in()) {
 
             <?php
             include '../Connect/Connect.php';
-
+            $error=0;
             if (isset($_POST['id']) && isset($_POST['FirstName']) && isset($_POST['LastName'])&& isset($_POST['Address'])&& isset($_POST['PhoneNumber'])&& isset($_POST['Email'])&& isset($_POST['FatherName'])&& isset($_POST['FatherJob'])&& isset($_POST['MotherJob'])&& isset($_POST['DateOfBirth'])&& isset($_POST['MotherName']) && isset($_POST['grade'])&& isset($_POST['division']) ){
                 if(!empty($_POST['id']) && !empty($_POST['FirstName']) && !empty($_POST['LastName'])&& !empty($_POST['Email'])&& !empty($_POST['Address'])&& !empty($_POST['PhoneNumber'])&& !empty($_POST['FatherName'])&& !empty($_POST['FatherJob'])&& !empty($_POST['MotherJob'])&& !empty($_POST['MotherName'])&& !empty($_POST['DateOfBirth'])&& !empty($_POST['grade'])&& !empty($_POST['division'])){
                     if ($_POST['PhoneNumber'] != (string)(int)$_POST['PhoneNumber'] AND (int)$_POST['PhoneNumber'] < 0) {
@@ -185,7 +185,7 @@ if (logged_in()) {
                         if ($query_run = mysqli_query($link, $query)) {
                             echo 'Successfully Stored';
                         } else {
-                            echo 'Failed!!!';
+                            echo 'Data might already exist. Failed!!!';
                         }
                     }
                 } else {

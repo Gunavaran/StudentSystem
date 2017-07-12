@@ -31,7 +31,6 @@ if (logged_in()) {
     <div id="content_area">
         <?php
         include '../Connect/Connect.php';
-        session_start();
         $username = $_SESSION['username'];
         $query = "SELECT Role FROM users WHERE username = '$username'";
         $query_run = mysqli_query($link,$query);

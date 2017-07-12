@@ -37,7 +37,7 @@ if (logged_in()) {
     <div id="content_area">
         <?php
         include '../Connect/Connect.php';
-        session_start();
+
         $username = $_SESSION['username'];
         $query = "SELECT Role FROM users WHERE username = '$username'";
         $query_run = mysqli_query($link,$query);
@@ -50,13 +50,14 @@ if (logged_in()) {
                 <li><a href='../TermMarks/EnterMarks.php'>Enter Term Marks </a> </li>
             </ul>
         </nav>
+
+            <nav id="term_marks_navigation">
+                <ul id="nav">
+                    <li><a href='../TermMarks/updatetermmarks.php'>Update Term Marks </a> </li>
+                </ul>
+            </nav>
         <?php }?>
 
-        <nav id="term_marks_navigation">
-            <ul id="nav">
-                <li><a href='../TermMarks/updatetermmarks.php'>Update Term Marks </a> </li>
-            </ul>
-        </nav>
 
         <nav id="term_marks_navigation">
             <ul id="nav">
