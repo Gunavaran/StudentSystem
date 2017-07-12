@@ -1,6 +1,8 @@
 <?php
-session_start();
+include "../Log_in_out/core.php";
+if (logged_in()) {
 ?>
+
 <html>
 <head>
     <title> Get Term Exam Report</title>
@@ -50,3 +52,8 @@ session_start();
 </body>
 </html>
 
+
+    <?php
+} else {
+    include '../Log_in_out/loginform.php';
+}

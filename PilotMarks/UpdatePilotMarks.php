@@ -1,3 +1,7 @@
+<?php
+include "../Log_in_out/core.php";
+if (logged_in()) {
+?>
 <!DOCTYPE html>
 
 <html>
@@ -130,7 +134,6 @@
         </nav>
 
         <?php
-        session_start();
         $username = $_SESSION['username'];
 
         if ($username == 'principal'){
@@ -165,3 +168,7 @@
 </div>
 </body>
 </html>
+    <?php
+} else {
+    include '../Log_in_out/loginform.php';
+}

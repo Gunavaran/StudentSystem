@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+include "../Log_in_out/core.php";
+if (logged_in()) {
+    ?>
+
+    <!DOCTYPE html>
 
 <html>
 <head>
@@ -77,3 +82,8 @@
 </div>
 </body>
 </html>
+
+<?php
+} else {
+    include '../Log_in_out/loginform.php';
+}

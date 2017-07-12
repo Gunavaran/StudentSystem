@@ -1,3 +1,7 @@
+<?php
+include "../Log_in_out/core.php";
+if (logged_in()) {
+    ?>
 <!DOCTYPE html>
 
 <html>
@@ -85,8 +89,6 @@
             } else {
                 $message = "connection failed";
             }
-            include '../Connect/Connect.php';
-            session_start();
             $username = $_SESSION['username'];
             $query = "SELECT Role FROM users WHERE username = '$username'";
             $query_run = mysqli_query($link,$query);
@@ -186,3 +188,7 @@
 </div>
 </body>
 </html>
+<?php
+} else {
+    include '../Log_in_out/loginform.php';
+}

@@ -1,3 +1,8 @@
+<?php
+include "../Log_in_out/core.php";
+if (logged_in()) {
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -222,3 +227,7 @@
 </div>
 </body>
 </html>
+    <?php
+} else {
+    include '../Log_in_out/loginform.php';
+}

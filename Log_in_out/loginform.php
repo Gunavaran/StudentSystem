@@ -77,7 +77,7 @@
         <h1 style="margin-top: 150px"> <i>"Love and Service"</i> </h1>
 
     </div>
-    <form action="<?php echo $current_file?>" method="post" class="form">
+    <form action="../Templates/index.php" method="post" class="form">
         Username: <br>
         <input type="text" name="username"><br><br>
         Password:<br>
@@ -85,6 +85,7 @@
         <input type="submit" value="Login">
         <?php
         $message = '';
+        include "../Connect/Connect.php";
         if (isset($_POST['username']) && isset($_POST['password'])){
             $username1 = $_POST['username'];
             $password = $_POST['password'];

@@ -1,6 +1,9 @@
 <?php
-session_start();
+include "../Log_in_out/core.php";
+if (logged_in()) {
 ?>
+
+
 <!DOCTYPE html>
 
 <html>
@@ -85,3 +88,8 @@ session_start();
 </div>
 </body>
 </html>
+
+    <?php
+} else {
+    include '../Log_in_out/loginform.php';
+}

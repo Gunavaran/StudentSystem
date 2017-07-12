@@ -1,7 +1,10 @@
 <?php
-session_start();
-?>
-<html>
+include "../Log_in_out/core.php";
+if (logged_in()) {
+    ?>
+
+
+    <html>
 <head>
 
     <title> Pilot Exam </title>
@@ -51,11 +54,6 @@ session_start();
         ?>
             <nav id="term_marks_navigation">
                 <ul id="nav">
-                    <li><a href="#"> Update Pilot Marks </a> </li>
-                </ul>
-            </nav>
-            <nav id="term_marks_navigation">
-                <ul id="nav">
                     <li><a href="PilotExamReportTemplate.php"> Pilot Exam Report </a> </li>
                 </ul>
             </nav>
@@ -64,6 +62,11 @@ session_start();
                 <nav id="pilot_marks_navigation">
                     <ul id="nav">
                         <li><a href="PilotExamAnalysisTemplate.php">Pilot Exam Analysis</a></li>
+                    </ul>
+                </nav>
+                <nav id="term_marks_navigation">
+                    <ul id="nav">
+                        <li><a href="#"> Update Pilot Marks </a> </li>
                     </ul>
                 </nav>
                 <?php }
@@ -78,3 +81,8 @@ session_start();
 </div>
 </body>
 </html>
+
+<?php
+} else {
+    include '../Log_in_out/loginform.php';
+}

@@ -1,3 +1,7 @@
+<?php
+include "../Log_in_out/core.php";
+if (logged_in()) {
+    ?>
 <!DOCTYPE html>
 
 <html>
@@ -37,8 +41,6 @@
     <div id="content_area">
         <?php
         require_once '../Connect/Connect.php';
-
-        session_start();
         $year=$_SESSION['year'];
         $serial=$_SESSION['serial'];
         $id_array=$_SESSION['id_array'];
@@ -105,3 +107,7 @@
 </div>
 </body>
 </html>
+<?php
+} else {
+    include '../Log_in_out/loginform.php';
+}

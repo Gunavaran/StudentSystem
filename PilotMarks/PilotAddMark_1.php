@@ -1,3 +1,7 @@
+<?php
+include "../Log_in_out/core.php";
+if (logged_in()) {
+?>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/html">
@@ -43,7 +47,6 @@
         <?php
         include '../Connect/Connect.php';
         $message='';
-        session_start();
         echo '<fieldset style="background: darkgray">';
         if (isset($_GET['serial_no']) AND isset($_GET['year'])){
             if(!empty($_GET['serial_no']) AND !empty($_GET['year'])){
@@ -136,5 +139,9 @@
 </body>
 </html>
 
+    <?php
+} else {
+    include '../Log_in_out/loginform.php';
+}
 
 

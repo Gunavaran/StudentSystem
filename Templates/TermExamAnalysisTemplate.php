@@ -1,3 +1,8 @@
+<?php
+include "../Log_in_out/core.php";
+if (logged_in()) {
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -16,7 +21,7 @@
 
     <nav id="navigation">
         <ul id="nav">
-            <li><a href="../Templates/index.php"> Home </a> </li>
+            <li><a href="index.php"> Home </a> </li>
             <li> <a href="../Templates/ProfileTemplate.php">Profile</a></li>
             <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
             <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
@@ -80,4 +85,9 @@
 </div>
 </body>
 </html>
+
+    <?php
+} else {
+    include '../Log_in_out/loginform.php';
+}
 
