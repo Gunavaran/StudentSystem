@@ -9,7 +9,7 @@ require '../Log_in_out/core.php';
 if (logged_in()){
     require 'BasicTemplate.php';
     $user =  $_SESSION['username'];
-    include '../Notifications/notifyLowMarks';
+    include '../Notifications/notifyLowMarks.php';
     include '../Notifications/notifyPoorAttendance';
 
 } else {
