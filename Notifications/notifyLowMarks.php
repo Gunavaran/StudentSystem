@@ -1,5 +1,4 @@
-<?Php
-include "Connect/Connect.php";
+<?php
 $notiquery="SELECT * FROM notify_marks WHERE StudentID=$username1";
 $notiquery_run=mysqli_query($link,$notiquery);
 if (mysqli_num_rows($notiquery_run) != NULL) {

@@ -70,6 +70,12 @@ session_start();
                 </ul>
             </nav>
 
+            <nav id="term_marks_navigation">
+                <ul id="nav">
+                    <li><a href="../User/changePassword.php"> Change Password </a></li>
+                </ul>
+            </nav>
+
         </div>
 
     <?php

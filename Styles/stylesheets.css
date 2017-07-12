@@ -46,15 +46,6 @@ body p{
     background-color: #dedede;
 }
 
-#resultbar{
-    float: left;
-    width: 250px;
-    height: 400px;
-    margin: 20px 0px 0px 0px;
-    padding: 10px;
-    border: 2px solid #E3E3E3;
-}
-
 
 footer{
     background-color: #E3E3E3;
