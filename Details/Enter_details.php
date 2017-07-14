@@ -197,7 +197,8 @@ if (logged_in()) {
                         $division = $_POST['division'];
 
                         $query = "INSERT INTO student_details (StudentID, FirstName, LastName, Address, Telephone, email, FatherName, FatherJob, MotherName, MotherJob, DOB, Grade, Division ) VALUES ('$id', '$first', '$last', '$add', '$phone','$mail','$fatherName','$fatherJob','$motherName','$motherJob','$dob','$grade','$division')";
-                        if ($query_run = mysqli_query($link, $query)) {
+                        $query_users = "INSERT INTO users (username, password, Role) VALUES ('$id', md5('pass123'), 'student')";
+                        if ($query_run = mysqli_query($link, $query) && $query_users_run = mysqli_query($link, $query_users)){
                             echo 'Successfully Stored';
                         } else {
                             echo 'Failed!!!';

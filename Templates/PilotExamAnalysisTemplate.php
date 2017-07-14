@@ -8,7 +8,7 @@ if (logged_in()) {
 <html>
 <head>
 
-    <title> <?php echo $title; ?> </title>
+    <title> Pilot Exam Analysis </title>
 <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
     <?php
     include '../Styles/FormStyle.html';

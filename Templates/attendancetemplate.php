@@ -45,7 +45,7 @@ if (logged_in()) {
                     ?>
                     <nav id="term_marks_navigation">
                         <ul id="nav">
-                            <li><a href="../Attendance/enter_attendance.php"> Enter Attendance </a></li>
+                            <li><a href="EnterAttendanceTemplate.php"> Enter Attendance </a></li>
                         </ul>
                     </nav>
                     <nav id="pilot_marks_navigation">

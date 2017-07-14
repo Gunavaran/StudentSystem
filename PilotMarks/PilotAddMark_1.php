@@ -124,8 +124,6 @@ if (logged_in()) {
             echo $message;
             ?>
         </div>
-                    </fieldset>
-
     </form>
 
     </div>
