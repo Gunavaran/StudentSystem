@@ -40,7 +40,7 @@ if (logged_in()) {
         <form action="../TermExam/termReport.php" method="get" name="fixedform">
             <?php
             include '../Connect/Connect.php';
-            $username='150196'; //$_SESSION['username'];
+            $username=$_SESSION['username'];
             $query = "SELECT Role FROM users WHERE username = '$username'";
             $query_run = mysqli_query($link,$query);
             $query_row = mysqli_fetch_assoc($query_run);
