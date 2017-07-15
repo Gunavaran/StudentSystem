@@ -11,6 +11,13 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
+        input[type = password]{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
 
         input[type=submit]{
 
@@ -81,7 +88,7 @@
         Username: <br>
         <input type="text" name="username"><br><br>
         Password:<br>
-        <input type="text" name="password"><br><br>
+        <input type="password" name="password"><br><br>
         <input type="submit" value="Login">
         <?php
         $message = '';
