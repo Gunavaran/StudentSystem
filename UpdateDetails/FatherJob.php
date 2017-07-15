@@ -23,7 +23,7 @@ if (logged_in()) {
             <li><a href="../Templates/index.php"> Home </a> </li>
             <li> <a href="../Templates/ProfileTemplate.php">Profile</a></li>
             <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
-            <li> <a href="../Templates/TermMarksTemplate.php">TermMarks</a></li>
+            <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
             <li> <a href="../Log_in_out/logout.php">Logout</a></li>
         </ul>
     </nav>
