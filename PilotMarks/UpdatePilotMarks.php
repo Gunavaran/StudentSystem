@@ -7,7 +7,7 @@ if (logged_in()) {
 <html>
 <head>
 
-    <title>Update Pilot Marks</title>
+    <title>Update Pilot Exam Marks</title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
     <?php
     include '../Styles/FormStyle.html';
@@ -29,10 +29,10 @@ if (logged_in()) {
     <nav id="navigation">
         <ul id="nav">
             <li><a href="../Templates/index.php"> Home </a> </li>
-            <li> <a href="#">Profile</a></li>
-            <li> <a href="/Templates/MarksTemplate.php">Marks</a></li>
+            <li> <a href="../Templates/ProfileTemplate.php">Profile</a></li>
+            <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
             <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
-            <li> <a href="/Log_in_out/logout.php">Logout</a></li>
+            <li> <a href="../Log_in_out/logout.php">Logout</a></li>
         </ul>
     </nav>
 
@@ -80,7 +80,15 @@ if (logged_in()) {
                             $error++;
                             echo 'Invalid input for year';
                         }else{
-                            $year=(int)$_GET['year'];
+                            if($_GET['year']<1950){
+                                echo 'Year should be later than 1950';
+                                $error++;
+                            }else if($_GET['year']>2100){
+                                echo 'Year is beyond range';
+                                $error++;
+                            }else{
+                                $year=(int)$_GET['year'];
+                            }
                         }
                         if($_GET['marks'] !== (string)(int) $_GET['marks']) {
                             $error++;
@@ -112,21 +120,21 @@ if (logged_in()) {
                             if(($staff_grade != 'all' && $grade != $staff_grade) || ($staff_division != 'all' && $division != $staff_division)){
                                 echo 'You are restricted to access the requested details...!';
                             }else {
-                                $query = "SELECT * FROM pilot_marks WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
+                                $query = "SELECT * FROM pilot_marks WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNo ='$serial'";
                                 $query_run = mysqli_query($link, $query);
                                 if (mysqli_num_rows($query_run) == NULL) {
                                     echo "No such record is found";
                                 } else {
                                     $part = $_GET['part'];
                                     if ($part == 'part1') {
-                                        $query2 = "UPDATE pilot_marks SET Part1 = '$marks' WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
+                                        $query2 = "UPDATE pilot_marks SET Part1 = '$marks' WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNo ='$serial'";
                                         if ($query2_run = mysqli_query($link, $query2)) {
                                             echo 'Update Successful';
                                         } else {
                                             echo 'Update Failed';
                                         }
                                     } elseif ($part == 'part2') {
-                                        $query2 = "UPDATE pilot_marks SET Part2 = '$marks' WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNumber ='$serial'";
+                                        $query2 = "UPDATE pilot_marks SET Part2 = '$marks' WHERE StudentID = '$indexnum' AND  Year = '$year' AND SerialNo ='$serial'";
                                         if ($query2_run = mysqli_query($link, $query2)) {
                                             echo 'Update Successful';
                                         } else {
