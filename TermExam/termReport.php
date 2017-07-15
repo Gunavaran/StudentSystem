@@ -72,9 +72,20 @@
                 $role = $query_users_row['Role'];
                 if($role=='student'){
                     $indexno=$username1;
+                    if(empty($_GET['year'])){
+                        echo 'Please enter year';
+                        $error++;
+                    }else {
+                        if ($_GET['year'] !== (string)(int)$_GET['year'] OR strlen($_GET['year']) != 4) {
+                            $error++;
+                            echo 'Invalid input for year';
+                        } else {
+                            $year = (int)$_GET['year'];
+                        }
+                    }
                 }else{
-                    if(empty($_GET['indexno'])||(!isset($_GET['indexno']))) {
-                        echo 'Please enter the Index Number';
+                    if(empty($_GET['indexno'])||(!isset($_GET['indexno']))||empty($_GET['year'])) {
+                        echo 'Please fill all the fields';
                         $error++;
                     }else {
                         if ($_GET['indexno'] !== (string)(int)$_GET['indexno'] OR strlen($_GET['indexno']) != 6) {
@@ -82,30 +93,29 @@
                             echo 'Invalid format of Student ID' . '<br>';
                         } else {
                             $indexno = (int)$_GET['indexno'];
+                            if ($_GET['year'] !== (string)(int)$_GET['year'] OR strlen($_GET['year']) != 4){
+                                $error++;
+                                echo 'Invalid input for year';
+                            } else {
+                                $year = (int)$_GET['year'];
+                            }
                         }
                     }
                 }
 
-                if(empty($_GET['year'])){
-                    echo 'Please enter year';
-                    $error++;
-                }else {
-                    if ($_GET['year'] !== (string)(int)$_GET['year'] OR strlen($_GET['year']) != 4) {
-                        $error++;
-                        echo 'Invalid input for year';
-                    } else {
-                        $year = (int)$_GET['year'];
-                    }
-                }
+
                 if($error==0) {
                     $query = "SELECT * FROM termMarks WHERE StudentID ='$indexno' AND Year='$year' AND Term='$term'";
                     $query_details = "SELECT * FROM student_details where StudentID = '$indexno'";
                     $query_run = mysqli_query($link, $query);
                     $query_run_detail = mysqli_query($link, $query_details);
 
-                    if (mysqli_num_rows($query_run) == NULL) {
-                        echo 'Marks of ' . $indexno . ' for the Term ' . $term . ' of ' . $year . ' are not available.';
-                    } else {
+                    if(mysqli_num_rows($query_run_detail) == NULL) {
+                        echo 'No records found for the given Index number-' . $indexno;
+                    }else{
+                        if (mysqli_num_rows($query_run) == NULL) {
+                            echo 'Marks of ' . $indexno . ' for the Term ' . $term . ' of ' . $year . ' are not available.';
+                        } else {
 
                             $query_row_detail = mysqli_fetch_assoc($query_run_detail);
                             $id = $query_row_detail['StudentID'];
@@ -114,28 +124,37 @@
                             $grade = $query_row_detail['Grade'];
                             $division = $query_row_detail['Division'];
 
-                        $query_user = "SELECT grade , division FROM staffuser WHERE username = '$username1'";
-                        $query_user_run = mysqli_query($link, $query_user);
-                        $query_user_row = mysqli_fetch_assoc($query_user_run);
-                        $staff_grade = $query_user_row['grade'];
-                        $staff_division = $query_user_row['division'];
+                            $query_user = "SELECT grade , division FROM staffuser WHERE username = '$username1'";
+                            $query_user_run = mysqli_query($link, $query_user);
+                            $query_user_row = mysqli_fetch_assoc($query_user_run);
+                            $staff_grade = $query_user_row['grade'];
+                            $staff_division = $query_user_row['division'];
 
-                        if(($role=='student') || (($staff_grade == 'all' || $grade == $staff_grade) && ($staff_division == 'all' || $division == $staff_division))) {
-                            echo 'Student ID: ' . $id . '<br/>' . 'First Name: ' . $firstname . '<br/>' . 'Last Name: ' . $lastname . '<br/>' . 'Grade: ' . $grade . '<br/>' . 'Division: ' . $division . '<br/>';
-                            $total = 0;
-                            $subcount = 0;
-                            while ($query_row = mysqli_fetch_assoc($query_run)) {
-                                $subject = $query_row['Subject'];
-                                $marks = $query_row['Marks'];
-                                $total += $marks;
-                                $subcount += 1;
-                                echo $subject . ': ' . $marks . '<br/>';
+                            if (($role == 'student') || (($staff_grade == 'all' || $grade == $staff_grade) && ($staff_division == 'all' || $division == $staff_division))) {
+                                ?>
+                                <div id='heading'>
+                                    <?php
+                                    echo "Term Exam Report of " . $indexno . ' for Term-' . $term . ' ' . $year . '</br>';
+                                    echo '<br>';
+                                    ?>
+                                </div>
+                                <?php
+                                echo 'Student ID: ' . $id . '<br/>' . 'First Name: ' . $firstname . '<br/>' . 'Last Name: ' . $lastname . '<br/>' . 'Grade: ' . $grade . '<br/>' . 'Division: ' . $division . '<br/>';
+                                $total = 0;
+                                $subcount = 0;
+                                while ($query_row = mysqli_fetch_assoc($query_run)) {
+                                    $subject = $query_row['Subject'];
+                                    $marks = $query_row['Marks'];
+                                    $total += $marks;
+                                    $subcount += 1;
+                                    echo $subject . ': ' . $marks . '<br/>';
+                                }
+                                $avg = $total / $subcount;
+                                echo '<br/>Total = ' . $total . '<br/>Average = ' . $avg . '<br/>';
+                            } else {
+                                echo "You are restricted to access the requested data";
+
                             }
-                            $avg = $total / $subcount;
-                            echo '<br/>Total = ' . $total . '<br/>Average = ' . $avg . '<br/>';
-                        }else{
-                            echo "You are restricted to access the requested data";
-
                         }
                     }
                 }
