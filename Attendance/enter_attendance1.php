@@ -9,12 +9,25 @@ if (logged_in()) {
 
     <title> </title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
+    <?php
+    include "../Styles/FormStyle.html";
+    ?>
     <style>
         nav[id=competition]{
             background-color: mediumorchid;
             height:60px;
             border-radius: 5px;
             margin-top: 10px;
+        }
+        form[name = fixedform]{
+            float: left;
+            width: 80%;
+            margin: 20px 10px 0px 100px;
+            padding: 10px;
+            border: 2px solid #E3E3E3;
+            border-radius: 5px;
+            font-family: "Adobe Gothic Std B";
+            background-color: darkgrey;
         }
 
     </style>
@@ -57,10 +70,10 @@ if (logged_in()) {
                         if ($message=='') {
                             $s = "INSERT INTO attendance (StudentID, Date, Attendance) VALUES ('$id_array[$i]','$date','$attendance')";
                             if (mysqli_query($link, $s)) {
-                                $message_update="- Attedance updated for ".$id_array[$i];
+                                $message_update="- Attedance entered for ".$id_array[$i]." on ".$_SESSION['date'];
 
                             } else {
-                                $message="- Submit failed... Attendance already entered for ".$id_array[$i];
+                                $message="- Submit failed... Attendance already entered for ".$id_array[$i]." on ".$_SESSION['date'];
                             }
                         }
                     } else {
@@ -68,7 +81,7 @@ if (logged_in()) {
                     }
                 }
                 ?>
-                <div id="message_updade">
+                <div id="message_update">
                     <?php
                     if ($message_update!='') {echo $message_update;} ?>
                 </div>
@@ -78,7 +91,12 @@ if (logged_in()) {
                 </div>
                 <?php
             }?>
+
+
+            <input type="submit" value="OK" style="color: #ffffff">
+
         </form>
+
 
     </div>
 

@@ -13,6 +13,16 @@ if (logged_in()) {
     <?php
     include '../Styles/FormStyle.html';
     ?>
+    <style>
+        select{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+
 
 </head>
 <body>
@@ -29,59 +39,55 @@ if (logged_in()) {
         </ul>
     </nav>
 
-    <div id="content_area">
-        <?php
-            include "../Connect/Connect.php";
-            $username = $_SESSION['username'];
-
-
-            $query = "SELECT Role FROM users WHERE username = '$username'";
-            $query_run = mysqli_query($link,$query);
-            $query_row = mysqli_fetch_assoc($query_run);
-            $role = $query_row['Role'];
-            if ($role != 'student'){
-
+    <?php
+    if ($_POST['div/grad'] == 'individual') {
+        $_SESSION['option'] = 'individual';
         ?>
-        <form action="PilotExamReportTemplate.php" method="post" name="fixedform">
+
+        <div id="content_area">
+
+            <form action="PilotExamReportTemplate2.php" method="post" name="fixedform">
+                <fieldset>
+                    <legend>Choose Index Number</legend>
+                    Student ID:<br>
+                    <input type='text' name='indexno'>
+                    <br><br>
+                    <input type='submit' value='Submit'>
+                </fieldset>
+
+            </form>
+
+        </div>
+        <?php
+    } else if ($_POST['div/grad'] == 'division') {
+    $_SESSION['option'] = 'division';
+    ?>
+    <div id="content_area">
+        <form action="PilotExamReportTemplate2.php" method="post" name="fixedform">
             <fieldset>
-                <legend>Choose Index Number</legend>
-                Student ID:<br>
-                <input type='text' name='indexno'>
-                <br><br>
+                <legend>Choose Grade and Division</legend>
+                Division: <br>
+                <select name = 'division'>
+                    <option value = 'A'>A</option>
+                    <option value = 'B'>B</option>
+                    <option value = 'C'>C</option>
+                    <option value = 'D'>D</option>
+                    <option value = 'E'>E</option>
+                    <option value = 'F'>F</option>
+                </select><br><br>
                 <input type='submit' value='Submit'>
             </fieldset>
 
             <?php
-            include '../PilotExam/PilotReport.php';
-            } else {
-                include "../Connect/Connect.php";
-                $username = $_SESSION['username'];
-                $query_marks = "SELECT * FROM pilot_marks WHERE StudentID ='$username' ";
-                $query_marks_run = mysqli_query($link, $query_marks);
 
-                if (mysqli_num_rows($query_marks_run) == NULL){
-                    echo "No marks has been found";
-                } else {
-                    while ($query_row = mysqli_fetch_assoc($query_marks_run)) {
-                        $serial = $query_row['SerialNo'];
-                        $part1 = $query_row['Part1'];
-                        $part2 = $query_row['Part2'];
-                        echo 'Serial ' . $serial . ':<br/>';
-                        echo 'Part1: ' . $part1 . '   ';
-                        echo '&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPart2: ' . $part2 . '   ';
-                        echo '&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTotal: ';
-                        echo ((int)$part1 + (int)$part2) / 2;
-                        echo '<br/>';
 
-                    }
-
-                }
             }
-            ?>
+                ?>
 
-        </form>
+            </form>
 
-    </div>
+        </div>
+
 
     <?php
     include '../Styles/SidebarStyle.html';

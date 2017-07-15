@@ -38,7 +38,7 @@ if (logged_in()) {
         </nav>
 
         <div id="content_area">
-            <h2 class="heading">Enter Year and Serial No. to enter pilot marks</h2>
+            <h2 class="heading">Enter Date, Grade and Division</h2>
             <form action="../Attendance/enter_attendance0.php" method="post" name="fixedform">
                 <fieldset>
                     Date: <br>
@@ -75,7 +75,7 @@ if (logged_in()) {
     </div>
     </body>
     </html>
-    <?php
+   <?php
 } else {
     include '../Log_in_out/loginform.php';
 }

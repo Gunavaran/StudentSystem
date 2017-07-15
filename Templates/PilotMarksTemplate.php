@@ -54,7 +54,7 @@ if (logged_in()) {
         ?>
             <nav id="term_marks_navigation">
                 <ul id="nav">
-                    <li><a href="PilotExamReportTemplate.php"> Pilot Exam Report </a> </li>
+                    <li><a href="PilotExamReportTemplate0.php"> Pilot Exam Report </a> </li>
                 </ul>
             </nav>
 

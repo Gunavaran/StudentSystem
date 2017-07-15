@@ -7,7 +7,7 @@ if (logged_in()) {
     <html>
     <head>
 
-        <title> Enter Attendance </title>
+        <title>Enter Attendance</title>
         <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
         <?php
         include '../Styles/FormStyle.html';
@@ -17,34 +17,28 @@ if (logged_in()) {
                 padding: 8px;
                 background-color: darkgrey;
             }
-            div[id = message]{
-                color: crimson;
-                margin-top: 10px;
-                padding: 14px 20px;
-                width: auto ;
-                border-radius: 2px;
-                background-color: #E3E3E3;
-                font-family: "Adobe Gothic Std B";
-            }
-        </style>
-    </head>
 
+        </style>
+
+    </head>
     <body>
     <div id="wrapper">
         <div id="banner"></div>
 
         <nav id="navigation">
             <ul id="nav">
-                <li><a href="../Templates/index.php"> Home </a> </li>
+                <li><a href="index.php"> Home </a> </li>
                 <li> <a href="../Templates/ProfileTemplate.php">Profile</a></li>
                 <li> <a href="../Templates/MarksTemplate.php">Marks</a></li>
                 <li> <a href="../Templates/attendancetemplate.php">Attendance</a></li>
                 <li> <a href="../Log_in_out/logout.php">Logout</a></li>
             </ul>
         </nav>
+
         <div id="content_area">
             <?php
             $message = '';
+            echo '<fieldset style="background: darkgray">';
             include "../Connect/Connect.php";
             if (isset($_POST['date']) && isset($_POST['grade']) && isset($_POST['division'])){
                 if (!empty($_POST['date']) && !empty($_POST['grade']) && !empty($_POST['division'])){
@@ -75,14 +69,23 @@ if (logged_in()) {
                         } else if ($division != $division_teacher){
                             $message .= "You do not have access to this division";
                         }
+                    } else if ($role == 'sectionalhead'){
+                        $query = "SELECT grade FROM staffuser WHERE username = '$username'";
+                        $query_run = mysqli_query($link,$query);
+                        $query_row = mysqli_fetch_assoc($query_run);
+                        $grade_sectionalhead = $query_row['grade'];
+
+                        if ($grade != $grade_sectionalhead){
+                            $message .= "You do not have access to this grade";
+                        }
                     }
 
                     if ($date_diff->format("%R%a")<0) {
                         $message .= 'Date cannot be in the future. Submit Failed!!!';
                     }
+                    $sql = "SELECT StudentID FROM student_details WHERE Grade = '$grade' AND Division = '$division'";
 
                     if ($message == ''){
-                        $sql = "SELECT StudentID FROM student_details WHERE Grade = '$grade' AND Division = '$division'";
                         $id_array = array();
                         $sql_run = mysqli_query($link, $sql);
                         if ($sql_run->num_rows > 0){
@@ -109,8 +112,10 @@ if (logged_in()) {
                                     <?php
                                     } ?>
 
+
                             </table><br><br>
                             <input type="submit" value="Submit">
+                            </form>
 
                             <?php
 
@@ -119,7 +124,6 @@ if (logged_in()) {
                         }
 
                     }
-
 
                 } else{
                     $message .= "Fields cannot take empty values";
@@ -134,10 +138,8 @@ if (logged_in()) {
                 ?>
             </div>
 
+
         </div>
-
-
-
 
         <?php
         include '../Styles/SidebarStyle.html';
@@ -147,10 +149,7 @@ if (logged_in()) {
     </div>
     </body>
     </html>
-
     <?php
 } else {
     include '../Log_in_out/loginform.php';
 }
-
-

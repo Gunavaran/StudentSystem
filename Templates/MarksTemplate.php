@@ -55,16 +55,22 @@ if (logged_in()) {
             $role = $query_row['Role'];
 
             if (($role == 'student' && $grade ==5) || $role != 'student') {
+                $query = "SELECT grade FROM staffuser WHERE username = '$username'";
+                $query_run = mysqli_query($link, $query);
+                $query_row = mysqli_fetch_assoc($query_run);
+                $grade = $query_row['grade'];
+                if (($role == 'teacher' && $grade ==5) || ($role == 'sectionalhead' && $grade == 5) || $role == 'viceprincipal' || $role =='principal') {
 
 
-                ?>
-                <nav id="pilot_marks_navigation">
-                    <ul id="nav">
-                        <li><a href="PilotMarksTemplate.php">Pilot Exam Marks</a></li>
+                    ?>
+                    <nav id="pilot_marks_navigation">
+                        <ul id="nav">
+                            <li><a href="PilotMarksTemplate.php">Pilot Exam Marks</a></li>
 
-                    </ul>
-                </nav>
-                <?php
+                        </ul>
+                    </nav>
+                    <?php
+                }
             }
             ?>
 
