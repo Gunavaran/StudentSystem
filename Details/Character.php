@@ -119,7 +119,7 @@ if (logged_in()) {
                     if (mysqli_num_rows($result) > 0) {
                         $row = mysqli_fetch_assoc($result);
                         extract($row);
-                        if($role=='sectionalHead' OR $role=='teacher'){
+                        if($role=='sectionalhead' OR $role=='teacher'){
                             $sqli="SELECT grade,division FROM staffuser WHERE username='$username'";
                             $que=mysqli_query($link,$sqli);
                             $que_row=mysqli_fetch_assoc($que);

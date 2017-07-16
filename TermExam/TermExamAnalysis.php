@@ -157,7 +157,7 @@ if (logged_in()) {
                                                     $count10++;
                                                 }
                                             }
-                                            $pass = ($count4 + $count5 + $count6 + $count7 + $count8 + $count9 + $count10) / mysqli_num_rows($result) * 100;
+                                            $pass = ($count5 + $count6 + $count7 + $count8 + $count9 + $count10) / mysqli_num_rows($result) * 100;
 
                                             if($head==0){
                                                 ?>
@@ -193,12 +193,12 @@ if (logged_in()) {
                                                 <td><?php echo $count8; ?></td>
                                                 <td><?php echo $count9; ?></td>
                                                 <td><?php echo $count10; ?></td>
-                                                <td><?php echo $pass . '%'; ?></td>
+                                                <td><?php echo round($pass,2) . '%'; ?></td>
 
                                             </tr>
                                             <?php
                                         } else {
-                                            $message = $message . "No marks entered for " . $subject . '<br><br>';
+                                            $message = $message . "No marks entered for grade " .$grade." ". $subject ." subject". '<br><br>';
                                         }
                                     }
                                 }
