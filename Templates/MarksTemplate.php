@@ -59,7 +59,7 @@ if (logged_in()) {
                 $query_run = mysqli_query($link, $query);
                 $query_row = mysqli_fetch_assoc($query_run);
                 $grade = $query_row['grade'];
-                if (($role == 'teacher' && $grade ==5) || ($role == 'sectionalhead' && $grade == 5) || $role == 'viceprincipal' || $role =='principal') {
+                if (($role == 'student') || ($role == 'teacher' && $grade ==5) || ($role == 'sectionalhead' && $grade == 5) || $role == 'viceprincipal' || $role =='principal') {
 
 
                     ?>

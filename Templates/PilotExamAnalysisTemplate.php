@@ -47,7 +47,7 @@ if (logged_in()) {
     </nav>
 
     <div id="content_area">
-        <form action="PilotExamAnalysisTemplate.php" method="post" name = "fixedform">
+        <form action="PilotExamAnalysisTemplate2.php" method="post" name = "fixedform">
 
             <fieldset>
                 Year: <br>
@@ -66,16 +66,6 @@ if (logged_in()) {
                 </select><br><br>
                 <input type='submit' value='Submit'>
             </fieldset>
-
-            <?php
-            include '../PilotExam/PilotAnalysis.php';
-
-            ?>
-            <div id="message">
-                <?php
-                echo $message
-                ?>
-            </div>
 
         </form>
 

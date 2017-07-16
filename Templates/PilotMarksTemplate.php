@@ -42,7 +42,7 @@ if (logged_in()) {
         $query_run = mysqli_query($link,$query);
         $query_row = mysqli_fetch_assoc($query_run);
         $role = $query_row['Role'];
-        if ($role == 'principal' OR $role=='teacher') {
+        if ($role != 'student') {
             ?>
             <nav id="pilot_marks_navigation">
                 <ul id="nav">

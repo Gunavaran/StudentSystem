@@ -1,14 +1,7 @@
 <?php
-
-$title = 'Home';
-$content = '';
-
-include '../Connect/Connect.php';
-require '../Log_in_out/core.php';
-
-
-if (logged_in()){
-    ?>
+include "../Log_in_out/core.php";
+if (logged_in()) {
+?>
 <!DOCTYPE html>
 
 <html>
@@ -23,16 +16,29 @@ if (logged_in()){
             border-radius: 5px;
             margin-top: 10px;
         }
-
         div [id = resultbar]{
             float: left;
-            width: 100%;
-            margin: 10px 0px 0px 10px;
+            width: 40%;
+            margin: 20px 10px 0px 300px;
             padding: 10px;
             border: 2px solid #E3E3E3;
             border-radius: 5px;
             font-family: "Adobe Gothic Std B";
-            background-color: lightskyblue;
+            background-color: #E3E3E3;
+        }
+        nav[id=ok]{
+            padding: 14px 20px;
+            width: auto;
+            background-color: #4CAF50;
+            border-radius: 2px;
+            height:50px;
+            text-align: left;
+
+        }
+
+        div[id=heading]{
+            color: darkblue;
+            font-size: x-large;
         }
 
     </style>
@@ -52,14 +58,16 @@ if (logged_in()){
     </nav>
 
     <div id="content_area">
-        <div id = "resultbar">
-            <?php
-            include "../EventNotify/Event.php";
-            include "../Notifications/notifyPoorAttendance.php";
-            include "../Notifications/notifyLowMarks.php";
-            ?>
-        </div>
-
+      <div id = "resultbar">
+          <?php
+          include '../PilotExam/PilotAnalysis.php';
+          ?>
+          <nav id="ok" style="margin-top: 0px; padding-top: 0px">
+              <ul id="nav" style="margin-top: 0px">
+                  <li id = 'compLine' style="font-size: 20px; margin-top: 15px; margin-left: 70px"> <a href="PilotExamAnalysisTemplate.php"> OK </a></li>
+              </ul>
+          </nav>
+      </div>
 
     </div>
 
@@ -71,11 +79,8 @@ if (logged_in()){
 </div>
 </body>
 </html>
-<?php
 
-$user =  $_SESSION['username'];
-
+    <?php
 } else {
     include '../Log_in_out/loginform.php';
 }
-

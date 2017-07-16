@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/StudentSystem.iml" filepath="$PROJECT_DIR$/.idea/StudentSystem.iml" />
-      <module fileurl="file://C:\xampp\htdocs\StudentSystem\.idea\StudentSystem.iml" filepath="C:\xampp\htdocs\StudentSystem\.idea\StudentSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/BoscoStudentSystem.iml" filepath="$PROJECT_DIR$/.idea/BoscoStudentSystem.iml" />
+      <module fileurl="file://C:\xampp\htdocs\BoscoStudentSystem\.idea\StudentSystem.iml" filepath="C:\xampp\htdocs\BoscoStudentSystem\.idea\StudentSystem.iml" />
     </modules>
   </component>
 </project>
