@@ -36,12 +36,9 @@ if (logged_in()) {
     <div id="content_area">
         <h2>Enter Grade and Term to view the Competition details</h2>
         <form action="../CompDetail/compDetail.php" method="GET" name="fixedform">
-            <!--Year: <br><input type="number" name="year"><br>
-            Term: <br><input type="number" name="term"><br>-->
             <br>
             Grade:
             <select name="grade">
-                <!--<option value="NULL">----</option>-->
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
