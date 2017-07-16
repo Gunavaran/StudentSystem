@@ -20,7 +20,7 @@
 
 
 
-    $query = "SELECT * FROM event WHERE date='$date1'";
+    $query = "SELECT * FROM calendar WHERE Date='$date1'";
     $result = mysqli_query($link, $query);
     if (mysqli_num_rows($result) != NULL) {
         while ($row = mysqli_fetch_assoc($result)) {
@@ -29,7 +29,7 @@
         }
     }
 
-    $query = "SELECT * FROM event WHERE date='$date2'";
+    $query = "SELECT * FROM calendar WHERE Date='$date2'";
     $result = mysqli_query($link, $query);
     if (mysqli_num_rows($result) != NULL) {
         while ($row = mysqli_fetch_assoc($result)) {
@@ -38,7 +38,7 @@
         }
     }
 
-    $query = "SELECT * FROM event WHERE date='$today'";
+    $query = "SELECT * FROM calendar WHERE date='$today'";
     $result = mysqli_query($link, $query);
     if (mysqli_num_rows($result) != NULL) {
         while ($row = mysqli_fetch_assoc($result)) {

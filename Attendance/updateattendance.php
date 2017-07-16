@@ -31,10 +31,6 @@ if (logged_in()) {
         <form action="updateattendance.php" method="post" name="fixedform">
             Date: <br>
             <input type="date" name="date" value="<?php if (isset($_POST['date'])){echo $_POST['date'];} ?>"><br><br>
-            Grade:<br>
-            <input type="text" name="grade" value="<?php if (isset($_POST['grade'])){echo $_POST['grade'];} ?>"><br><br>
-            Division:<br>
-            <input type="text" name="division" value="<?php if (isset($_POST['division'])){echo $_POST['division'];} ?>"><br><br>
             StudentID:<br>
             <input type="text" name="id"><br><br>
             <input type="submit" value="Submit">
@@ -42,54 +38,17 @@ if (logged_in()) {
             <?php
             include '../Connect/Connect.php';
             $message ='';
-            if (isset($_POST['date']) && isset($_POST['grade']) && isset($_POST['division']) && isset($_POST['id'])){
-                if(!empty($_POST['date']) && !empty($_POST['grade']) && !empty($_POST['division']) && !empty($_POST['id'])){
+            if (isset($_POST['date'])&& isset($_POST['id'])){
+                if(!empty($_POST['date']) && !empty($_POST['id'])){
 
                     $date = $_POST['date'];
-                    $grade = $_POST['grade'];
-                    $grade2 = $grade * 1 ;
-                    $division = $_POST['division'];
                     $id = $_POST['id'];
                     $id2 = $id * 1;
-                    $grade_array = array();
-                    $division_array = array();
 
                     $query_attendance = "SELECT Attendance FROM attendance WHERE StudentID = '$id' AND Date = '$date'";
                     $query_attendance_run = mysqli_query($link,$query_attendance);
                     $query_row = mysqli_fetch_assoc($query_attendance_run);
                     $attendance = $query_row['Attendance'];
-
-                    $grade_query = "SELECT Grade, Division FROM student_details";
-                    $grade_query_run = mysqli_query($link,$grade_query);
-                    while($grade_query_row = mysqli_fetch_assoc($grade_query_run)){
-                        $gradedb = $grade_query_row['Grade'];
-                        $divisiondb = $grade_query_row['Division'];
-                        if (!in_array($gradedb,$grade_array)){
-                            array_push($grade_array,$gradedb);
-                        }
-                        if (!in_array($divisiondb,$division_array)){
-                            array_push($division_array,$divisiondb);
-                        }
-                    }
-
-                    $query_sync = "SELECT Division FROM student_details WHERE Grade = '$grade'";
-                    $query_sync_run = mysqli_query($link,$query_sync);
-                    $sync_array = array();
-                    while($query_sync_row = mysqli_fetch_assoc($query_sync_run)){
-                        $sync =  $query_sync_row['Division'];
-                        if (!in_array($sync,$sync_array)){
-                            array_push($sync_array,$sync);
-                        }
-                    }
-
-                    $query_id_sync = "SELECT StudentID FROM student_details WHERE Grade = '$grade' AND Division = '$division'";
-                    $query_id_sync_run = mysqli_query($link,$query_id_sync);
-                    $id_sync_array = array();
-
-                    while($id_sync_row = mysqli_fetch_assoc($query_id_sync_run)){
-                        $iddb = $id_sync_row['StudentID'];
-                        array_push($id_sync_array,$iddb);
-                    }
 
                     $user = $_SESSION['username'];
                     $query_user = "SELECT grade , division FROM staffuser WHERE username = '$user'";
@@ -98,6 +57,20 @@ if (logged_in()) {
                     $staff_grade = $query_user_row['grade'];
                     $staff_division = $query_user_row['division'];
 
+                    $query_student = "SELECT Grade, Division FROM student_details WHERE StudentID ='$id'";
+                    if ($query_student_run = mysqli_query($link, $query_student)){
+                        if (($query_student_row = mysqli_fetch_assoc($query_student_run))){
+                            $grade_student = $query_student_row['Grade'];
+                            $division_student = $query_student_row['Division'];
+
+
+                        } else{
+                            $message = "StudentID does not exist";
+                        }
+
+                    } else {
+                        $message = "StudentID does not exist";
+                    }
                     if(strtoupper($attendance) == 'A'){
                         $new_value = 'P';
                     } else {

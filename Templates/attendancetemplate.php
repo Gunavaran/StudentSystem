@@ -73,7 +73,7 @@ if (logged_in()) {
                     if ($count == 0) {
                         echo 'You are always present. Keep it up!!!';
                     } else if ($absence > 20) {
-                        $attendancenoti = "INSERT INTO notify_attendance (StudentID, Absence) VALUES ('$id',$absence)";
+                        $attendancenoti = "INSERT INTO notify_attendance (StudentID, Absence) VALUES ('$username',$absence)";
                         $attendancenoti_run = mysqli_query($link, $attendancenoti);
                     }
 

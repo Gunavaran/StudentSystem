@@ -44,7 +44,7 @@ if (logged_in()) {
         $query_row = mysqli_fetch_assoc($query_run);
         $role = $query_row['Role'];
 
-        if ($role == 'principal' OR $role=='teacher') {?>
+        if ($role != 'student') {?>
         <nav id="term_marks_navigation">
             <ul id="nav">
                 <li><a href='../TermMarks/EnterMarks.php'>Enter Term Marks </a> </li>

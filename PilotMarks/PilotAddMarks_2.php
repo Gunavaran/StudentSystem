@@ -82,7 +82,7 @@ if (logged_in()) {
                     if ($message=='') {
                         $s = "INSERT INTO pilot_marks(StudentID,SerialNo,Year,Part1,Part2) VALUES ($id_array[$i],$serial,$year,$part1,$part2)";
                         if (mysqli_query($link, $s)) {
-                            $message_update="- Marks updated for ".$id_array[$i];
+                            $message_update="- Marks updated for ".$id_array[$i]."for Serial No".$serial;
 
                         } else {
                             $message="- Marks not updated... Already marks entered for ".$id_array[$i];

@@ -1,4 +1,3 @@
-
 <?php
 $message = '';
 require '../Connect/Connect.php';
@@ -8,11 +7,12 @@ if (isset($_POST['division']) and isset($_POST['year']) and isset($_POST['serial
         $serialno = $_POST['serialno'];
         $year = $_POST['year'];
 
-        if ($link || mysqli_select_db($link,$database)){
+        if ($link){
             //echo "Connection successful;";
         } else {
             echo "connection failed";
         }
+
 
         $query = "SELECT * FROM pilot_marks WHERE Year = '$year' AND SerialNo = '$serialno'";
         if ($division != 'all'){
@@ -22,7 +22,8 @@ if (isset($_POST['division']) and isset($_POST['year']) and isset($_POST['serial
         }
 
         $studentID_array = array();
-        if ($division_query_run = mysqli_query($link,$division_query)){
+        if ($division_query_run = mysqli_query($link,$division_query)) {
+
             while($division_query_row = mysqli_fetch_assoc($division_query_run)){
                 $studentID = $division_query_row['StudentID'];
                 array_push($studentID_array,$studentID);
@@ -31,7 +32,15 @@ if (isset($_POST['division']) and isset($_POST['year']) and isset($_POST['serial
             echo "Marks does not exist";
         }
 
-        if($query_run = mysqli_query($link,$query)){
+        if(($query_run = mysqli_query($link,$query))&& mysqli_num_rows($query_run) != NULL){
+            ?>
+<div id = 'heading'>
+    <?php
+    echo "Pilot Exam Analysis For Division ".$division;
+    echo '<br>';
+    ?>
+</div>
+<?php
                 $count1 = 0;
                 $count2 = 0;
                 $count3 = 0;
@@ -72,15 +81,15 @@ if (isset($_POST['division']) and isset($_POST['year']) and isset($_POST['serial
                     }
                 }
 
-                echo "00 -10: ".$count1.'<br/>';
-                echo "11 -20: ".$count2.'<br/>';
-                echo "21 -30: ".$count3.'<br/>';
-                echo "31 -40: ".$count4.'<br/>';
-                echo "41 -50: ".$count5.'<br/>';
-                echo "51 -60: ".$count6.'<br/>';
-                echo "61 -70: ".$count7.'<br/>';
-                echo "71 -80: ".$count8.'<br/>';
-                echo "81 -90: ".$count9.'<br/>';
+                echo "00 -10&nbsp&nbsp&nbsp: ".$count1.'<br/>';
+                echo "11 -20&nbsp&nbsp&nbsp: ".$count2.'<br/>';
+                echo "21 -30&nbsp&nbsp&nbsp: ".$count3.'<br/>';
+                echo "31 -40&nbsp&nbsp&nbsp: ".$count4.'<br/>';
+                echo "41 -50&nbsp&nbsp&nbsp: ".$count5.'<br/>';
+                echo "51 -60&nbsp&nbsp&nbsp: ".$count6.'<br/>';
+                echo "61 -70&nbsp&nbsp&nbsp: ".$count7.'<br/>';
+                echo "71 -80&nbsp&nbsp&nbsp: ".$count8.'<br/>';
+                echo "81 -90&nbsp&nbsp&nbsp: ".$count9.'<br/>';
                 echo "91 -100: ".$count10.'<br/>';
 
         } else {
