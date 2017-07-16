@@ -59,23 +59,16 @@ if (logged_in()) {
                     $attendance_query_run = mysqli_query($link, $attendance_query);
                     echo 'You are absent on: <br/>';
                     $count = 0;
-                    $days = 0;
                     while ($attendance_row = mysqli_fetch_assoc($attendance_query_run)) {
                         $attendance = $attendance_row['Attendance'];
                         $date = $attendance_row['Date'];
-                        $days++;
                         if (strtoupper($attendance) == 'A') {
                             echo $date . '<br/>';
                             $count++;
                         }
                     }
-                    $absence = floor(($count * 10000) / ($days * 100));
                     if ($count == 0) {
                         echo 'You are always present. Keep it up!!!';
-                    } else if ($absence > 20) {
-                        $attendancenoti = "INSERT INTO notify_attendance (StudentID, Absence) VALUES ('$username',$absence)";
-                        $attendancenoti_run = mysqli_query($link, $attendancenoti);
-                        echo $count.' '.$days.' '.$absence;
                     }
 
                 }
