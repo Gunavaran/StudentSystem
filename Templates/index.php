@@ -24,6 +24,17 @@ if (logged_in()){
             margin-top: 10px;
         }
 
+        div [id = resultbar]{
+            float: left;
+            width: 100%;
+            margin: 10px 0px 0px 10px;
+            padding: 10px;
+            border: 2px solid #E3E3E3;
+            border-radius: 5px;
+            font-family: "Adobe Gothic Std B";
+            background-color: lightskyblue;
+        }
+
     </style>
 </head>
 <body>
@@ -41,11 +52,14 @@ if (logged_in()){
     </nav>
 
     <div id="content_area">
-        <?php
-        include "../EventNotify/Event.php";
-        include "../Notifications/notifyPoorAttendance.php";
-        include "../Notifications/notifyLowMarks.php";
-        ?>
+        <div id = "resultbar">
+            <?php
+            include "../EventNotify/Event.php";
+            include "../Notifications/notifyPoorAttendance.php";
+            include "../Notifications/notifyLowMarks.php";
+            ?>
+        </div>
+
 
     </div>
 

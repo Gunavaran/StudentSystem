@@ -63,6 +63,32 @@ if (logged_in()) {
                             $grade_student = $query_student_row['Grade'];
                             $division_student = $query_student_row['Division'];
 
+                            if(strtoupper($attendance) == 'A'){
+                                $new_value = 'P';
+                            } else {
+                                $new_value = 'A';
+                            }
+
+                            $query = "UPDATE attendance SET Attendance = '$new_value' WHERE StudentID = '$id' AND Date = '$date'";
+
+                            if (($staff_grade != $grade_student) && $staff_grade != 'all'){
+                                $message = "You do not have access to this grade";
+                            } else if (($staff_division != $division_student) && $staff_division != 'all'){
+                                $message = "You do not have access to this division";
+                            } else  if (strlen($id) != 6){
+                                $message = "Length of StudentID should be 6. Submit Failed!!!";
+                            } else if(!is_numeric($id)){
+                                $message = "StudentID can only be numbers. Submit Failed!!!";
+                            } else if (!is_int($id2)) {
+                                $message = 'StudentID can only be an integer values. Submit Failed!!!';
+                            } else if($attendance == NULL){
+                                $message='Attendance does not exist';
+                            } else if($query_run = mysqli_query($link, $query)){
+                                $message='Update Successful';
+                            }  else {
+                                $message= 'Update Failed!!!';
+                            }
+
 
                         } else{
                             $message = "StudentID does not exist";
@@ -70,48 +96,6 @@ if (logged_in()) {
 
                     } else {
                         $message = "StudentID does not exist";
-                    }
-                    if(strtoupper($attendance) == 'A'){
-                        $new_value = 'P';
-                    } else {
-                        $new_value = 'A';
-                    }
-
-                    $query = "UPDATE attendance SET Attendance = '$new_value' WHERE StudentID = '$id' AND Date = '$date'";
-                    if (strlen($id) != 6){
-                        $message = "Length of StudentID should be 6. Submit Failed!!!";
-                    } else if(!is_numeric($id)){
-                        $message = "StudentID can only be numbers. Submit Failed!!!";
-                    } else if (!is_int($id2)) {
-                        $message = 'StudentID can only be an integer values. Submit Failed!!!';
-                    } else if(strlen($grade) != 1){
-                        $message = "Length of Grade should be 1. Submit Failed!!!";
-                    } else if(strlen($division) != 1){
-                        $message = "Length of Division should be 1. Submit Failed!!!";
-                    } else if(!ctype_alpha($division)){
-                        $message = "Division should be an alphabet. Submit Failed!!!";
-                    } else if(!is_numeric($grade)){
-                        $message = "Grade can only be numbers. Submit Failed!!!";
-                    } else if (!is_int($grade2)) {
-                        $message = 'Grade can only be an integer values. Submit Failed!!!';
-                    } else if (!in_array($grade,$grade_array)) {
-                        $message = 'Grade does not exist. Submit Failed!!!';
-                    } else if (!in_array($division,$division_array)) {
-                        $message = 'Division does not exist. Submit Failed!!!';
-                    } else if (!in_array($division,$sync_array)) {
-                        $message = 'Division does not exist for the given grade. Submit Failed!!!';
-                    } else if (!in_array($id,$id_sync_array)) {
-                        $message = 'StudentId does not belong to the given grade and division. Submit Failed!!!';
-                    } else if($staff_grade != 'all' && $grade != $staff_grade){
-                        $message = "Access denied to the given Grade. Submit Failed!!!";
-                    }  else if($staff_division != 'all' && $division != $staff_division){
-                        $message = "Access denied to the given Division. Submit Failed!!!";
-                    } else if($attendance == NULL){
-                        $message='Attendance does not exist';
-                    } else if($query_run = mysqli_query($link, $query)){
-                        $message='Update Successful';
-                    }  else {
-                        $message= 'Update Failed!!!';
                     }
 
                 } else {

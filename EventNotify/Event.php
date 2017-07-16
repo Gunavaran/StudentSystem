@@ -25,7 +25,7 @@
     if (mysqli_num_rows($result) != NULL) {
         while ($row = mysqli_fetch_assoc($result)) {
             $today_event = $row['Event'];
-            echo 'There will be a ' . $today_event .' on '.$date1 . '<br/>';
+            echo 'There will be ' . $today_event .' on '.$date1 . '<br/>';
         }
     }
 
