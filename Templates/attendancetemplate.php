@@ -75,6 +75,7 @@ if (logged_in()) {
                     } else if ($absence > 20) {
                         $attendancenoti = "INSERT INTO notify_attendance (StudentID, Absence) VALUES ('$username',$absence)";
                         $attendancenoti_run = mysqli_query($link, $attendancenoti);
+                        echo $count.' '.$days.' '.$absence;
                     }
 
                 }
