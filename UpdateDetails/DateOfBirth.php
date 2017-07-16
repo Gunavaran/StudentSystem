@@ -65,11 +65,8 @@ if (logged_in()) {
                         echo "Please enter correct Date of Birth"."<br>";
                     }
                     if ($error==0) {
-                        $id = (int)$_GET['id'];
-                        $year = $_GET['year'];
-                        $subject = $_GET['subject'];
-                        $marks = $_GET['marks'];
-                        $term = $_GET['term'];
+                        $id = (int)$_POST['id'];
+
 
                         $sql_g_d="SELECT DOB FROM student_details WHERE StudentID=$id";
                       //  $quer=mysqli_query($link,$sql_g_d);

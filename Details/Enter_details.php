@@ -113,6 +113,7 @@ if (logged_in()) {
                 <option value = 'C'>C</option>
                 <option value = 'D'>D</option>
                 <option value = 'E'>E</option>
+                <option value = 'F'>F</option>
             </select><br><br>
             Address:<br>
             <input type="text" name="Address"><br><br>
@@ -150,10 +151,10 @@ if (logged_in()) {
                     } else if (strlen($_POST['PhoneNumber']) != 10) {
                         $error++;
                         echo "phone Number should be in 10 digits</br>";
-                    } else if ($_POST['id'] != (string)(int)$_POST['id'] AND (int)$_POST['id'] < 0) {
+                    } else if ($_POST['id'] != (string)(int)$_POST['id'] || (int)$_POST['id'] < 0) {
                         $error++;
                         echo "Student ID should be a positive number" . "<br>";
-                    } else if (strlen($_POST['id']) != 6 && (!is_numeric($_POST['id']))) {
+                    } else if (strlen($_POST['id']) != 6 || (!is_numeric($_POST['id']))) {
                         $error++;
                         echo "Student ID should be in 6 digits</br>";
                     } else if (!ctype_alpha($_POST['FirstName'])) {
@@ -168,10 +169,10 @@ if (logged_in()) {
                     } else if (!ctype_alpha($_POST['MotherName'])) {
                         $error++;
                         echo "Mother's Name should contains only alphaphets" . "<br>";
-                    } else if (!ctype_alpha($_POST['FatherJob'])) {
+                    } else if (!ctype_alpha(str_replace(' ','',$_POST['FatherJob']))) {
                         $error++;
                         echo "Father's Job should contains only alphaphets" . "<br>";
-                    } else if (!ctype_alpha($_POST['MotherJob'])) {
+                    } else if (!ctype_alpha(str_replace(' ','',$_POST['MotherJob']))) {
                         $error++;
                         echo "Mother's Job should contains only alphaphets" . "<br>";
                     } else if(((int)$thisyear-((int)$enterYear))<5 || (((int)$thisyear-((int)$enterYear))>12)) {

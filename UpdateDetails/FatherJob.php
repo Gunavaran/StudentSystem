@@ -53,16 +53,12 @@ if (logged_in()) {
                         $error++;
                         echo "Student ID should be in 6 digits</br>";
                     }
-                    else if (!ctype_alpha($_POST['fatherJob'])) {
+                    else if (!ctype_alpha(str_replace(' ','',$_POST['fatherJob']))) {
                         $error++;
                         echo "Father's Job should contains only alphaphets" . "<br>";
                     }
                     if ($error==0) {
-                        $id = (int)$_GET['id'];
-                        $year = $_GET['year'];
-                        $subject = $_GET['subject'];
-                        $marks = $_GET['marks'];
-                        $term = $_GET['term'];
+                        $id = (int)$_POST['id'];
 
                         $sql_g_d="SELECT FatherJob FROM student_details WHERE StudentID=$id";
                       //  $quer=mysqli_query($link,$sql_g_d);
@@ -79,8 +75,8 @@ if (logged_in()) {
                         $id = $_POST['id'];
                         $fatherJob = $_POST['fatherJob'];
 
-                        $query = "UPDATE student_details SET FatherJob=$fatherJob WHERE StudentID=$id";
-                        if ($query_run = mysqli_query($link, $query)) {
+                        $query = "UPDATE student_details SET FatherJob='$fatherJob' WHERE StudentID='$id'";
+                        if (mysqli_query($link, $query)) {
                             echo "Father's Job of the student changed Successfully!";
                         } else {
                             echo 'Failed!!!';

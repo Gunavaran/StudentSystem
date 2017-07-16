@@ -13,7 +13,15 @@ if (logged_in()) {
     <?php
     include '../Styles/FormStyle.html';
     ?>
-
+    <style>
+        select{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
 <div id="wrapper">
@@ -40,6 +48,7 @@ if (logged_in()) {
                 <option value = 'C'>C</option>
                 <option value = 'D'>D</option>
                 <option value = 'E'>E</option>
+                <option value = 'F'>F</option>
             </select><br><br>
 
             <input type="submit" value="Submit">
@@ -61,11 +70,8 @@ if (logged_in()) {
                                 echo "Student ID should be in 6 digits</br>";
                             }
                             if ($error==0) {
-                                $id = (int)$_GET['id'];
-                                $year = $_GET['year'];
-                                $subject = $_GET['subject'];
-                                $marks = $_GET['marks'];
-                                $term = $_GET['term'];
+                                $id = (int)$_POST['id'];
+
 
                                 $sql_g_d="SELECT Division FROM student_details WHERE StudentID=$id";
                              //   $quer=mysqli_query($link,$sql_g_d);
@@ -82,7 +88,7 @@ if (logged_in()) {
                                 $id = $_POST['id'];
                                 $division = $_POST['division'];
 
-                                $query = "UPDATE student_details SET Division=$division WHERE StudentID=$id";
+                                $query = "UPDATE student_details SET Division='$division' WHERE StudentID='$id'";
                                 if ($query_run = mysqli_query($link, $query)) {
                                     echo 'Division of the student changed Successfully!';
                                 } else {
