@@ -88,7 +88,7 @@ if (logged_in()) {
                         if (!empty($_GET['id'])) {
                             if ($_GET['id'] != (string)(int)$_GET['id'] AND (int)$_GET['id'] < 0) {
                                 $message=$message."Student ID should be a positive number" . "<br>";
-                            } else if (strlen($_GET['id']) != 6  || (!is_numeric($_POST['id']))) {
+                            } else if (strlen($_GET['id']) != 6  || (!is_numeric($_GET['id']))) {
                                 $message=$message."Student ID should be in 6 digits</br>";
                             }
                         }
@@ -100,7 +100,7 @@ if (logged_in()) {
                                 $message=$message."Marks should be a positive number" . "<br>";
                             } elseif ((int)$_GET['marks'] > 100) {
                                 $message=$message."Marks should be less than or equal to 100";
-                            }else if (!is_numeric($_POST['marks'])){
+                            }else if (!is_numeric($_GET['marks'])){
                                 $message=$message."Marks should be in integer";
                             }
 
@@ -114,12 +114,12 @@ if (logged_in()) {
                         $marks = $_GET['marks'];
                         $term = $_GET['term'];
 
-                        $sql_g_d="SELECT grade,division FROM student_details WHERE StudentID=$id";
+                        $sql_g_d="SELECT Division, Grade FROM student_details WHERE StudentID='$id'";
                         //$qmysqli_query($link,$sql_g_d);
-                        if(mysqli_query($link,$sql_g_d)) {
-                            $quer_row = mysqli_fetch_assoc($quer);
-                            $grade = $quer_row['grade'];
-                            $division = $quer_row['division'];
+                        if(mysqli_query($link, $sql_g_d)) {
+                            $quer_row = mysqli_fetch_assoc((mysqli_query($link, $sql_g_d)));
+                         //   $grade = $quer_row['grade'];
+                           // $division = $quer_row['division'];
 
 
                             $username = $_SESSION['username'];
@@ -129,7 +129,7 @@ if (logged_in()) {
                             $role = $query_row['Role'];
 
                             if($role=='teacher'){
-                                $sqli="SELECT grade,division FROM staffuser WHERE username='$username'";
+                                $sqli="SELECT Grade,Division FROM staffuser WHERE username='$username'";
                                 $que=mysqli_query($link,$sqli);
                                 $que_row=mysqli_fetch_assoc($que);
                                 $user_grade=$que_row['grade'];
@@ -143,7 +143,7 @@ if (logged_in()) {
                         }
 
                         if($message=='') {
-                            $query = "INSERT INTO term_marks (ID, Subject, Marks, Year, Term ) VALUES ('$id', '$subject', '$marks', '$year', '$term')";
+                            $query = "INSERT INTO termmarks (ID, Subject, Marks, Year, Term ) VALUES ('$id', '$subject', '$marks', '$year', '$term')";
                             if (mysqli_query($link, $query)) {
                                 $message = 'Successfully Stored';
                                 if ($marks < 35) {

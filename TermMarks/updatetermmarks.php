@@ -113,12 +113,12 @@ if (logged_in()) {
                     $marks = $_POST['marks'];
                     $term = $_POST['term'];
 
-                    $sql_g_d = "SELECT Subject FROM termmarks WHERE StudentID=$id";
+                    $sql_g_d = "SELECT Subject FROM termmarks WHERE ID='$id'";
                   ///  $quer = mysqli_query($link, $sql_g_d);
                     if (mysqli_query($link, $sql_g_d)) {
-                        $quer_row = mysqli_fetch_assoc($quer);
-                        $grade = $quer_row['grade'];
-                        $division = $quer_row['division'];
+                        $quer_row = mysqli_fetch_assoc(mysqli_query($link, $sql_g_d));
+                        //$grade = $quer_row['grade'];
+                       // $division = $quer_row['division'];
 
 
                         $username = $_SESSION['username'];
