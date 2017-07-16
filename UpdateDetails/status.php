@@ -43,7 +43,7 @@ if (logged_in()) {
                 ID: <br><br>
                 <input type="text" name="id"><br><br>
                 Current Status: <br><br>
-                <select name='grade'>
+                <select name='status'>
                     <option value = 'active'>Active</option>
                     <option value = 'inactive'>Inactive</option>
                 </select><br><br>
