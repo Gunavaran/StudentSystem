@@ -44,7 +44,7 @@ if (logged_in()) {
             $query_run = mysqli_query($link,$query);
             $query_row = mysqli_fetch_assoc($query_run);
             $role = $query_row['Role'];
-            if ($role != 'student') {
+            if ($role == 'principal') {
                 ?>
                 <nav id="term_marks_navigation">
                     <ul id="nav">
@@ -54,6 +54,12 @@ if (logged_in()) {
                 <nav id="term_marks_navigation">
                     <ul id="nav">
                         <li><a href="../UpdateDetails/updateDetails.php">Update Details</a></li>
+
+                    </ul>
+                </nav>
+                <nav id="term_marks_navigation">
+                    <ul id="nav">
+                        <li><a href="../Templates/AddCharacterTemplate.php">Add Character Detail</a></li>
 
                     </ul>
                 </nav>

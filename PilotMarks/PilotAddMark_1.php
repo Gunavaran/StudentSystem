@@ -17,11 +17,18 @@ if (logged_in()) {
             padding: 8px;
             background-color: darkgrey;
         }
-        input[type=submit]{
+        input[name=submit_1]{
             padding: 14px 20px;
             width: 20%;
             margin: 0px 0px 20px 300px;
             background-color: #4CAF50;
+            border-radius: 2px;
+        }
+        input[name=submit_2]{
+            padding: 14px 20px;
+            width: 20%;
+            margin: 20px 0px 20px 280px;
+            background-color: #490c01;
             border-radius: 2px;
         }
     </style>
@@ -109,7 +116,7 @@ if (logged_in()) {
                         <?php
                         } ?>
                 </table><br><br>
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" name="submit_1">
                 <?php
                     }
             } else {
@@ -121,7 +128,10 @@ if (logged_in()) {
         ?>
         <div id="message">
             <?php
-            echo $message;
+            if($message!='') {
+                echo $message;?>
+                <input type="submit" value="OK" style="color: #ffffff" onclick="document.location.href='../Templates/PilotAddMarksTemplate.php'" name="submit_2"/>
+            <?php }
             ?>
         </div>
     </form>
