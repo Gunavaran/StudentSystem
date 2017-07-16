@@ -156,10 +156,8 @@ if (logged_in()) {
                             echo 'Good Student';
                             echo '</div>' . '</div>';
                         }
-                    } else {
-                        $message = "No data has been found";
-                    }
-                }
+                    } else {$message ="Please check your Student ID...No details were found!!!";}
+                } else {$message ="Please check your Student ID...No details were found!!!";}
             }
             ?>
             <div id="message">

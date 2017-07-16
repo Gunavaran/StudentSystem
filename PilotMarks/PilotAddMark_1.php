@@ -85,13 +85,19 @@ if (logged_in()) {
                     $user_division=$_SESSION['user_division'];
                     $sql = "SELECT StudentID FROM student_details WHERE Grade=5 AND Division='$user_division'";
                 }else{
-                    $sql = "SELECT StudentID FROM student_details WHERE Grade=5";
+                    $division=$_GET['division'];
+                    if ($division=='all') {
+                        $sql = "SELECT StudentID FROM student_details WHERE Grade=5";
+                    }else{
+                        $sql = "SELECT StudentID FROM student_details WHERE Grade=5 AND Division='$division'";
+                    }
                 }
                 if($message=='') {
                     $id_array = array();
                     $result = mysqli_query($link, $sql);
                     if ($result->num_rows > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
+                            
                             array_push($id_array, $row['StudentID']);
 
                         }

@@ -58,6 +58,20 @@ if (logged_in()) {
                     <input type="text" name="year" placeholder="Year"><br><br>
                     Serial No: <br>
                     <input type="text" name="serial_no" placeholder="Serial No."><br><br>
+                    <?php
+                    if($role!="teacher"){?>
+                        Division:<br>
+                        <select name = 'division'>
+                            <option value = 'all'>All</option>
+                            <option value = 'A'>A</option>
+                            <option value = 'B'>B</option>
+                            <option value = 'C'>C</option>
+                            <option value = 'D'>D</option>
+                            <option value = 'E'>E</option>
+                            <option value = 'F'>F</option>
+                        </select><br><br><br>
+                    <?php }
+                    ?>
                     <input type="submit" value="Submit">
                 </fieldset>
             </form>

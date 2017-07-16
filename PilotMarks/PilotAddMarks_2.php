@@ -13,8 +13,15 @@ if (logged_in()) {
     include '../Styles/FormStyle.html';
     ?>
     <style>
+        input[name=submit_2]{
+            padding: 14px 20px;
+            width: 20%;
+            margin: 20px 0px 20px 400px;
+            background-color: #490c01;
+            border-radius: 2px;
+        }
 
-        div[id = message_updade]{
+        div[id = message_update]{
             color: darkgreen;
             margin-top: 10px;
             padding: 14px 20px;
@@ -47,6 +54,7 @@ if (logged_in()) {
         ?>
         <form name="fixedform" action="../Templates/PilotAddMarksTemplate.php">
         <?php
+        $x=0;
         for ($i=0; $i<sizeof($id_array,1);$i++) {
             require_once '../Connect/Connect.php';
             $message='';
@@ -84,19 +92,26 @@ if (logged_in()) {
                     $message="- All marks should be entered for index no ".$id_array[$i];
                 }
             }
-            ?>
-            <div id="message_updade">
-                <?php
-                if ($message_update!='') {echo $message_update;} ?>
-            </div>
-            <div id="message">
-                <?php
-                if ($message!=''){echo $message;} ?>
-            </div>
+            if ($message_update!='') { ?>
+                <div id="message_update">
+                    <?php
+                    echo $message_update;
+                    $x++;?>
+                </div>
             <?php
+            }
+            if ($message!=''){ ?>
+            <div id="message">
+                <?php echo $message; ?>
+            </div>
+            <?php }
         }?>
         </form>
-
+        <?php
+            if($x==sizeof($id_array,1)){?>
+                <input type="submit" value="OK" style="color: #ffffff" onclick="document.location.href='../Templates/PilotAddMarksTemplate.php'" name="submit_2"/>
+            <?php }
+        ?>
     </div>
 
     <?php

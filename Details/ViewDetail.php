@@ -165,10 +165,8 @@ if (logged_in()) {
                             </div>
                             <?php
                         }
-                    } else {
-                        $message ="Please check your Student ID...No details were found!!!";
-                    }
-                }
+                    } else {$message ="Please check your Student ID...No details were found!!!";}
+                } else {$message ="Please check your Student ID...No details were found!!!";}
             }
             ?>
             <div id="message">
