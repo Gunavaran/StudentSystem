@@ -60,11 +60,7 @@ if (logged_in()) {
                                 echo "Student ID should be in 6 digits</br>";
                             }
                             if ($error==0) {
-                                $id = (int)$_GET['id'];
-                                $year = $_GET['year'];
-                                $subject = $_GET['subject'];
-                                $marks = $_GET['marks'];
-                                $term = $_GET['term'];
+                                $id = (int)$_POST['id'];
 
                                 $sql_g_d="SELECT Grade FROM student_details WHERE StudentID=$id";
                               //  $quer=mysqli_query($link,$sql_g_d);
@@ -82,7 +78,7 @@ if (logged_in()) {
                                 $id = $_POST['id'];
                                 $grade = $_POST['grade'];
 
-                                $query = "UPDATE student_details SET Grade=$grade WHERE StudentID=$id";
+                                $query = "UPDATE student_details SET Grade='$grade' WHERE StudentID='$id'";
                                 if ($query_run = mysqli_query($link, $query)) {
                                     echo 'Grade of the student changed Successfully!';
                                 } else {

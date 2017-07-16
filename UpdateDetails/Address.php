@@ -57,11 +57,8 @@ if (logged_in()) {
                     }
 
                     if ($error ==0) {
-                        $id = (int)$_GET['id'];
-                        $year = $_GET['year'];
-                        $subject = $_GET['subject'];
-                        $marks = $_GET['marks'];
-                        $term = $_GET['term'];
+                        $id =(int) $_POST['id'];
+
 
                         $sql_g_d="SELECT Address FROM student_details WHERE StudentID=$id";
                       //  $quer=mysqli_query($link,$sql_g_d);
@@ -79,8 +76,8 @@ if (logged_in()) {
                         $id = $_POST['id'];
                         $add = $_POST['add'];
 
-                        $query = "UPDATE student_details SET Address=$add WHERE StudentID=$id";
-                        if ($query_run = mysqli_query($link, $query)) {
+                        $query = "UPDATE student_details SET Address='add' WHERE StudentID='$id'";
+                        if (mysqli_query($link, $query)) {
                             echo 'Address of the student changed Successfully!';
                         } else {
                             echo 'Failed!!!';

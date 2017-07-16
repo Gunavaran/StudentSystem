@@ -8,7 +8,7 @@ if (logged_in()) {
 <html>
 <head>
 
-    <title>Update Father's Job</title>
+    <title>Update Mother's Job</title>
     <link rel="stylesheet" type = "text/css" href = "../Styles/stylesheets.css"/>
     <?php
     include '../Styles/FormStyle.html';
@@ -54,18 +54,14 @@ if (logged_in()) {
                         $error++;
                         echo "Student ID should be in 6 digits</br>";
                     }
-                    else if (!ctype_alpha($_POST['motherJob'])) {
+                    else if (!ctype_alpha(str_replace(' ','',$_POST['motherJob']))) {
                         $error++;
                         echo "Mother's Job should contains only alphaphets" . "<br>";
                     }
                     if ($error==0) {
-                        $id = (int)$_GET['id'];
-                        $year = $_GET['year'];
-                        $subject = $_GET['subject'];
-                        $marks = $_GET['marks'];
-                        $term = $_GET['term'];
+                        $id = $_POST['id'];
 
-                        $sql_g_d="SELECT MotherJob FROM student_details WHERE StudentID=$id";
+                        $sql_g_d="SELECT MotherJob FROM student_details WHERE StudentID='$id'";
                       //  $quer=mysqli_query($link,$sql_g_d);
                         if(mysqli_query($link,$sql_g_d)) {
                             $error=0;
@@ -81,7 +77,7 @@ if (logged_in()) {
                         $id = $_POST['id'];
                         $motherJob = $_POST['motherJob'];
 
-                        $query = "UPDATE student_details SET MotherJob=$motherJob WHERE StudentID=$id";
+                        $query = "UPDATE student_details SET MotherJob='$motherJob' WHERE StudentID='$id'";
                         if ($query_run = mysqli_query($link, $query)) {
                             echo "Mother's Job of the student changed Successfully!";
                         } else {

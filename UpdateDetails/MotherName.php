@@ -59,11 +59,7 @@ if (logged_in()) {
                         echo "Mother's Name should contains only alphaphets" . "<br>";
                     }
                     if ($error==0) {
-                        $id = (int)$_GET['id'];
-                        $year = $_GET['year'];
-                        $subject = $_GET['subject'];
-                        $marks = $_GET['marks'];
-                        $term = $_GET['term'];
+                        $id = (int)$_POST['id'];
 
                         $sql_g_d="SELECT MotherName FROM student_details WHERE StudentID=$id";
                //         $quer=mysqli_query($link,$sql_g_d);
@@ -81,7 +77,7 @@ if (logged_in()) {
                         $id = $_POST['id'];
                         $motherName = $_POST['motherName'];
 
-                        $query = "UPDATE student_details SET MotherName=$motherName WHERE StudentID=$id";
+                        $query = "UPDATE student_details SET MotherName='$motherName' WHERE StudentID='$id'";
                         if ($query_run = mysqli_query($link, $query)) {
                             echo "Mother's Name of the student changed Successfully!";
                         } else {

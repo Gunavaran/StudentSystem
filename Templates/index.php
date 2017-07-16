@@ -41,6 +41,7 @@ if (logged_in()){
     </nav>
 
     <div id="content_area">
+
         <?php
         include "../EventNotify/Event.php";
         include "../Notifications/notifyPoorAttendance.php";

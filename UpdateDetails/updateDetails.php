@@ -44,6 +44,7 @@ if (logged_in()) {
                 <input type="radio" name="option" value="Grade" onclick="document.location.href='Grade.php'"/> Grade <br/>
                 <input type="radio" name="option" value="Division" onclick="document.location.href='Division.php'"/> Division <br/>
                 <input type="radio" name="option" value="DateOfBirth" onclick="document.location.href='DateOfBirth.php'"/> Date Of Birth <br/>
+                <input type="radio" name="option" value="status" onclick="document.location.href='status.php'"/> Current Status <br/>
             </fieldset>
 
 

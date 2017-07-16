@@ -1,4 +1,3 @@
-
 <div>
     <?php
     include '../Connect/Connect.php';
@@ -19,13 +18,15 @@
 
 
 
-
+    $message=0;
     $query = "SELECT * FROM event WHERE date='$date1'";
     $result = mysqli_query($link, $query);
     if (mysqli_num_rows($result) != NULL) {
         while ($row = mysqli_fetch_assoc($result)) {
             $today_event = $row['Event'];
             echo 'There will be a ' . $today_event .' on '.$date1 . '<br/>';
+            $message++;
+
         }
     }
 
@@ -35,6 +36,7 @@
         while ($row = mysqli_fetch_assoc($result)) {
             $today_event = $row['Event'];
             echo 'There will be a ' . $today_event .' on '.$date2 . '<br/>';
+            $message++;
         }
     }
 
@@ -44,7 +46,11 @@
         while ($row = mysqli_fetch_assoc($result)) {
             $today_event = $row['Event'];
             echo 'There will be a ' . $today_event .' Today!!'. '<br/>';
+            $message++;
         }
+    }
+    if($message==0){
+        echo "There are no events in the following days..!!!";
     }
 
 
