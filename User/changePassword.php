@@ -13,6 +13,15 @@ if (logged_in()) {
     <?php
     include "../Styles/FormStyle.html";
     ?>
+    <style>
+        input[type = password]{
+            width: 100%;
+            height: 30px;
+            display: inline-block;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
 <div id="wrapper">
@@ -31,11 +40,11 @@ if (logged_in()) {
     <div id="content_area">
        <form action="changePassword.php" method="post" name="fixedform">
            Old Password: <br>
-           <input type="text" name="oldpw"><br><br>
+           <input type="password" name="oldpw"><br><br>
            New Password:<br>
-           <input type="text" name="newpw"><br><br>
+           <input type="password" name="newpw"><br><br>
            Reenter Password:<br>
-           <input type="text" name="reenteredpw"><br><br>
+           <input type="password" name="reenteredpw"><br><br>
            <input type="submit" value="Submit">
 
            <?php

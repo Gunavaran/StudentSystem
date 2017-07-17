@@ -15,6 +15,16 @@ if (logged_in()) {
                 border-radius: 5px;
                 margin-top: 10px;
             }
+            div [id = resultbar]{
+                float: left;
+                width: 40%;
+                margin: 20px 10px 0px 300px;
+                padding: 10px;
+                border: 2px solid #E3E3E3;
+                border-radius: 5px;
+                font-family: "Adobe Gothic Std B";
+                background-color: #E3E3E3;
+            }
         </style>
 
     </head>
@@ -57,19 +67,25 @@ if (logged_in()) {
                 } else {
                     $attendance_query = "SELECT Attendance, Date FROM attendance WHERE StudentID = '$username'";
                     $attendance_query_run = mysqli_query($link, $attendance_query);
-                    echo 'You are absent on: <br/>';
-                    $count = 0;
-                    while ($attendance_row = mysqli_fetch_assoc($attendance_query_run)) {
-                        $attendance = $attendance_row['Attendance'];
-                        $date = $attendance_row['Date'];
-                        if (strtoupper($attendance) == 'A') {
-                            echo $date . '<br/>';
-                            $count++;
+                    ?>
+                    <div id="resultbar">
+                        <?php
+                        echo 'You are absent on: <br/>';
+                        $count = 0;
+                        while ($attendance_row = mysqli_fetch_assoc($attendance_query_run)) {
+                            $attendance = $attendance_row['Attendance'];
+                            $date = $attendance_row['Date'];
+                            if (strtoupper($attendance) == 'A') {
+                                echo $date . '<br/>';
+                                $count++;
+                            }
                         }
-                    }
-                    if ($count == 0) {
-                        echo 'You are always present. Keep it up!!!';
-                    }
+                        if ($count == 0) {
+                            echo 'You are always present. Keep it up!!!';
+                        }
+                        ?>
+                    </div>
+                    <?php
 
                 }
                 ?>

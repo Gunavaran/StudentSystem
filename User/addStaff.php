@@ -95,11 +95,11 @@ if (logged_in()) {
                     } else if (mysqli_query($link, $query) && mysqli_query($link, $query_staff)){
                         $message = "Stored Successfully";
                     } else {
-                        $message = "Submit failed!!!";
+                        $message = "Submit failed!!!. Data might already exist.";
                     }
 
                 } else {
-                    $message = "Fields cannot take empty values. Submit FAiled!!!";
+                    $message = "Fields cannot take empty values. Submit Failed!!!";
                 }
 
             } else {

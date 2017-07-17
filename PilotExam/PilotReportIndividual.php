@@ -37,7 +37,7 @@ if (isset($_POST['indexno']) && !empty($_POST['indexno'])){
     } else if (!is_int($id2)) {
         echo 'StudentID can only be an integer values. Submit Failed!!!';
     }else if (mysqli_num_rows($query_run) == NULL){
-        echo "No data has been found";
+        echo "Marks is not found!!!";
     } else if(($staff_grade != 'all' && $grade != $staff_grade) || ($staff_division != 'all' && $division != $staff_division)){
         echo "StudentID does not belong to your class. Submit Failed!!!";
     } else {

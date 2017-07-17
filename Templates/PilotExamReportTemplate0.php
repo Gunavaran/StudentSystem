@@ -26,6 +26,16 @@ if (logged_in()) {
             border-radius: 4px;
             box-sizing: border-box;
         }
+        div [id = resultbar]{
+            float: left;
+            width: 40%;
+            margin: 20px 10px 0px 300px;
+            padding: 10px;
+            border: 2px solid #E3E3E3;
+            border-radius: 5px;
+            font-family: "Adobe Gothic Std B";
+            background-color: #E3E3E3;
+        }
 
 
     </style>
@@ -80,13 +90,19 @@ if (logged_in()) {
                 $serial = $query_row['SerialNo'];
                 $part1 = $query_row['Part1'];
                 $part2 = $query_row['Part2'];
-                echo 'Serial ' . $serial . ':<br/>';
-                echo 'Part1: ' . $part1 . '   ';
-                echo '&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPart2: ' . $part2 . '   ';
-                echo '&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTotal: ';
-                echo ((int)$part1 + (int)$part2) / 2;
-                echo '<br/>';
+                ?>
+                <div id="resultbar">
+                    <?php
+                    echo 'Serial ' . $serial . ':<br/>';
+                    echo 'Part1: ' . $part1 . '   ';
+                    echo '&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPart2: ' . $part2 . '   ';
+                    echo '&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTotal: ';
+                    echo ((int)$part1 + (int)$part2) / 2;
+                    echo '<br/>';
+                    ?>
+                </div>
 
+            <?php
             }
 
         }

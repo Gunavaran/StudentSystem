@@ -62,7 +62,6 @@ if (logged_in()) {
                         if (($query_student_row = mysqli_fetch_assoc($query_student_run))){
                             $grade_student = $query_student_row['Grade'];
                             $division_student = $query_student_row['Division'];
-
                             if(strtoupper($attendance) == 'A'){
                                 $new_value = 'P';
                             } else {

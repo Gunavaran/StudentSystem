@@ -27,6 +27,7 @@
             $today_event = $row['Event'];
             echo 'There will be ' . $today_event .' on '.$date1 . '<br/>';
             $message++;
+
         }
     }
 
@@ -50,8 +51,9 @@
         }
     }
     if($message==0){
-        echo "There are no events in the following days..!!!";
+        echo "There are no events in the following days...!!!";
     }
+
 
     ?>
 </div>

@@ -86,7 +86,7 @@ if (logged_in()) {
 
                     if (isset($_GET['id'])) {
                         if (!empty($_GET['id'])) {
-                            if ($_GET['id'] != (string)(int)$_GET['id'] AND (int)$_GET['id'] < 0) {
+                            if ($_GET['id'] != (string)(int)$_GET['id'] || (int)$_GET['id'] < 0) {
                                 $message=$message."Student ID should be a positive number" . "<br>";
                             } else if (strlen($_GET['id']) != 6  || (!is_numeric($_GET['id']))) {
                                 $message=$message."Student ID should be in 6 digits</br>";
@@ -116,10 +116,8 @@ if (logged_in()) {
 
                         $sql_g_d="SELECT Division, Grade FROM student_details WHERE StudentID='$id'";
                         //$qmysqli_query($link,$sql_g_d);
-                        if(mysqli_query($link, $sql_g_d)) {
-                            $quer_row = mysqli_fetch_assoc((mysqli_query($link, $sql_g_d)));
-                         //   $grade = $quer_row['grade'];
-                           // $division = $quer_row['division'];
+                        if(($quer=mysqli_query($link, $sql_g_d)) && mysqli_num_rows($quer) != NULL) {
+                            $quer_row = mysqli_fetch_assoc($quer);
 
 
                             $username = $_SESSION['username'];
@@ -143,7 +141,7 @@ if (logged_in()) {
                         }
 
                         if($message=='') {
-                            $query = "INSERT INTO termmarks (ID, Subject, Marks, Year, Term ) VALUES ('$id', '$subject', '$marks', '$year', '$term')";
+                            $query = "INSERT INTO termmarks (StudentID, Subject, Marks, Year, Term ) VALUES ('$id', '$subject', '$marks', '$year', '$term')";
                             if (mysqli_query($link, $query)) {
                                 $message = 'Successfully Stored';
                                 if ($marks < 35) {
