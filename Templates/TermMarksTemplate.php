@@ -47,13 +47,13 @@ if (logged_in()) {
         if ($role != 'student') {?>
         <nav id="term_marks_navigation">
             <ul id="nav">
-                <li><a href='../TermMarks/EnterMarks.php'>Enter Term Marks </a> </li>
+                <li><a href='../Templates/EnterTermMarksTemplate.php'>Enter Term Marks </a> </li>
             </ul>
         </nav>
 
             <nav id="term_marks_navigation">
                 <ul id="nav">
-                    <li><a href='../TermMarks/updatetermmarks.php'>Update Term Marks </a> </li>
+                    <li><a href='../TermMarks/updateTermMarks.php'>Update Term Marks </a> </li>
                 </ul>
             </nav>
         <?php }?>
